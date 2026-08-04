@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mount Meru Trekking | Pardalis Safari Tours</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { background-color: #f5f2eb; color: #2c2523; line-height: 1.7; font-size: 15px; }
+
+        header { background-color: #ffffff; padding: 15px 20px; text-align: center; border-bottom: 2px solid #e0d5c1; }
+        .header-container { max-width: 1200px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; }
+        .logo-container img { max-height: 90px; width: auto; display: block; }
+        .slogan { margin-top: 8px; font-size: 0.95rem; font-weight: bold; color: #8B4513; text-transform: uppercase; letter-spacing: 1px; }
+
+        nav { background-color: #4A1208; border-top: 1px solid #5c180b; border-bottom: 4px solid #B87B14; position: sticky; top: 0; z-index: 1000; }
+        .nav-container { max-width: 1200px; margin: 0 auto; }
+        .nav-menu { list-style: none; display: flex; justify-content: flex-start; align-items: center; flex-wrap: wrap; }
+        .nav-item > a { display: flex; align-items: center; gap: 5px; padding: 14px 18px; color: #ffffff; text-decoration: none; font-weight: 700; font-size: 0.85rem; text-transform: uppercase; transition: all 0.3s ease; }
+        .nav-item:hover > a, .nav-item.active > a { background-color: #B87B14; color: #2B0601; }
+
+        .page-wrapper { max-width: 1200px; margin: 30px auto; padding: 0 15px; }
+        .main-content { background: #ffffff; padding: 40px; border-radius: 8px; border: 1px solid #e2dacd; box-shadow: 0 8px 25px rgba(0,0,0,0.05); }
+
+        h1.main-title { color: #4A1208; font-size: 2.3rem; text-transform: uppercase; font-weight: 800; }
+        .subtitle { color: #B87B14; font-size: 1.15rem; font-weight: 700; margin-bottom: 20px; border-bottom: 2px solid #e0d5c1; padding-bottom: 10px; }
+
+        h2.section-title { color: #4A1208; font-size: 1.6rem; text-transform: uppercase; margin: 40px 0 20px 0; padding-left: 12px; border-left: 5px solid #B87B14; background: #FFF9F2; padding-top: 6px; padding-bottom: 6px; }
+        
+        .item-card { background: #fffcf8; border-left: 4px solid #D4A359; border-radius: 4px; padding: 20px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.03); }
+        .item-card h3 { color: #8B4513; font-size: 1.2rem; margin-bottom: 8px; font-weight: 700; text-transform: uppercase; }
+
+        /* CAROUSEL / SLIDER STYLES */
+        .carousel-container {
+            position: relative;
+            width: 100%;
+            max-width: 950px;
+            margin: 25px auto;
+            overflow: hidden;
+            border-radius: 8px;
+            border: 2px solid #4A1208;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+        }
+
+        .carousel-track {
+            display: flex;
+            transition: transform 0.6s ease-in-out;
+        }
+
+        .carousel-slide {
+            min-width: 100%;
+            position: relative;
+        }
+
+        .carousel-slide img {
+            width: 100%;
+            height: 480px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .caption-overlay {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            background: rgba(43, 6, 1, 0.8);
+            color: #ffffff;
+            padding: 12px 20px;
+            text-align: center;
+            font-size: 1rem;
+            font-weight: bold;
+            letter-spacing: 0.5px;
+        }
+
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(74, 18, 8, 0.75);
+            color: white;
+            border: none;
+            font-size: 24px;
+            padding: 10px 16px;
+            cursor: pointer;
+            border-radius: 50%;
+            transition: background 0.3s ease, transform 0.2s;
+            z-index: 10;
+        }
+
+        .carousel-btn:hover {
+            background: #B87B14;
+            color: #2B0601;
+        }
+
+        .prev-btn { left: 15px; }
+        .next-btn { right: 15px; }
+
+        .book-now-banner { background: #4A1208; color: #ffffff; padding: 30px 20px; text-align: center; margin-top: 40px; border-radius: 6px; }
+        .book-now-banner h2 { color: #D4A359; font-size: 1.6rem; margin-bottom: 10px; text-transform: uppercase; }
+        .book-now-btn { display: inline-block; background-color: #D4A359; color: #2B0601; padding: 12px 28px; text-decoration: none; font-weight: 800; border-radius: 25px; text-transform: uppercase; margin-top: 15px; transition: background-color 0.3s ease; }
+        .book-now-btn:hover { background-color: #ffffff; color: #4A1208; }
+
+        footer { background-color: #2b180d; color: #d4a359; padding: 25px 15px; text-align: center; border-top: 4px solid #4A1208; margin-top: 50px; }
+        footer p { color: #e0d5c1; font-size: 0.85rem; }
+
+        @media (max-width: 768px) {
+            .carousel-slide img { height: 320px; }
+            .main-content { padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="header-container">
+        <div class="logo-container">
+            <img src="{{ url_for('static', filename='logo.png') }}" alt="Pardalis Safari Tours Logo">
+        </div>
+        <div class="slogan">Great People for Memorable Safaris</div>
+    </div>
+</header>
+
+<nav>
+    <div class="nav-container">
+        <ul class="nav-menu">
+            <li class="nav-item"><a href="{{ url_for('climbing_trekking') }}">BACK TO TREKS</a></li>
+            <li class="nav-item active"><a href="#">MT. MERU</a></li>
+        </ul>
+    </div>
+</nav>
+
+<div class="page-wrapper">
+    <main class="main-content">
+        <h1 class="main-title">Mt. Meru Trekking</h1>
+        <div class="subtitle">Tanzania's Majestic Volcanic Mountain</div>
+
+        <!-- PHOTO CAROUSEL / SLIDER IN MOTION -->
+        {% if photos %}
+        <div class="carousel-container">
+            <div class="carousel-track">
+                {% for photo in photos %}
+                <div class="carousel-slide">
+                    <img src="{{ photo.url }}" alt="{{ photo.caption }}">
+                    <div class="caption-overlay">{{ photo.caption }}</div>
+                </div>
+                {% endfor %}
+            </div>
+
+            <!-- Navigation Buttons -->
+            <button class="carousel-btn prev-btn" aria-label="Previous Slide">&#10094;</button>
+            <button class="carousel-btn next-btn" aria-label="Next Slide">&#10095;</button>
+        </div>
+        {% endif %}
+
+        <p>Mount Meru, which is located within the Arusha National Park, overlooking Arusha town, is the second highest mountain in Tanzania after Kilimanjaro. Standing proudly at 4,566 meters (14,980 feet) above sea level, Mount Meru is an exciting mountain to climb with breathtaking landscapes, rich biodiversity, and relatively fewer crowds.</p>
+
+        <p style="margin-top: 15px;">Parts of the climb along the saddle are very steep but the views of Kilimanjaro 80km to the northeast and of the cliff face from the summit down to Meru Crater are spectacular. One does not however need technical equipment for the climb.</p>
+
+        <p style="margin-top: 15px;">Mount Meru is usually scaled in 3 days / 2 nights, but since descending from summit takes about 7 hours, some climbers opt for an extra night at Miriakamba Hut which will make it a 4-day / 3-nights climb. Overnight accommodation is in alpine huts on your way up and down.</p>
+
+        <h2 class="section-title">Mount Meru – Overview & History</h2>
+
+        <div class="item-card">
+            <h3>Introduction</h3>
+            <p>Mount Meru is a dormant stratovolcano that last erupted around 1910. Thousands of years ago, a massive volcanic explosion caused the eastern side of the mountain to collapse, creating a spectacular horseshoe-shaped crater that visitors can still observe today. The mountain's fertile volcanic soils support lush forests, diverse wildlife, and unique vegetation, making it one of Tanzania's ecological treasures.</p>
+        </div>
+
+        <div class="item-card">
+            <h3>Geography and Geological Formation</h3>
+            <p>Mount Meru is situated in northern Tanzania within the Great Rift Valley region. One of its most striking characteristics is the enormous collapsed eastern crater wall with steep cliffs reaching nearly 1,500 meters high. Inside the crater lies an ash cone that formed after the major eruption. The summit, known as Socialist Peak, offers panoramic views across northern Tanzania, including the snow-capped peak of Mount Kilimanjaro on clear mornings.</p>
+        </div>
+
+        <div class="item-card">
+            <h3>Climate and Vegetation</h3>
+            <p>Mount Meru experiences several climatic zones due to changes in altitude. The lower slopes receive abundant rainfall throughout the year, supporting dense tropical forests. At higher elevations, the vegetation gradually changes into montane forests and heathland dominated by giant heather. Above approximately 3,500 meters, the landscape becomes alpine desert with sparse vegetation adapted to harsh conditions.</p>
+        </div>
+
+        <div class="item-card">
+            <h3>Wildlife of Mount Meru</h3>
+            <p>One of the greatest attractions of Mount Meru is the incredible wildlife found within Arusha National Park. Common mammals include giraffes, buffaloes, zebras, warthogs, bushbucks, waterbucks, and elephants. Visitors may also see blue monkeys, black-and-white colobus monkeys, baboons, and occasionally leopards. Because buffaloes are common on the lower slopes, all trekking groups are accompanied by armed park rangers to ensure visitors' safety.</p>
+        </div>
+
+        <h2 class="section-title">Standard Trekking Itinerary</h2>
+
+        <div class="item-card">
+            <h3>Day 1: Momela Gate to Miriakamba Hut</h3>
+            <p>Morning transfer to Momela Gate (1500m) to start the climb, 3 hours walk gets you to Miriakamba Hut. Afternoon explore the Meru Crater. Overnight at Miriakamba Hut.</p>
+        </div>
+
+        <div class="item-card">
+            <h3>Day 2: Miriakamba Hut to Saddle Hut</h3>
+            <p>Climb to Saddle Hut which will take about three hours along the steep Saddle walls. Explore Little Meru (3820m), a 1 ½ hour climb in the afternoon. Overnight at Saddle Hut.</p>
+        </div>
+
+        <div class="item-card">
+            <h3>Day 3: Summit Day & Descent</h3>
+            <p>Early morning ascend to the summit of Mount Meru (4566m) which will take up to 5 hours and then return to Miriakamba Hut for overnight OR descend to Momela Gate (7 hours).</p>
+        </div>
+
+        <div class="item-card">
+            <h3>Cultural & Tourism Importance</h3>
+            <p>Mount Meru holds cultural importance for several ethnic communities living around its slopes, including the Meru people and the Maasai. Although Mt Meru is usually climbed from the western side at Olkokola, it can be climbed via Little Meru. The best time to climb the mountain is between October and February, although there may be some rain in November.</p>
+        </div>
+
+        <div class="book-now-banner">
+            <h2>Ready to Trek Mount Meru?</h2>
+            <p>Plan your trek with certified guides, park ranger support, and tailored itineraries.</p>
+            <a href="{{ url_for('booking_page') }}" class="book-now-btn">Book Your Trek Now</a>
+        </div>
+    </main>
+</div>
+
+<footer>
+    <p>&copy; 2026 Pardalis Safari Tours. All Rights Reserved. | Designed for Memorable Safaris</p>
+</footer>
+
+<!-- AUTOMATIC MOTION SCRIPT -->
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const track = document.querySelector('.carousel-track');
+    if (!track) return;
+    
+    const slides = Array.from(track.children);
+    const nextBtn = document.querySelector('.next-btn');
+    const prevBtn = document.querySelector('.prev-btn');
+    
+    if (slides.length === 0) return;
+
+    let currentIndex = 0;
+
+    function updateSlide(index) {
+        track.style.transform = `translateX(-${index * 100}%)`;
+    }
+
+    // Auto motion every 3.5 seconds
+    let slideInterval = setInterval(() => {
+        currentIndex = (currentIndex + 1) % slides.length;
+        updateSlide(currentIndex);
+    }, 3500);
+
+    // Manual controls (resets timer when clicked)
+    const resetTimer = () => {
+        clearInterval(slideInterval);
+        slideInterval = setInterval(() => {
+            currentIndex = (currentIndex + 1) % slides.length;
+            updateSlide(currentIndex);
+        }, 3500);
+    };
+
+    if (nextBtn) {
+        nextBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex + 1) % slides.length;
+            updateSlide(currentIndex);
+            resetTimer();
+        });
+    }
+
+    if (prevBtn) {
+        prevBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+            updateSlide(currentIndex);
+            resetTimer();
+        });
+    }
+});
+</script>
+
+</body>
+</html>

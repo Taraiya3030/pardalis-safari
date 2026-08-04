@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ngorongoro Conservation Area | Pardalis Safari Tours</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { background-color: #f5f2eb; color: #2c2523; line-height: 1.7; font-size: 15px; }
+
+        /* Header & Navigation */
+        header { background-color: #ffffff; padding: 15px 20px; text-align: center; border-bottom: 2px solid #e0d5c1; }
+        .header-container { max-width: 1200px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; }
+        .logo-container img { max-height: 90px; width: auto; display: block; }
+        .slogan { margin-top: 8px; font-size: 0.95rem; font-weight: bold; color: #8B4513; text-transform: uppercase; letter-spacing: 1px; }
+
+        nav { background-color: #4A1208; border-top: 1px solid #5c180b; border-bottom: 4px solid #B87B14; position: sticky; top: 0; z-index: 1000; box-shadow: 0 4px 10px rgba(0,0,0,0.15); }
+        .nav-container { max-width: 1200px; margin: 0 auto; }
+        .nav-menu { list-style: none; display: flex; justify-content: flex-start; align-items: center; flex-wrap: wrap; }
+        .nav-item > a { display: flex; align-items: center; gap: 5px; padding: 14px 18px; color: #ffffff; text-decoration: none; font-weight: 700; font-size: 0.85rem; text-transform: uppercase; transition: all 0.3s ease; }
+        .nav-item:hover > a { background-color: #B87B14; color: #2B0601; }
+
+        /* Main Wrapper */
+        .page-wrapper { max-width: 1200px; margin: 30px auto; padding: 0 15px; }
+        .main-content { background: #ffffff; padding: 40px; border-radius: 8px; border: 1px solid #e2dacd; box-shadow: 0 8px 25px rgba(0,0,0,0.05); }
+
+        /* Titles & Subtitles */
+        h1.main-title { color: #4A1208; font-size: 2.5rem; text-transform: uppercase; font-weight: 800; letter-spacing: 0.5px; }
+        .subtitle { color: #B87B14; font-size: 1.25rem; font-weight: 700; margin-bottom: 25px; border-bottom: 3px solid #D4A359; padding-bottom: 10px; display: inline-block; width: 100%; }
+
+        h2.section-title { color: #4A1208; font-size: 1.8rem; text-transform: uppercase; margin: 45px 0 20px 0; padding-left: 15px; border-left: 6px solid #B87B14; background: linear-gradient(90deg, #FFF9F2 0%, rgba(255,255,255,0) 100%); padding-top: 8px; padding-bottom: 8px; border-radius: 0 6px 6px 0; }
+        
+        .item-card { background: #fffcf8; border-left: 4px solid #D4A359; border-radius: 4px; padding: 18px 22px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.03); transition: transform 0.25s ease, border-left-color 0.25s ease, box-shadow 0.25s ease; }
+        .item-card:hover { transform: translateY(-3px); border-left-color: #4A1208; box-shadow: 0 6px 15px rgba(74, 18, 8, 0.08); }
+        .item-card h3 { color: #8B4513; font-size: 1.2rem; margin-bottom: 8px; font-weight: 700; }
+
+        .highlight-box { background: linear-gradient(135deg, #FFF9F2 0%, #F5E8D3 100%); border: 1px solid #D4A359; border-radius: 6px; padding: 22px; margin: 25px 0; box-shadow: inset 0 0 10px rgba(212,163,89,0.15); }
+        .highlight-box h3 { color: #4A1208; margin-bottom: 10px; font-size: 1.15rem; }
+
+        /* Motion Photo Gallery with Ken Burns & Hover Motion */
+        .photo-gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; margin: 35px 0; }
+        
+        .photo-card { background: #ffffff; border-radius: 8px; overflow: hidden; border: 1px solid #e0d5c1; box-shadow: 0 5px 15px rgba(0,0,0,0.06); position: relative; transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1); }
+        .photo-card:hover { transform: translateY(-8px); box-shadow: 0 12px 25px rgba(74, 18, 8, 0.2); }
+
+        .photo-img-wrapper { height: 240px; overflow: hidden; position: relative; }
+        .photo-img-wrapper img { width: 100%; height: 100%; object-fit: cover; display: block; animation: kenburns 20s infinite alternate ease-in-out; transition: filter 0.4s ease; }
+        .photo-card:hover .photo-img-wrapper img { filter: brightness(1.08) contrast(1.05); }
+
+        /* Continuous Ken Burns Motion Animation */
+        @keyframes kenburns {
+            0% { transform: scale(1) translate(0, 0); }
+            50% { transform: scale(1.12) translate(-2%, -1%); }
+            100% { transform: scale(1) translate(1%, 2%); }
+        }
+
+        .photo-card .caption { padding: 14px 18px; font-weight: 700; color: #4A1208; text-align: center; font-size: 0.95rem; background: #ffffff; border-top: 3px solid #D4A359; }
+
+        /* Video Container */
+        .video-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; margin: 30px 0; border-radius: 8px; border: 3px solid #4A1208; box-shadow: 0 8px 20px rgba(0,0,0,0.15); }
+        .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
+
+        /* Dynamic Pill List Styling */
+        .badge-list { list-style: none; display: flex; flex-wrap: wrap; gap: 10px; margin: 15px 0; }
+        .badge-list li { background-color: #2B4C32; color: #ffffff; font-weight: 600; font-size: 0.88rem; padding: 6px 16px; border-radius: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); transition: transform 0.2s, background-color 0.2s; }
+        .badge-list li:hover { transform: scale(1.05); background-color: #B87B14; }
+
+        .maasai-pill-list { list-style: none; display: flex; flex-wrap: wrap; gap: 10px; margin: 15px 0; }
+        .maasai-pill-list li { background-color: #4A1208; color: #ffffff; font-weight: 600; font-size: 0.88rem; padding: 6px 16px; border-radius: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); transition: transform 0.2s, background-color 0.2s; }
+        .maasai-pill-list li:hover { transform: scale(1.05); background-color: #D4A359; color: #2B0601; }
+
+        /* Action Banner */
+        .book-now-banner { background: linear-gradient(135deg, #4A1208 0%, #2B0601 100%); color: #ffffff; padding: 35px 25px; text-align: center; margin-top: 50px; border-radius: 8px; box-shadow: 0 10px 25px rgba(0,0,0,0.2); border: 2px solid #D4A359; }
+        .book-now-banner h2 { color: #D4A359; font-size: 1.8rem; margin-bottom: 10px; text-transform: uppercase; }
+        .book-now-banner p { color: #f5f2eb; margin-bottom: 20px; font-size: 1.05rem; }
+        .book-now-btn { display: inline-block; background-color: #D4A359; color: #2B0601; padding: 14px 34px; text-decoration: none; font-weight: 800; border-radius: 30px; text-transform: uppercase; transition: all 0.3s ease; box-shadow: 0 4px 12px rgba(0,0,0,0.2); }
+        .book-now-btn:hover { background-color: #ffffff; color: #4A1208; transform: translateY(-2px); box-shadow: 0 6px 18px rgba(0,0,0,0.3); }
+
+        footer { background-color: #2b180d; color: #d4a359; padding: 25px 15px; text-align: center; border-top: 4px solid #4A1208; margin-top: 50px; }
+        footer p { color: #e0d5c1; font-size: 0.85rem; }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="header-container">
+        <div class="logo-container">
+            <img src="{{ url_for('static', filename='logo.png') }}" alt="Pardalis Safari Tours Logo">
+        </div>
+        <div class="slogan">Great People for Memorable Safaris</div>
+    </div>
+</header>
+
+<nav>
+    <div class="nav-container">
+        <ul class="nav-menu">
+            <li class="nav-item"><a href="{{ url_for('home') }}">HOME</a></li>
+            <li class="nav-item"><a href="{{ url_for('about') }}">ABOUT US</a></li>
+            <li class="nav-item"><a href="{{ url_for('destinations') }}">DESTINATIONS</a></li>
+            <li class="nav-item"><a href="{{ url_for('safaris') }}">SAFARIS</a></li>
+            <li class="nav-item"><a href="{{ url_for('climbing_trekking') }}">CLIMBING & TREKKING</a></li>
+            <li class="nav-item"><a href="{{ url_for('accommodation') }}">ACCOMMODATION</a></li>
+        </ul>
+    </div>
+</nav>
+
+<div class="page-wrapper">
+    <main class="main-content">
+        <h1 class="main-title">Ngorongoro Conservation Area</h1>
+        <div class="subtitle">A Natural Wonder of Tanzania</div>
+
+        <p>The Ngorongoro Conservation Area (NCA) is one of the world's most remarkable wildlife conservation areas and a UNESCO World Heritage Site. Located in northern Tanzania, approximately 180 kilometers west of Arusha City, the conservation area covers about 8,292 square kilometers. Established in 1959, the Ngorongoro Conservation Area was created to conserve wildlife while allowing the indigenous Maasai people to continue living in harmony with nature. Unlike national parks where permanent human settlement is prohibited, Ngorongoro is a unique multiple land-use area where wildlife conservation and traditional pastoralism coexist.</p>
+
+        <p>The area's most famous attraction is the Ngorongoro Crater, the world's largest intact and unfilled volcanic caldera. Formed about two to three million years ago after a massive volcanic eruption, the crater measures approximately 19 kilometers in diameter, with walls rising about 600 meters from the crater floor. The crater covers an area of approximately 260 square kilometers and provides one of the best wildlife viewing experiences in Africa.</p>
+
+        <p>Ngorongoro is often referred to as the "Eighth Wonder of the World" because of its breathtaking landscapes, extraordinary wildlife, and unique cultural heritage. Visitors from all over the globe travel to this magnificent destination to experience unforgettable safaris, witness spectacular scenery, and learn about the traditions of the Maasai people.</p>
+
+        <p>The conservation area contains diverse ecosystems, including volcanic highlands, grasslands, forests, lakes, rivers, and swamps. These habitats support thousands of animal species and hundreds of bird species throughout the year.</p>
+
+        {% if video_url %}
+        <div class="video-container">
+            <iframe src="{{ video_url }}" allowfullscreen></iframe>
+        </div>
+        {% endif %}
+
+        {% if photos %}
+        <div class="photo-gallery">
+            {% for photo in photos %}
+            <div class="photo-card">
+                <div class="photo-img-wrapper">
+                    <img src="{{ photo.url }}" alt="{{ photo.caption }}">
+                </div>
+                <div class="caption">{{ photo.caption }}</div>
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        <h2 class="section-title">Wildlife Found in Ngorongoro Conservation Area</h2>
+        <p>Ngorongoro is home to over 25,000 large mammals, making it one of the highest concentrations of wildlife in Africa. Because of its permanent water sources and rich grasslands, animals remain in the crater throughout the year.</p>
+
+        <div class="item-card">
+            <h3>African Elephant</h3>
+            <p>The Ngorongoro Conservation Area is famous for its large African elephants, especially mature bulls with impressive ivory tusks. These elephants spend much of their time in the Lerai Forest and surrounding woodlands, feeding on leaves, bark, grasses, and fruits. Elephant sightings are common during game drives.</p>
+        </div>
+
+        <div class="item-card">
+            <h3>African Lion</h3>
+            <p>The crater supports one of Africa's densest populations of lions. Several prides live permanently within the crater because food is abundant. Visitors often see lions resting under trees, hunting zebras or wildebeests, or protecting their cubs.</p>
+        </div>
+
+        <div class="item-card">
+            <h3>Black Rhinoceros</h3>
+            <p>Ngorongoro is among the few places in Tanzania where the endangered black rhinoceros can still be seen in its natural habitat. Conservation efforts have helped protect this rare species, making the crater one of the best places for rhino viewing.</p>
+        </div>
+
+        <div class="item-card">
+            <h3>Cape Buffalo</h3>
+            <p>Thousands of Cape buffalo graze across the crater floor. These powerful animals travel in large herds and play an important role in maintaining the grassland ecosystem.</p>
+        </div>
+
+        <div class="item-card">
+            <h3>Leopard</h3>
+            <p>Although more secretive than other predators, leopards inhabit the forests surrounding the crater rim. They are usually spotted resting in trees or hunting during early mornings and evenings.</p>
+        </div>
+
+        <div class="item-card">
+            <h3>Cheetah</h3>
+            <p>Cheetahs are found mainly in the open plains surrounding the conservation area, where they use their incredible speed to hunt gazelles and other small antelopes.</p>
+        </div>
+
+        <div class="item-card">
+            <h3>Spotted Hyena</h3>
+            <p>Ngorongoro has one of Africa's healthiest hyena populations. These intelligent predators and scavengers are often seen competing with lions for food or hunting in groups.</p>
+        </div>
+
+        <div class="item-card">
+            <h3>Wildebeest and Zebra</h3>
+            <p>Large herds of wildebeests and zebras graze together throughout the conservation area. They are essential prey for lions, hyenas, and other predators.</p>
+        </div>
+
+        <div class="item-card">
+            <h3>Hippopotamus</h3>
+            <p>Hippos inhabit permanent pools and swamps inside the crater. During the day they remain submerged in water to keep cool and emerge at night to graze.</p>
+        </div>
+
+        <div class="item-card">
+            <h3>Giraffe</h3>
+            <p>Although giraffes are common throughout northern Tanzania, they are mostly found outside the crater because the steep crater walls limit their movement.</p>
+        </div>
+
+        <div class="item-card">
+            <h3>Antelopes</h3>
+            <p>Several antelope species inhabit the conservation area:</p>
+            <ul class="badge-list">
+                <li>Thomson's Gazelle</li>
+                <li>Grant's Gazelle</li>
+                <li>Eland</li>
+                <li>Hartebeest</li>
+                <li>Waterbuck</li>
+                <li>Bushbuck</li>
+                <li>Reedbuck</li>
+                <li>Impala</li>
+            </ul>
+        </div>
+
+        <div class="item-card">
+            <h3>Primates</h3>
+            <p>The forests are home to olive baboons, vervet monkeys, and blue monkeys, which are frequently seen by visitors.</p>
+        </div>
+
+        <div class="item-card">
+            <h3>Birds</h3>
+            <p>Ngorongoro is also a paradise for bird lovers, with more than 500 recorded bird species:</p>
+            <ul class="badge-list">
+                <li>Flamingos</li>
+                <li>Ostriches</li>
+                <li>Crowned Cranes</li>
+                <li>Secretary Birds</li>
+                <li>Kori Bustards</li>
+                <li>Eagles</li>
+                <li>Vultures</li>
+                <li>Hornbills</li>
+                <li>Kingfishers</li>
+                <li>Herons</li>
+            </ul>
+        </div>
+
+        <div class="highlight-box">
+            <h3>Lake Magadi Flamingo Haven</h3>
+            <p>Lake Magadi, located within the crater, attracts thousands of flamingos during certain seasons, creating spectacular pink landscapes across the alkaline soda lake.</p>
+        </div>
+
+        <h2 class="section-title">The Maasai People of Ngorongoro</h2>
+        
+        <div class="item-card">
+            <h3>Introduction</h3>
+            <p>The Maasai are among the most famous indigenous communities in East Africa. They have lived in the Ngorongoro region for centuries and continue to maintain their traditional way of life despite modernization. Their rich culture, colorful clothing, unique customs, and deep connection with livestock make them one of Africa's most recognizable ethnic groups.</p>
+            <p style="margin-top: 10px;">Unlike many communities, the Maasai are allowed to live inside the Ngorongoro Conservation Area because the area was established as a multiple land-use conservation zone where both wildlife and people can coexist peacefully.</p>
+        </div>
+
+        <div class="item-card">
+            <h3>Traditional Lifestyle</h3>
+            <p>The Maasai are primarily pastoralists, meaning they depend mainly on livestock such as cattle, goats, and sheep for their livelihood. Cattle are central to Maasai culture and symbolize wealth, social status, and family prosperity.</p>
+            <p style="margin-top: 10px;">Milk, meat, and occasionally cattle blood form important parts of their traditional diet. Their daily activities revolve around caring for livestock, searching for pasture, and protecting animals from predators.</p>
+        </div>
+
+        <div class="item-card">
+            <h3>Maasai Homes</h3>
+            <p>Traditional Maasai homes are called <strong>Manyattas</strong> or <strong>Bomas</strong>. These houses are built mainly by women using locally available materials:</p>
+            <ul class="maasai-pill-list">
+                <li>Mud</li>
+                <li>Cow Dung</li>
+                <li>Wood</li>
+                <li>Grass</li>
+                <li>Ash</li>
+            </ul>
+            <p>The homes are designed to remain cool during the day and warm at night. Several houses are arranged in a circular pattern surrounded by a protective thorn fence to keep livestock safe from predators.</p>
+        </div>
+
+        <div class="item-card">
+            <h3>Clothing & Cultural Ornamentation</h3>
+            <p>The Maasai are famous for wearing brightly colored <strong>Shukas</strong>, especially red, blue, and purple. Red is particularly important because it symbolizes bravery and is believed to discourage wild animals.</p>
+            <p style="margin-top: 10px;">Traditional jewelry handcrafted by Maasai women includes:</p>
+            <ul class="maasai-pill-list">
+                <li>Beaded Necklaces</li>
+                <li>Earrings</li>
+                <li>Bracelets</li>
+                <li>Anklets</li>
+                <li>Decorative Headpieces</li>
+            </ul>
+            <p>Women create intricate beadwork, with colors and patterns representing age, marital status, and social identity.</p>
+        </div>
+
+        <div class="highlight-box">
+            <h3>The Adumu (Jumping Dance)</h3>
+            <p>One of the best-known Maasai traditions is the <strong>Adumu</strong>, commonly called the jumping dance. Young warriors perform high vertical jumps while singing rhythmically. The higher a warrior jumps, the greater the admiration he receives from the community. This dance symbolizes strength, endurance, and unity.</p>
+        </div>
+
+        <div class="item-card">
+            <h3>Social Structure & Age-Set System</h3>
+            <p>The Maasai community follows an age-set system where boys pass through different stages before becoming respected elders:</p>
+            <ul class="maasai-pill-list">
+                <li>Childhood</li>
+                <li>Warrior (Moran)</li>
+                <li>Junior Elder</li>
+                <li>Senior Elder</li>
+            </ul>
+            <p>Each stage comes with specific responsibilities, leadership roles, and cultural ceremonies.</p>
+        </div>
+
+        <div class="item-card">
+            <h3>Language, Religion & Beliefs</h3>
+            <p>The Maasai primarily speak <strong>Maa</strong>, although many also communicate in Swahili and English, especially those working in tourism and conservation.</p>
+            <p style="margin-top: 10px;">Traditionally, the Maasai believe in one supreme God known as <strong>Enkai (Engai)</strong>, who is considered the creator of all life. Many cultural ceremonies involve prayers, blessings, songs, and community gatherings that strengthen social bonds.</p>
+        </div>
+
+        <div class="item-card">
+            <h3>Coexistence & Sustainable Tourism</h3>
+            <p>One of the most remarkable aspects of the Maasai is their peaceful coexistence with wildlife. For generations, they have shared grazing lands with lions, elephants, zebras, wildebeests, buffaloes, and antelopes.</p>
+            <p style="margin-top: 10px;">Today, many Maasai work in sustainable tourism roles as:</p>
+            <ul class="maasai-pill-list">
+                <li>Safari Guides</li>
+                <li>Conservation Officers</li>
+                <li>Cultural Tour Guides</li>
+                <li>Lodge Employees</li>
+                <li>Wildlife Scouts</li>
+            </ul>
+        </div>
+
+        <div class="item-card">
+            <h3>Tourism and Cultural Experiences</h3>
+            <p>Visitors to Ngorongoro can experience authentic Maasai culture through organized village visits, including:</p>
+            <ul class="maasai-pill-list">
+                <li>Traditional Welcome Dances</li>
+                <li>Guided Tours of Maasai Homes</li>
+                <li>Fire-Making Demonstrations</li>
+                <li>Bead-Making Workshops</li>
+                <li>Storytelling Sessions</li>
+                <li>Livestock Management Demos</li>
+                <li>Handmade Craft Purchasing</li>
+            </ul>
+        </div>
+
+        <div class="book-now-banner">
+            <h2>Experience the Ngorongoro Crater</h2>
+            <p>Ready to witness Africa's highest concentration of wildlife and rich Maasai culture in person?</p>
+            <a href="{{ url_for('booking_page') }}" class="book-now-btn">Book Your Safari Today</a>
+        </div>
+    </main>
+</div>
+
+<footer>
+    <p>&copy; 2026 Pardalis Safari Tours. All Rights Reserved. | Designed for Memorable Safaris</p>
+</footer>
+
+</body>
+</html>

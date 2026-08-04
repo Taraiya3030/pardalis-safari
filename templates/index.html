@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pardalis Safari Tours | Tanzania Safaris</title>
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+body {
+    background-color: #f7f5f0;
+    color: #333;
+    line-height: 1.5;
+    font-size: 14px;
+}
+/* HEADER SECTION */
+header {
+    background-color: #ffffff;
+    padding: 15px 20px;
+    text-align: center;
+    border-bottom: 1px solid #e2e2e2;
+}
+.header-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.logo-container img {
+    max-height: 90px;
+    width: auto;
+    display: block;
+}
+.slogan {
+    margin-top: 8px;
+    font-size: 0.95rem;
+    font-weight: bold;
+    color: #5c3a21;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+}
+/* NAVIGATION BAR */
+nav {
+    background-color: #4A1208;
+    border-top: 1px solid #5c180b;
+    border-bottom: 3px solid #2B0601;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+}
+.nav-menu {
+    list-style: none;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.nav-item {
+    position: relative;
+}
+.nav-item > a {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 12px 16px;
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    transition: background-color 0.2s ease;
+}
+.nav-item:hover > a,
+.nav-item.active-menu > a {
+    background-color: #2B0601;
+    color: #ffffff;
+}
+/* DROPDOWN CARETS */
+.dropdown-trigger::after {
+    content: "▼";
+    font-size: 0.65rem;
+    margin-left: 4px;
+    display: inline-block;
+}
+/* STANDARD DROPDOWN MENUS */
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    min-width: 210px;
+    background-color: #F9F6EE;
+    border: 2px solid #4A1208;
+    box-shadow: 0px 4px 10px rgba(0,0,0,0.2);
+    list-style: none;
+    z-index: 1001;
+}
+.dropdown-menu li {
+    border-bottom: 1px solid #E0D8C8;
+}
+.dropdown-menu li:last-child {
+    border-bottom: none;
+}
+.dropdown-menu li a {
+    display: block;
+    padding: 10px 14px;
+    color: #333333;
+    text-decoration: none;
+    font-size: 0.8rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: background 0.2s, color 0.2s;
+}
+.dropdown-menu li a:hover {
+    background-color: #4A1208;
+    color: #ffffff;
+}
+
+@media (min-width: 993px) {
+    .nav-item:hover .dropdown-menu {
+        display: block;
+    }
+}
+
+/* HAMBURGER MENU BUTTON */
+.mobile-toggle {
+    display: none;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 10px 15px;
+    outline: none;
+}
+.hamburger-bar {
+    display: block;
+    width: 22px;
+    height: 2px;
+    margin: 4px 0;
+    background-color: #ffffff;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    border-radius: 2px;
+}
+.mobile-toggle.active .hamburger-bar:nth-child(1) {
+    transform: translateY(6px) rotate(45deg);
+}
+.mobile-toggle.active .hamburger-bar:nth-child(2) {
+    opacity: 0;
+}
+.mobile-toggle.active .hamburger-bar:nth-child(3) {
+    transform: translateY(-6px) rotate(-45deg);
+}
+/* PAGE LAYOUT */
+.page-wrapper {
+    max-width: 1250px;
+    margin: 20px auto;
+    display: flex;
+    gap: 20px;
+    padding: 0 15px;
+}
+.sidebar {
+    width: 260px;
+    flex-shrink: 0;
+}
+.sidebar-box {
+    background-color: #ffffff;
+    border: 1px solid #e0d7c6;
+    margin-bottom: 16px;
+    padding: 12px;
+    border-radius: 4px;
+}
+.sidebar-title {
+    font-size: 0.85rem;
+    color: #ffffff;
+    background-color: #4A1208;
+    text-transform: uppercase;
+    padding: 8px 10px;
+    margin: -12px -12px 12px -12px;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+}
+.sidebar-menu {
+    list-style: none;
+}
+.sidebar-menu li {
+    border-bottom: 1px solid #f0eadd;
+}
+.sidebar-menu li a {
+    color: #444;
+    text-decoration: none;
+    font-size: 0.78rem;
+    font-weight: bold;
+    display: block;
+    padding: 7px 0;
+    text-transform: uppercase;
+    transition: color 0.2s ease;
+}
+.sidebar-menu li a:hover {
+    color: #4A1208;
+}
+.btn-book-sidebar {
+    display: block;
+    width: 100%;
+    background-color: #4A1208;
+    color: #ffffff;
+    text-align: center;
+    padding: 12px 10px;
+    font-weight: bold;
+    font-size: 0.95rem;
+    text-decoration: none;
+    text-transform: uppercase;
+    border-radius: 4px;
+    margin-bottom: 16px;
+    transition: background-color 0.2s ease;
+}
+.btn-book-sidebar:hover {
+    background-color: #2B0601;
+}
+/* EMERGENCY CONTACT CARDS */
+.contact-card {
+    border: 1px solid #d4a359;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    text-align: center;
+    background: #fffdf9;
+    overflow: hidden;
+}
+.contact-card-header {
+    background: #e0d7c6;
+    color: #4A1208;
+    font-weight: bold;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    padding: 4px 6px;
+    letter-spacing: 0.5px;
+}
+.contact-card-number {
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: #1a6d25;
+    padding: 6px 6px;
+}
+.contact-card-number a {
+    color: #1a6d25;
+    text-decoration: none;
+}
+/* SIDEBAR ACTION BUTTONS */
+.sidebar-btn {
+    display: block;
+    width: 100%;
+    background-color: #2b180d;
+    color: #ffffff;
+    text-align: center;
+    padding: 10px 8px;
+    font-weight: bold;
+    font-size: 0.8rem;
+    text-decoration: none;
+    text-transform: uppercase;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    border-left: 4px solid #d4a359;
+    transition: background-color 0.2s ease;
+}
+.sidebar-btn:hover {
+    background-color: #4A1208;
+    color: #ffffff;
+}
+.sidebar-btn.btn-important {
+    background-color: #a82e2e;
+    border-left-color: #f3d082;
+}
+.sidebar-btn.btn-important:hover {
+    background-color: #822222;
+}
+/* SIDEBAR IMAGES / CARDS */
+.sidebar-image-card {
+    margin-bottom: 14px;
+    text-align: center;
+}
+.sidebar-image-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+    border: 1px solid #e0d7c6;
+    display: block;
+}
+.sidebar-image-card .card-caption {
+    font-size: 0.75rem;
+    font-weight: bold;
+    color: #5c3a21;
+    margin-top: 6px;
+    text-transform: uppercase;
+}
+/* MAIN CONTENT AREA */
+.main-content {
+    flex: 1;
+    background: #ffffff;
+    padding: 25px;
+    border: 1px solid #e0d7c6;
+    border-radius: 4px;
+}
+.main-title {
+    color: #4A1208;
+    font-size: 1.75rem;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+.subtitle {
+    color: #8B4513;
+    font-size: 1.05rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #d4a359;
+    padding-bottom: 8px;
+}
+.section-heading {
+    color: #4A1208;
+    font-size: 1.25rem;
+    margin-top: 25px;
+    margin-bottom: 12px;
+    border-bottom: 1px solid #e0d7c6;
+    padding-bottom: 6px;
+    text-transform: uppercase;
+}
+p {
+    margin-bottom: 14px;
+    font-size: 0.9rem;
+    color: #333;
+    line-height: 1.6;
+}
+ul.content-list {
+    margin-left: 20px;
+    margin-bottom: 20px;
+    font-size: 0.9rem;
+    color: #333;
+}
+ul.content-list li {
+    margin-bottom: 8px;
+}
+/* DESTINATION CARDS */
+.destination-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+    margin: 20px 0;
+}
+.destination-card {
+    background: #fcfbfa;
+    border: 1px solid #e2dacd;
+    border-top: 3px solid #4A1208;
+    border-radius: 4px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.destination-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+.destination-card img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    border-bottom: 1px solid #e2dacd;
+}
+.destination-card-body {
+    padding: 14px;
+    flex: 1;
+}
+.destination-card-body h4 {
+    color: #4A1208;
+    margin-bottom: 6px;
+    font-size: 0.98rem;
+}
+.destination-card-body h4 a {
+    color: #4A1208;
+    text-decoration: none;
+}
+.destination-card-body h4 a:hover {
+    color: #B87B14;
+}
+.destination-card-body p {
+    font-size: 0.85rem;
+    margin-bottom: 0;
+}
+/* WHY CHOOSE CARDS */
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin: 20px 0;
+}
+.card {
+    background: #fcfbfa;
+    border: 1px solid #e2dacd;
+    border-left: 4px solid #4A1208;
+    border-radius: 4px;
+    padding: 14px;
+}
+.card h4 {
+    color: #4A1208;
+    margin-bottom: 6px;
+    font-size: 0.95rem;
+}
+.card p {
+    font-size: 0.85rem;
+    margin-bottom: 0;
+}
+/* PHOTO ROW */
+.photo-row {
+    display: flex;
+    gap: 14px;
+    margin: 20px 0;
+}
+.photo-card {
+    flex: 1;
+    background: #fdfcf9;
+    border: 1px solid #e0d7c6;
+    border-radius: 4px;
+    padding: 8px;
+    text-align: center;
+}
+.photo-card img {
+    width: 100%;
+    height: 140px;
+    object-fit: cover;
+    border-radius: 2px;
+    border: 1px solid #eee;
+}
+.photo-card span {
+    display: block;
+    margin-top: 6px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    color: #5c3a21;
+}
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    background: #f7f3eb;
+    padding: 16px;
+    border: 1px solid #e0d7c6;
+    border-radius: 4px;
+    margin: 20px 0;
+}
+.service-item {
+    font-size: 0.85rem;
+    font-weight: bold;
+    color: #4A1208;
+    padding: 4px 0;
+}
+.banner-quote {
+    background: #4A1208;
+    color: #ffffff;
+    padding: 18px;
+    border-left: 4px solid #d4a359;
+    border-radius: 4px;
+    margin: 25px 0;
+    font-style: italic;
+}
+.banner-quote p {
+    color: #f7f3eb;
+    margin: 0;
+    font-size: 0.92rem;
+    line-height: 1.5;
+}
+/* FOOTER */
+footer {
+    background-color: #2b180d;
+    color: #d4a359;
+    padding: 20px 15px;
+    text-align: center;
+    border-top: 3px solid #4A1208;
+    margin-top: 30px;
+}
+footer p {
+    color: #e0d5c1;
+    font-size: 0.8rem;
+    margin-bottom: 0;
+}
+/* RESPONSIVE MEDIA QUERIES */
+@media (max-width: 992px) {
+    .mobile-toggle {
+        display: block;
+    }
+    .nav-menu {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background-color: #4A1208;
+        border-top: 1px solid #5c180b;
+    }
+    .nav-menu.active {
+        display: flex;
+    }
+    .nav-item {
+        width: 100%;
+        border-bottom: 1px solid #5c180b;
+    }
+    .nav-item > a {
+        padding: 10px 15px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .dropdown-menu {
+        position: static;
+        width: 100%;
+        box-shadow: none;
+        padding: 8px 0;
+        background-color: #2b180d;
+    }
+    .nav-item.dropdown-open .dropdown-menu {
+        display: block;
+    }
+    .page-wrapper {
+        flex-direction: column;
+    }
+    .sidebar {
+        width: 100%;
+    }
+    .destination-grid,
+    .cards-grid {
+        grid-template-columns: 1fr;
+    }
+    .destination-card[style*="span 2"] {
+        grid-column: span 1 !important;
+    }
+    .photo-row {
+        flex-direction: column;
+    }
+    .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+@media (max-width: 576px) {
+    .services-grid {
+        grid-template-columns: 1fr;
+    }
+    .main-content {
+        padding: 15px;
+    }
+}
+</style>
+</head>
+<body>
+<!-- HEADER WITH CENTERED LOGO -->
+<header>
+    <div class="header-container">
+        <div class="logo-container">
+            <img src="{{ url_for('static', filename='logo.png') }}" alt="Pardalis Safari Tours Logo">
+        </div>
+        <div class="slogan">Great People for Memorable Safaris</div>
+    </div>
+</header>
+<!-- NAVIGATION BAR -->
+<nav>
+    <div class="nav-container">
+        <!-- Mobile Toggle Button -->
+        <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle Navigation">
+            <span class="hamburger-bar"></span>
+            <span class="hamburger-bar"></span>
+            <span class="hamburger-bar"></span>
+        </button>
+        <ul class="nav-menu" id="navMenu">
+            <li class="nav-item active-menu"><a href="{{ url_for('home') }}">HOME</a></li>
+            <li class="nav-item"><a href="{{ url_for('about') }}">ABOUT US</a></li>
+            <li class="nav-item"><a href="{{ url_for('destinations') }}">DESTINATIONS</a></li>
+            <li class="nav-item"><a href="{{ url_for('safaris') }}">SAFARIS</a></li>
+            <li class="nav-item"><a href="{{ url_for('climbing_trekking') }}">CLIMBING & TREKKING</a></li>
+            <li class="nav-item"><a href="{{ url_for('accommodation') }}">ACCOMMODATION</a></li>
+            
+            <!-- TRAVEL INFO DROPDOWN -->
+            <li class="nav-item">
+                <a href="#" class="dropdown-trigger">TRAVEL INFO</a>
+                <ul class="dropdown-menu">
+                    <li><a href="#">AIR TRAVEL</a></li>
+                    <li><a href="#">GUIDES TO TRAVEL</a></li>
+                    <li><a href="#">MEDIA CENTRE</a></li>
+                </ul>
+            </li>
+            <!-- NEWS DROPDOWN -->
+            <li class="nav-item">
+                <a href="#" class="dropdown-trigger">NEWS</a>
+                <ul class="dropdown-menu">
+                    <li><a href="#">TANZANIA UPDATES</a></li>
+                    <li><a href="#">COVID-19 TANZANIA UPDATES</a></li>
+                </ul>
+            </li>
+            <!-- CONTACT LINK -->
+            <li class="nav-item"><a href="#">CONTACT</a></li>
+        </ul>
+    </div>
+</nav>
+<!-- PAGE WRAPPER: SIDEBAR + MAIN HOMEPAGE CONTENT -->
+<div class="page-wrapper">
+    <!-- LEFT SIDEBAR -->
+    <aside class="sidebar">
+        <!-- BOOK YOUR SAFARI BUTTON -->
+        <a href="{{ url_for('booking_page') }}" class="btn-book-sidebar">Book Your Safari</a>
+        <!-- OUR PRODUCTS -->
+        <div class="sidebar-box">
+            <div class="sidebar-title">Our Products</div>
+            <ul class="sidebar-menu">
+                <li><a href="{{ url_for('safaris') }}">Wildlife Safari Tours</a></li>
+                <li><a href="#">Group Incentives & Conferences</a></li>
+                <li><a href="#">Cultural & Historical Tours</a></li>
+                <li><a href="{{ url_for('destinations') }}">Zanzibar & Beach Holidays</a></li>
+                <li><a href="{{ url_for('climbing_trekking') }}">Mountain Climbing</a></li>
+            </ul>
+        </div>
+        <!-- EMERGENCY CONTACTS -->
+        <div class="sidebar-box">
+            <div class="sidebar-title">Emergency Contacts</div>
+            <div class="contact-card">
+                <div class="contact-card-header">Transport</div>
+                <div class="contact-card-number"><a href="tel:+255784786807">+255 784 786 807</a></div>
+            </div>
+            <div class="contact-card">
+                <div class="contact-card-header">Field Office</div>
+                <div class="contact-card-number"><a href="tel:+255754890365">+255 754 890 365</a></div>
+            </div>
+            <div class="contact-card">
+                <div class="contact-card-header">Group Operation Manager</div>
+                <div class="contact-card-number"><a href="tel:+255787786235">+255 787 786 235</a></div>
+            </div>
+            <div class="contact-card">
+                <div class="contact-card-header">Contact Information</div>
+                <div style="padding: 4px 6px; font-size: 0.75rem; color: #555;">
+                    <strong>Email:</strong><br>
+                    <a href="mailto:info@pardalissafaritours.com" style="color: #4A1208; text-decoration: none;">info@pardalissafaritours.com</a><br>
+                    <strong>Phone:</strong> +255 (27) 297 8441
+                </div>
+            </div>
+            <div class="contact-card">
+                <div class="contact-card-header">Enquiries</div>
+                <div class="contact-card-number"><a href="tel:+255683233721">+255 683 233 721</a></div>
+            </div>
+        </div>
+        <!-- TRIPADVISOR RECOGNITION -->
+        <div class="sidebar-box" style="text-align: center;">
+            <img src="https://www.tripadvisor.com/img/cdsi/img2/awards/v2/tch2022_L-14348-2.png" alt="Tripadvisor Travellers Choice Award" style="max-width: 100%; height: auto; margin: 0 auto 8px auto; display: block;">
+            <p style="font-size: 0.75rem; font-weight: bold; color: #5c3a21; margin-bottom: 0;">TripAdvisor Choice Awards Winner</p>
+        </div>
+        <!-- QUICK NAVIGATION BUTTONS -->
+        <a href="{{ url_for('classic_wildlife') }}" class="sidebar-btn">Classic Safari Vehicle</a>
+        <a href="{{ url_for('photographic_expeditions') }}" class="sidebar-btn">Signature Safari Vehicle</a>
+        <a href="{{ url_for('safaris') }}" class="sidebar-btn">Suggested Itineraries</a>
+        <!-- TANAPA AWARD -->
+        <div class="sidebar-image-card">
+            <img src="https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?auto=format&fit=crop&w=400&q=80" alt="TANAPA Award">
+            <div class="card-caption">Best Tour Operator TANAPA Awards</div>
+        </div>
+        <a href="#" class="sidebar-btn btn-important">Important Destination Information</a>
+        <a href="#" class="sidebar-btn">Media Centre</a>
+        <!-- BROCHURES SECTION -->
+        <div class="sidebar-box">
+            <div class="sidebar-title">Brochures</div>
+            <div class="sidebar-image-card">
+                <img src="https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&w=400&q=80" alt="Main Brochure">
+                <div class="card-caption">Main Brochure</div>
+            </div>
+            <div class="sidebar-image-card">
+                <img src="{{ url_for('static', filename='images/menu/safari/classic1.jpg') }}" alt="Signature Brochure">
+                <div class="card-caption">Signature Brochure</div>
+            </div>
+        </div>
+        <!-- INCENTIVES & CONFERENCES -->
+        <div class="sidebar-box">
+            <div class="sidebar-title">Incentives & Conferences</div>
+            <div class="sidebar-image-card" style="margin-bottom: 0;">
+                <img src="https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?auto=format&fit=crop&w=400&q=80" alt="Incentives and Conferences">
+            </div>
+        </div>
+        <!-- GIVING BACK TO COMMUNITY -->
+        <div class="sidebar-box">
+            <div class="sidebar-title">Giving Back to Community</div>
+            <div class="sidebar-image-card" style="margin-bottom: 0;">
+                <img src="https://images.unsplash.com/photo-1484406566174-9da000fda645?auto=format&fit=crop&w=400&q=80" alt="Pardalis Foundation">
+                <div class="card-caption">Pardalis Foundation</div>
+            </div>
+        </div>
+        <!-- MAPS -->
+        <div class="sidebar-box">
+            <div class="sidebar-title">Maps</div>
+            <div class="sidebar-image-card" style="margin-bottom: 0;">
+                <img src="{{ url_for('static', filename='images/menu/serengeti/map.jpg') }}" alt="Serengeti Migration Map">
+                <div class="card-caption">Serengeti Migration Map</div>
+            </div>
+        </div>
+    </aside>
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+        <h1 class="main-title">Pardalis Safari Tours</h1>
+        <div class="subtitle">Discover the Untamed Beauty of Tanzania with Pardalis Safari Tours</div>
+        
+        <p><strong>Welcome to Pardalis Safari Tours!</strong> We are a premier Tanzanian tour operator dedicated to creating extraordinary safari experiences that connect travelers with the breathtaking beauty, rich wildlife, and vibrant cultures of East Africa. Inspired by the grace, intelligence, and agility of the leopard—<em>Pardalis</em>—our company represents adventure, excellence, and unforgettable exploration. We believe that every journey into the African wilderness should be more than just a vacation; it should be a life-changing experience filled with wonder, excitement, and lasting memories.</p>
+        <p>Headquartered in Tanzania, one of the world's most spectacular safari destinations, Pardalis Safari Tours specializes in tailor-made wildlife safaris, luxury lodge experiences, mountain adventures, cultural tours, beach holidays, and photographic expeditions.</p>
+        <!-- PHOTO ROW 1 -->
+        <div class="photo-row">
+            <div class="photo-card">
+                <img src="{{ url_for('static', filename='images/menu/serengeti/serengeti welbest.jpg') }}" alt="Great Wildebeest Migration Across Endless Plains">
+                <span>Pardalis - Our Namesake</span>
+            </div>
+            <div class="photo-card">
+                <img src="{{ url_for('static', filename='images/menu/serengeti/A_Tower_of_Giraffes_in_The_Serengeti.jpg') }}" alt="Serengeti Sunset Safari">
+                <span>Endless Serengeti Plains</span>
+            </div>
+            <div class="photo-card">
+                <img src="{{ url_for('static', filename='images/menu/serengeti/unspecified-15__large__schema.jpg') }}" alt="Safari Land Cruiser">
+                <span>Custom Safari Vehicles</span>
+            </div>
+        </div>
+        <p>At Pardalis Safari Tours, we understand that every traveler is unique. Some seek thrilling wildlife encounters in the Serengeti, while others dream of witnessing the Great Migration, climbing Mount Kilimanjaro, relaxing on the white beaches of Zanzibar, or immersing themselves in authentic Maasai culture. Our mission is to transform these dreams into reality by designing customized itineraries that match every guest's interests, travel style, and budget.</p>
+        <!-- VISION & MISSION -->
+        <h2 class="section-heading">Our Vision & Mission</h2>
+        <p><strong>Our Vision:</strong> To become one of Africa's most trusted and respected safari companies by delivering world-class travel experiences that inspire adventure, conservation, and cultural appreciation. We aspire to showcase Tanzania's unmatched natural beauty while maintaining the highest standards of professionalism, safety, sustainability, and customer satisfaction.</p>
+        <p><strong>Our Mission:</strong> To provide unforgettable safari experiences through personalized service, expert local knowledge, luxury accommodations, professional guides, and carefully planned itineraries that exceed our clients' expectations.</p>
+        <ul class="content-list">
+            <li>Delivering exceptional customer service from inquiry to departure.</li>
+            <li>Promoting sustainable and eco-friendly tourism.</li>
+            <li>Supporting local communities and conservation initiatives.</li>
+            <li>Providing safe, comfortable, and memorable travel experiences.</li>
+            <li>Showcasing the authentic beauty and culture of Tanzania.</li>
+            <li>Building long-lasting relationships with our clients through trust, honesty, and excellence.</li>
+        </ul>
+        <!-- WHY CHOOSE US CARDS -->
+        <h2 class="section-heading">Why Choose Pardalis Safari Tours?</h2>
+        <div class="cards-grid">
+            <div class="card">
+                <h4>Local Expertise</h4>
+                <p>Our experienced safari specialists and professional guides possess extensive knowledge of Tanzania's national parks, wildlife behavior, ecosystems, and cultural traditions.</p>
+            </div>
+            <div class="card">
+                <h4>Tailor-Made Experiences</h4>
+                <p>No two travelers are alike. We create customized itineraries designed around your preferences for couples, families, solo adventurers, and groups.</p>
+            </div>
+            <div class="card">
+                <h4>Professional Safari Guides</h4>
+                <p>Our guides are highly trained, licensed, and passionate. Their ability to track animals and explain ecosystems transforms every game drive into an adventure.</p>
+            </div>
+            <div class="card">
+                <h4>Luxury and Comfort</h4>
+                <p>We partner with carefully selected lodges and tented camps providing exceptional comfort, delicious cuisine, and outstanding hospitality under the stars.</p>
+            </div>
+        </div>
+        <!-- DESTINATIONS WITH INDIVIDUAL PHOTOS -->
+        <h2 class="section-heading">Our Safari Destinations</h2>
+        <div class="destination-grid">
+            <div class="destination-card">
+                <a href="{{ url_for('destinations') }}">
+                    <img src="{{ url_for('static', filename='images/menu/serengeti/migration.jpg') }}" alt="Serengeti National Park">
+                </a>
+                <div class="destination-card-body">
+                    <h4><a href="{{ url_for('destinations') }}">Serengeti National Park</a></h4>
+                    <p>The Serengeti is renowned for its endless plains, extraordinary wildlife, and the spectacular Great Wildebeest Migration. Guests have the opportunity to witness lions, elephants, cheetahs, leopards, buffaloes, giraffes, zebras, and countless other species in their natural habitat.</p>
+                </div>
+            </div>
+            <div class="destination-card">
+                <a href="{{ url_for('destinations') }}">
+                    <img src="{{ url_for('static', filename='images/menu/ngorongoro/zebra.jpg') }}" alt="Ngorongoro Conservation Area">
+                </a>
+                <div class="destination-card-body">
+                    <h4><a href="{{ url_for('destinations') }}">Ngorongoro Conservation Area</a></h4>
+                    <p>Known as Africa's Garden of Eden, the Ngorongoro Crater offers one of the highest concentrations of wildlife on Earth. Visitors may encounter the endangered black rhinoceros alongside elephants, lions, hippos, hyenas, and thousands of grazing animals.</p>
+                </div>
+            </div>
+            <div class="destination-card">
+                <a href="{{ url_for('destinations') }}">
+                    <img src="{{ url_for('static', filename='images/menu/tarangire/movement.jpg') }}" alt="Tarangire National Park">
+                </a>
+                <div class="destination-card-body">
+                    <h4><a href="{{ url_for('destinations') }}">Tarangire National Park</a></h4>
+                    <p>Famous for its giant baobab trees and large elephant herds, Tarangire provides spectacular game viewing and incredible birdlife throughout the year.</p>
+                </div>
+            </div>
+            <div class="destination-card">
+                <a href="{{ url_for('destinations') }}">
+                    <img src="{{ url_for('static', filename='images/menu/lake manyara.jpg') }}" alt="Lake Manyara National Park">
+                </a>
+                <div class="destination-card-body">
+                    <h4><a href="{{ url_for('destinations') }}">Lake Manyara National Park</a></h4>
+                    <p>This beautiful park is known for its tree-climbing lions, flamingos, lush groundwater forests, and breathtaking scenery that stretches from the Great Rift Valley escarpment to the lake itself.</p>
+                </div>
+            </div>
+            <div class="destination-card">
+                <a href="{{ url_for('destinations') }}">
+                    <img src="{{ url_for('static', filename='images/menu/arusha nationapark.jpg') }}" alt="Arusha National Park">
+                </a>
+                <div class="destination-card-body">
+                    <h4><a href="{{ url_for('destinations') }}">Arusha National Park</a></h4>
+                    <p>Located near Mount Meru, Arusha National Park offers walking safaris, canoeing, and excellent opportunities to see giraffes, zebras, buffaloes, and various primates.</p>
+                </div>
+            </div>
+            <div class="destination-card">
+                <a href="{{ url_for('climbing_trekking') }}">
+                    <img src="{{ url_for('static', filename='images/menu/mount kilimanjaro.jpg') }}" alt="Mount Kilimanjaro">
+                </a>
+                <div class="destination-card-body">
+                    <h4><a href="{{ url_for('climbing_trekking') }}">Mount Kilimanjaro</a></h4>
+                    <p>For adventure enthusiasts, we organize professionally guided climbs to Africa's highest mountain. Every expedition is supported by experienced mountain guides, porters, and cooks who prioritize both safety and success.</p>
+                </div>
+            </div>
+            <div class="destination-card" style="grid-column: span 2;">
+                <a href="{{ url_for('destinations') }}">
+                    <img src="{{ url_for('static', filename='images/menu/zanzibar/beaches.jpg') }}" alt="Zanzibar Beaches" style="height: 200px;">
+                </a>
+                <div class="destination-card-body">
+                    <h4><a href="{{ url_for('destinations') }}">Zanzibar Beach Holidays</a></h4>
+                    <p>After an exciting safari, guests can relax on Zanzibar's pristine white beaches, explore historical Stone Town, indulge in spice tours, and enjoy world-class snorkeling and diving in turquoise waters.</p>
+                </div>
+            </div>
+        </div>
+        <!-- SERVICES INCLUDED -->
+        <h2 class="section-heading">Comprehensive Travel Services</h2>
+        <div class="services-grid">
+            <div class="service-item">Tailor-Made Itineraries</div>
+            <div class="service-item">Airport Transfers</div>
+            <div class="service-item">4x4 Safari Land Cruisers</div>
+            <div class="service-item">Hotel & Lodge Bookings</div>
+            <div class="service-item">Mountain Trekking Support</div>
+            <div class="service-item">Domestic Flight Bookings</div>
+            <div class="service-item">Cultural Excursions</div>
+            <div class="service-item">Hot Air Balloon Safaris</div>
+            <div class="service-item">24/7 Field Assistance</div>
+        </div>
+        <!-- BANNER QUOTE -->
+        <div class="banner-quote">
+            <p>"Safari is not just a destination; it's a feeling of freedom, discovery, and connection with nature that stays with you forever."</p>
+        </div>
+    </main>
+</div>
+<!-- FOOTER -->
+<footer>
+    <p>&copy; 2026 Pardalis Safari Tours. All Rights Reserved. | Designed for Memorable Safaris</p>
+</footer>
+<!-- MOBILE NAVIGATION & CLOSE BUTTON SCRIPT -->
+<script>
+    const mobileToggle = document.getElementById('mobileToggle');
+    const navMenu = document.getElementById('navMenu');
+    const dropdownTriggers = document.querySelectorAll('.dropdown-trigger');
+
+    mobileToggle.addEventListener('click', () => {
+        mobileToggle.classList.toggle('active');
+        navMenu.classList.toggle('active');
+    });
+
+    // Toggle dropdowns on mobile view
+    dropdownTriggers.forEach(trigger => {
+        trigger.addEventListener('click', (e) => {
+            if (window.innerWidth <= 992) {
+                e.preventDefault();
+                const parent = trigger.parentElement;
+                parent.classList.toggle('dropdown-open');
+            }
+        });
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zanzibar Island & Spice Coast | Pardalis Safari Tours</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { background-color: #f5f2eb; color: #2c2523; line-height: 1.7; font-size: 15px; }
+
+        /* Header & Navigation */
+        header { background-color: #ffffff; padding: 15px 20px; text-align: center; border-bottom: 2px solid #e0d5c1; }
+        .header-container { max-width: 1200px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; }
+        .logo-container img { max-height: 90px; width: auto; display: block; }
+        .slogan { margin-top: 8px; font-size: 0.95rem; font-weight: bold; color: #8B4513; text-transform: uppercase; letter-spacing: 1px; }
+
+        nav { background-color: #4A1208; border-top: 1px solid #5c180b; border-bottom: 4px solid #B87B14; position: sticky; top: 0; z-index: 1000; box-shadow: 0 4px 10px rgba(0,0,0,0.15); }
+        .nav-container { max-width: 1200px; margin: 0 auto; }
+        .nav-menu { list-style: none; display: flex; justify-content: flex-start; align-items: center; flex-wrap: wrap; }
+        .nav-item > a { display: flex; align-items: center; gap: 5px; padding: 14px 18px; color: #ffffff; text-decoration: none; font-weight: 700; font-size: 0.85rem; text-transform: uppercase; transition: all 0.3s ease; }
+        .nav-item:hover > a { background-color: #B87B14; color: #2B0601; }
+
+        /* Main Wrapper */
+        .page-wrapper { max-width: 1200px; margin: 30px auto; padding: 0 15px; }
+        .main-content { background: #ffffff; padding: 40px; border-radius: 8px; border: 1px solid #e2dacd; box-shadow: 0 8px 25px rgba(0,0,0,0.05); }
+
+        /* Titles & Subtitles */
+        h1.main-title { color: #4A1208; font-size: 2.5rem; text-transform: uppercase; font-weight: 800; letter-spacing: 0.5px; }
+        .subtitle { color: #B87B14; font-size: 1.25rem; font-weight: 700; margin-bottom: 25px; border-bottom: 3px solid #D4A359; padding-bottom: 10px; display: inline-block; width: 100%; }
+
+        h2.section-title { color: #4A1208; font-size: 1.8rem; text-transform: uppercase; margin: 45px 0 20px 0; padding-left: 15px; border-left: 6px solid #B87B14; background: linear-gradient(90deg, #FFF9F2 0%, rgba(255,255,255,0) 100%); padding-top: 8px; padding-bottom: 8px; border-radius: 0 6px 6px 0; }
+        
+        .item-card { background: #fffcf8; border-left: 4px solid #D4A359; border-radius: 4px; padding: 18px 22px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.03); transition: transform 0.25s ease, border-left-color 0.25s ease, box-shadow 0.25s ease; }
+        .item-card:hover { transform: translateY(-3px); border-left-color: #4A1208; box-shadow: 0 6px 15px rgba(74, 18, 8, 0.08); }
+        .item-card h3 { color: #8B4513; font-size: 1.2rem; margin-bottom: 8px; font-weight: 700; }
+
+        .highlight-box { background: linear-gradient(135deg, #FFF9F2 0%, #F5E8D3 100%); border: 1px solid #D4A359; border-radius: 6px; padding: 22px; margin: 25px 0; box-shadow: inset 0 0 10px rgba(212,163,89,0.15); }
+        .highlight-box h3 { color: #4A1208; margin-bottom: 10px; font-size: 1.15rem; }
+
+        /* Motion Photo Gallery */
+        .photo-gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; margin: 35px 0; }
+        .photo-card { background: #ffffff; border-radius: 8px; overflow: hidden; border: 1px solid #e0d5c1; box-shadow: 0 5px 15px rgba(0,0,0,0.06); position: relative; transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1); }
+        .photo-card:hover { transform: translateY(-8px); box-shadow: 0 12px 25px rgba(74, 18, 8, 0.2); }
+
+        .photo-img-wrapper { height: 240px; overflow: hidden; position: relative; }
+        .photo-img-wrapper img { width: 100%; height: 100%; object-fit: cover; display: block; animation: kenburns 20s infinite alternate ease-in-out; transition: filter 0.4s ease; }
+        .photo-card:hover .photo-img-wrapper img { filter: brightness(1.08) contrast(1.05); }
+
+        @keyframes kenburns {
+            0% { transform: scale(1) translate(0, 0); }
+            50% { transform: scale(1.12) translate(-2%, -1%); }
+            100% { transform: scale(1) translate(1%, 2%); }
+        }
+
+        .photo-card .caption { padding: 14px 18px; font-weight: 700; color: #4A1208; text-align: center; font-size: 0.95rem; background: #ffffff; border-top: 3px solid #D4A359; }
+
+        /* Video Container */
+        .video-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; margin: 30px 0; border-radius: 8px; border: 3px solid #4A1208; box-shadow: 0 8px 20px rgba(0,0,0,0.15); }
+        .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
+
+        /* Dynamic Badge Lists */
+        .badge-list { list-style: none; display: flex; flex-wrap: wrap; gap: 10px; margin: 15px 0; }
+        .badge-list li { background-color: #1a5b6e; color: #ffffff; font-weight: 600; font-size: 0.88rem; padding: 6px 16px; border-radius: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); transition: transform 0.2s, background-color 0.2s; }
+        .badge-list li:hover { transform: scale(1.05); background-color: #B87B14; }
+
+        .spice-pill-list { list-style: none; display: flex; flex-wrap: wrap; gap: 10px; margin: 15px 0; }
+        .spice-pill-list li { background-color: #4A1208; color: #ffffff; font-weight: 600; font-size: 0.88rem; padding: 6px 16px; border-radius: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); transition: transform 0.2s, background-color 0.2s; }
+        .spice-pill-list li:hover { transform: scale(1.05); background-color: #D4A359; color: #2B0601; }
+
+        /* Action Banner */
+        .book-now-banner { background: linear-gradient(135deg, #4A1208 0%, #2B0601 100%); color: #ffffff; padding: 35px 25px; text-align: center; margin-top: 50px; border-radius: 8px; box-shadow: 0 10px 25px rgba(0,0,0,0.2); border: 2px solid #D4A359; }
+        .book-now-banner h2 { color: #D4A359; font-size: 1.8rem; margin-bottom: 10px; text-transform: uppercase; }
+        .book-now-banner p { color: #f5f2eb; margin-bottom: 20px; font-size: 1.05rem; }
+        .book-now-btn { display: inline-block; background-color: #D4A359; color: #2B0601; padding: 14px 34px; text-decoration: none; font-weight: 800; border-radius: 30px; text-transform: uppercase; transition: all 0.3s ease; box-shadow: 0 4px 12px rgba(0,0,0,0.2); }
+        .book-now-btn:hover { background-color: #ffffff; color: #4A1208; transform: translateY(-2px); box-shadow: 0 6px 18px rgba(0,0,0,0.3); }
+
+        footer { background-color: #2b180d; color: #d4a359; padding: 25px 15px; text-align: center; border-top: 4px solid #4A1208; margin-top: 50px; }
+        footer p { color: #e0d5c1; font-size: 0.85rem; }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="header-container">
+        <div class="logo-container">
+            <img src="{{ url_for('static', filename='logo.png') }}" alt="Pardalis Safari Tours Logo">
+        </div>
+        <div class="slogan">Great People for Memorable Safaris</div>
+    </div>
+</header>
+
+<nav>
+    <div class="nav-container">
+        <ul class="nav-menu">
+            <li class="nav-item"><a href="{{ url_for('home') }}">HOME</a></li>
+            <li class="nav-item"><a href="{{ url_for('about') }}">ABOUT US</a></li>
+            <li class="nav-item"><a href="{{ url_for('destinations') }}">DESTINATIONS</a></li>
+            <li class="nav-item"><a href="{{ url_for('safaris') }}">SAFARIS</a></li>
+            <li class="nav-item"><a href="{{ url_for('climbing_trekking') }}">CLIMBING & TREKKING</a></li>
+            <li class="nav-item"><a href="{{ url_for('accommodation') }}">ACCOMMODATION</a></li>
+        </ul>
+    </div>
+</nav>
+
+<div class="page-wrapper">
+    <main class="main-content">
+        <h1 class="main-title">Zanzibar Archipelago</h1>
+        <div class="subtitle">The Exotic Spice Island of the Indian Ocean</div>
+
+        <p>Zanzibar is a world-renowned tropical paradise located in the Indian Ocean, just 25 to 50 kilometers off the mainland coast of Tanzania. Comprising two main islands—Unguja (commonly referred to as Zanzibar) and Pemba—alongside numerous smaller coral islets, Zanzibar is a magical blend of pristine nature, vibrant Swahili culture, rich Arabian history, and turquoise coastal luxury.</p>
+
+        <p>Famous worldwide for its powdery white-sand beaches, coconut palm groves, crystal-clear warm waters, and thriving coral reefs, Zanzibar serves as the ultimate relaxation destination after an adventurous mainland wildlife safari in Serengeti or Ngorongoro Crater. Beyond its idyllic beaches, the archipelago possesses a rich history as a major trading hub for spices, silk, and gold across Africa, Arabia, Persia, and India.</p>
+
+        {% if video_url %}
+        <div class="video-container">
+            <iframe src="{{ video_url }}" allowfullscreen></iframe>
+        </div>
+        {% endif %}
+
+        {% if photos %}
+        <div class="photo-gallery">
+            {% for photo in photos %}
+            <div class="photo-card">
+                <div class="photo-img-wrapper">
+                    <img src="{{ photo.url }}" alt="{{ photo.caption }}">
+                </div>
+                <div class="caption">{{ photo.caption }}</div>
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        <h2 class="section-title">Top Coastal Destinations & Beaches</h2>
+        <p>Zanzibar’s coastline features distinct beach regions, each offering unique atmospheres, tidal conditions, and water sports activities.</p>
+
+        <div class="item-card">
+            <h3>Nungwi & Kendwa (Northern Coast)</h3>
+            <p>Located on the northern tip of Unguja, Nungwi and Kendwa are famous for having virtually non-tidal beaches, allowing for uninterrupted all-day swimming and snorkeling. Kendwa is renowned for its wide golden stretches and vivid orange sunsets, while Nungwi offers lively beach bars, local dhow building yards, and vibrant nightlife.</p>
+        </div>
+
+        <div class="item-card">
+            <h3>Paje & Jambiani (South-East Coast)</h3>
+            <p>Paje is the kite-surfing capital of East Africa, attracting water sport enthusiasts from across the world due to its shallow lagoons and steady trade winds. Neighboring Jambiani provides an authentic Swahili village experience with traditional seaweed farming and peaceful white sand stretches.</p>
+        </div>
+
+        <div class="item-card">
+            <h3>Matemwe & Mnemba Atoll (North-East Coast)</h3>
+            <p>Matemwe faces the famous Mnemba Atoll marine reserve. It features quiet, secluded beaches overlooking translucent, shallow waters. It is the premier base for scuba diving and marine conservation excursions.</p>
+        </div>
+
+        <h2 class="section-title">Culture, History & Excursions</h2>
+
+        <div class="item-card">
+            <h3>Stone Town UNESCO World Heritage Site</h3>
+            <p>Stone Town is the historical heart of Zanzibar. Wander through narrow labyrinthine alleys lined with intricately carved brass-studded Omani doors, visit the Sultan's Palace (Beit-al-Ajaib), explore the Old Fort, and shop for handcrafted souvenirs at the bustling Darajani Market.</p>
+        </div>
+
+        <div class="item-card">
+            <h3>Organic Spice Farm Tours</h3>
+            <p>Discover why Zanzibar earned its nickname as the "Spice Island." Guided tours through local organic plantations allow visitors to smell, taste, and pick fresh spices straight from the tree:</p>
+            <ul class="spice-pill-list">
+                <li>Cloves</li>
+                <li>Nutmeg</li>
+                <li>Cinnamon</li>
+                <li>Cardamom</li>
+                <li>Black Pepper</li>
+                <li>Vanilla</li>
+                <li>Lemongrass</li>
+                <li>Ginger</li>
+                <li>Turmeric</li>
+            </ul>
+        </div>
+
+        <div class="item-card">
+            <h3>Jozani Chwaka Bay National Park</h3>
+            <p>Zanzibar's only national park protects dense mahogany groundwater forests and coastal mangrove swamps. It is the exclusive home of the endangered <strong>Red Colobus Monkey</strong>, a rare primate species found nowhere else on Earth.</p>
+        </div>
+
+        <div class="item-card">
+            <h3>Prison Island (Changuu) & Giant Tortoises</h3>
+            <p>A short dhow boat ride from Stone Town lies Prison Island, home to a sanctuary of giant Aldabra tortoises—some of which are over 150 years old! The island offers excellent reef snorkeling and historical tours.</p>
+        </div>
+
+        <h2 class="section-title">Ocean Adventures & Marine Life</h2>
+
+        <div class="highlight-box">
+            <h3>Unforgettable Marine Experiences</h3>
+            <p>The warm waters surrounding Zanzibar are teeming with tropical marine life, colorful coral reefs, and pods of wild dolphins:</p>
+            <ul class="badge-list">
+                <li>Safari Blue Dhow Cruises</li>
+                <li>Snorkeling Mnemba Coral Gardens</li>
+                <li>Scuba Diving Deep Wall Reefs</li>
+                <li>Sunset Dhow Sailing</li>
+                <li>Kite Surfing in Paje</li>
+                <li>Kuza Cave Swimming</li>
+                <li>Kizimkazi Dolphin Watching</li>
+            </ul>
+        </div>
+
+        <h2 class="section-title">Best Time to Visit Zanzibar</h2>
+        <div class="highlight-box">
+            <h3>Seasonal Travel Guide</h3>
+            <p><strong>June to October:</strong> Dry, cool, and sunny season with pleasant sea breezes—ideal for beach holidays and safaris.<br>
+            <strong>December to February:</strong> Warm summer months with tropical temperatures, ideal for diving and deep-sea activities.<br>
+            <strong>March to May:</strong> Long monsoon rains season; perfect for quiet escapes and discounted resort stays.</p>
+        </div>
+
+        <div class="book-now-banner">
+            <h2>Experience Zanzibar Paradise</h2>
+            <p>Combine your mainland safari with a luxury island stay on Zanzibar's famous shores.</p>
+            <a href="{{ url_for('booking_page') }}" class="book-now-btn">Book Your Tropical Tour Today</a>
+        </div>
+    </main>
+</div>
+
+<footer>
+    <p>&copy; 2026 Pardalis Safari Tours. All Rights Reserved. | Designed for Memorable Safaris</p>
+</footer>
+
+</body>
+</html>

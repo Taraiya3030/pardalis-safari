@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Great Migration Safaris | Pardalis Safari Tours</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { background-color: #f5f2eb; color: #2c2523; line-height: 1.7; font-size: 15px; }
+
+        header { background-color: #ffffff; padding: 15px 20px; text-align: center; border-bottom: 2px solid #e0d5c1; }
+        .header-container { max-width: 1200px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; }
+        .logo-container img { max-height: 90px; width: auto; display: block; }
+        .slogan { margin-top: 8px; font-size: 0.95rem; font-weight: bold; color: #8B4513; text-transform: uppercase; letter-spacing: 1px; }
+
+        nav { background-color: #4A1208; border-top: 1px solid #5c180b; border-bottom: 4px solid #B87B14; position: sticky; top: 0; z-index: 1000; }
+        .nav-container { max-width: 1200px; margin: 0 auto; }
+        .nav-menu { list-style: none; display: flex; justify-content: flex-start; align-items: center; flex-wrap: wrap; }
+        .nav-item > a { display: flex; align-items: center; gap: 5px; padding: 14px 18px; color: #ffffff; text-decoration: none; font-weight: 700; font-size: 0.85rem; text-transform: uppercase; transition: all 0.3s ease; }
+        .nav-item:hover > a, .nav-item.active > a { background-color: #B87B14; color: #2B0601; }
+
+        .page-wrapper { max-width: 1200px; margin: 30px auto; padding: 0 15px; }
+        .main-content { background: #ffffff; padding: 40px; border-radius: 8px; border: 1px solid #e2dacd; box-shadow: 0 8px 25px rgba(0,0,0,0.05); }
+
+        h1.main-title { color: #4A1208; font-size: 2.3rem; text-transform: uppercase; font-weight: 800; }
+        .subtitle { color: #B87B14; font-size: 1.15rem; font-weight: 700; margin-bottom: 20px; border-bottom: 2px solid #e0d5c1; padding-bottom: 10px; }
+
+        h2.section-title { color: #4A1208; font-size: 1.5rem; text-transform: uppercase; margin: 35px 0 15px 0; padding-left: 12px; border-left: 5px solid #B87B14; background: #FFF9F2; padding-top: 6px; padding-bottom: 6px; }
+
+        .item-card { background: #fffcf8; border-left: 4px solid #D4A359; border-radius: 4px; padding: 20px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.03); }
+        .item-card h3 { color: #8B4513; font-size: 1.2rem; margin-bottom: 8px; font-weight: 700; text-transform: uppercase; }
+
+        .carousel-container { position: relative; width: 100%; max-width: 950px; margin: 25px auto 35px auto; overflow: hidden; border-radius: 8px; border: 2px solid #4A1208; box-shadow: 0 6px 20px rgba(0,0,0,0.15); }
+        .carousel-track { display: flex; transition: transform 0.6s ease-in-out; }
+        .carousel-slide { min-width: 100%; position: relative; }
+        .carousel-slide img { width: 100%; height: 480px; object-fit: cover; display: block; }
+        .caption-overlay { position: absolute; bottom: 0; width: 100%; background: rgba(43, 6, 1, 0.85); color: #ffffff; padding: 12px 20px; text-align: center; font-size: 1rem; font-weight: bold; }
+
+        .carousel-btn { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(74, 18, 8, 0.75); color: white; border: none; font-size: 24px; padding: 10px 16px; cursor: pointer; border-radius: 50%; z-index: 10; }
+        .carousel-btn:hover { background: #B87B14; color: #2B0601; }
+        .prev-btn { left: 15px; } .next-btn { right: 15px; }
+
+        .book-now-banner { background: #4A1208; color: #ffffff; padding: 35px 20px; text-align: center; margin-top: 45px; border-radius: 6px; }
+        .book-now-banner h2 { color: #D4A359; font-size: 1.6rem; margin-bottom: 10px; text-transform: uppercase; }
+        .book-now-btn { display: inline-block; background-color: #D4A359; color: #2B0601; padding: 12px 28px; text-decoration: none; font-weight: 800; border-radius: 25px; text-transform: uppercase; margin-top: 15px; transition: background-color 0.3s ease; }
+        .book-now-btn:hover { background-color: #ffffff; color: #4A1208; }
+
+        footer { background-color: #2b180d; color: #d4a359; padding: 25px 15px; text-align: center; border-top: 4px solid #4A1208; margin-top: 50px; }
+        footer p { color: #e0d5c1; font-size: 0.85rem; }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="header-container">
+        <div class="logo-container">
+            <img src="{{ url_for('static', filename='logo.png') }}" alt="Pardalis Safari Tours Logo">
+        </div>
+        <div class="slogan">Great People for Memorable Safaris</div>
+    </div>
+</header>
+
+<nav>
+    <div class="nav-container">
+        <ul class="nav-menu">
+            <li class="nav-item"><a href="{{ url_for('safaris') }}">BACK TO SAFARIS</a></li>
+            <li class="nav-item active"><a href="#">GREAT MIGRATION SAFARIS</a></li>
+        </ul>
+    </div>
+</nav>
+
+<div class="page-wrapper">
+    <main class="main-content">
+        <h1 class="main-title">Great Migration Safaris</h1>
+        <div class="subtitle">Witness the World's Greatest Wildlife Spectacle</div>
+
+        {% if photos %}
+        <div class="carousel-container">
+            <div class="carousel-track">
+                {% for photo in photos %}
+                <div class="carousel-slide">
+                    <img src="{{ photo.url }}" alt="{{ photo.caption }}">
+                    <div class="caption-overlay">{{ photo.caption }}</div>
+                </div>
+                {% endfor %}
+            </div>
+            <button class="carousel-btn prev-btn">&#10094;</button>
+            <button class="carousel-btn next-btn">&#10095;</button>
+        </div>
+        {% endif %}
+
+        <p>Experience the thrilling migration of over 1.5 million wildebeest, zebras, and gazelles as they move across the Serengeti ecosystem in search of fresh grazing grounds. Our specialized seasonal itineraries position you right where the action happens.</p>
+
+        <h2 class="section-title">Seasonal Migration Highlights</h2>
+        <div class="item-card">
+            <h3>River Crossings (July – October)</h3>
+            <p>Watch dramatic Mara and Grumeti river crossings where massive herds brave crocodile-infested waters.</p>
+        </div>
+        <div class="item-card">
+            <h3>Calving Season in Ndutu (January – March)</h3>
+            <p>Witness thousands of wildebeest calves born daily in the southern Serengeti plains, attracting top apex predators.</p>
+        </div>
+        <div class="item-card">
+            <h3>Central Serengeti Plains (April – June)</h3>
+            <p>Track the columns of migrating herds as they move north across the central valley and woodland corridors.</p>
+        </div>
+
+        <div class="book-now-banner">
+            <h2>Plan Your Migration Safari Today</h2>
+            <p>Secure prime seasonal dates with our expert safari planners.</p>
+            <a href="{{ url_for('booking_page') }}" class="book-now-btn">Book Your Safari Now</a>
+        </div>
+    </main>
+</div>
+
+<footer>
+    <p>&copy; 2026 Pardalis Safari Tours. All Rights Reserved.</p>
+</footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const track = document.querySelector('.carousel-track');
+    if (!track) return;
+    const slides = Array.from(track.children);
+    const nextBtn = document.querySelector('.next-btn');
+    const prevBtn = document.querySelector('.prev-btn');
+    let currentIndex = 0;
+
+    function updateSlide(index) {
+        track.style.transform = `translateX(-${index * 100}%)`;
+    }
+
+    let slideInterval = setInterval(() => {
+        currentIndex = (currentIndex + 1) % slides.length;
+        updateSlide(currentIndex);
+    }, 3500);
+
+    const resetTimer = () => {
+        clearInterval(slideInterval);
+        slideInterval = setInterval(() => {
+            currentIndex = (currentIndex + 1) % slides.length;
+            updateSlide(currentIndex);
+        }, 3500);
+    };
+
+    if (nextBtn) nextBtn.addEventListener('click', () => { currentIndex = (currentIndex + 1) % slides.length; updateSlide(currentIndex); resetTimer(); });
+    if (prevBtn) prevBtn.addEventListener('click', () => { currentIndex = (currentIndex - 1 + slides.length) % slides.length; updateSlide(currentIndex); resetTimer(); });
+});
+</script>
+
+</body>
+</html>

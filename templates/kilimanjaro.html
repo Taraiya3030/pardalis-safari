@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mount Kilimanjaro Trekking | Pardalis Safari Tours</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { background-color: #f5f2eb; color: #2c2523; line-height: 1.7; font-size: 15px; }
+
+        header { background-color: #ffffff; padding: 15px 20px; text-align: center; border-bottom: 2px solid #e0d5c1; }
+        .header-container { max-width: 1200px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; }
+        .logo-container img { max-height: 90px; width: auto; display: block; }
+        .slogan { margin-top: 8px; font-size: 0.95rem; font-weight: bold; color: #8B4513; text-transform: uppercase; letter-spacing: 1px; }
+
+        nav { background-color: #4A1208; border-top: 1px solid #5c180b; border-bottom: 4px solid #B87B14; position: sticky; top: 0; z-index: 1000; }
+        .nav-container { max-width: 1200px; margin: 0 auto; }
+        .nav-menu { list-style: none; display: flex; justify-content: flex-start; align-items: center; flex-wrap: wrap; }
+        .nav-item > a { display: flex; align-items: center; gap: 5px; padding: 14px 18px; color: #ffffff; text-decoration: none; font-weight: 700; font-size: 0.85rem; text-transform: uppercase; transition: all 0.3s ease; }
+        .nav-item:hover > a, .nav-item.active > a { background-color: #B87B14; color: #2B0601; }
+
+        .page-wrapper { max-width: 1200px; margin: 30px auto; padding: 0 15px; }
+        .main-content { background: #ffffff; padding: 40px; border-radius: 8px; border: 1px solid #e2dacd; box-shadow: 0 8px 25px rgba(0,0,0,0.05); }
+
+        h1.main-title { color: #4A1208; font-size: 2.3rem; text-transform: uppercase; font-weight: 800; }
+        .subtitle { color: #B87B14; font-size: 1.15rem; font-weight: 700; margin-bottom: 20px; border-bottom: 2px solid #e0d5c1; padding-bottom: 10px; }
+
+        h2.section-title { color: #4A1208; font-size: 1.6rem; text-transform: uppercase; margin: 40px 0 20px 0; padding-left: 12px; border-left: 5px solid #B87B14; background: #FFF9F2; padding-top: 6px; padding-bottom: 6px; }
+        
+        .item-card { background: #fffcf8; border-left: 4px solid #D4A359; border-radius: 4px; padding: 20px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.03); }
+        .item-card h3 { color: #8B4513; font-size: 1.2rem; margin-bottom: 8px; font-weight: 700; text-transform: uppercase; }
+
+        /* CAROUSEL / SLIDER STYLES */
+        .carousel-container {
+            position: relative;
+            width: 100%;
+            max-width: 950px;
+            margin: 25px auto;
+            overflow: hidden;
+            border-radius: 8px;
+            border: 2px solid #4A1208;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+        }
+
+        .carousel-track {
+            display: flex;
+            transition: transform 0.6s ease-in-out;
+        }
+
+        .carousel-slide {
+            min-width: 100%;
+            position: relative;
+        }
+
+        .carousel-slide img {
+            width: 100%;
+            height: 480px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .caption-overlay {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            background: rgba(43, 6, 1, 0.8);
+            color: #ffffff;
+            padding: 12px 20px;
+            text-align: center;
+            font-size: 1rem;
+            font-weight: bold;
+            letter-spacing: 0.5px;
+        }
+
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(74, 18, 8, 0.75);
+            color: white;
+            border: none;
+            font-size: 24px;
+            padding: 10px 16px;
+            cursor: pointer;
+            border-radius: 50%;
+            transition: background 0.3s ease, transform 0.2s;
+            z-index: 10;
+        }
+
+        .carousel-btn:hover {
+            background: #B87B14;
+            color: #2B0601;
+        }
+
+        .prev-btn { left: 15px; }
+        .next-btn { right: 15px; }
+
+        .map-box { text-align: center; background: #FFF9F2; border: 1px solid #D4A359; padding: 15px; border-radius: 6px; margin: 25px 0; }
+        .map-box img { max-width: 100%; height: auto; border-radius: 4px; }
+
+        .book-now-banner { background: #4A1208; color: #ffffff; padding: 30px 20px; text-align: center; margin-top: 40px; border-radius: 6px; }
+        .book-now-banner h2 { color: #D4A359; font-size: 1.6rem; margin-bottom: 10px; text-transform: uppercase; }
+        .book-now-btn { display: inline-block; background-color: #D4A359; color: #2B0601; padding: 12px 28px; text-decoration: none; font-weight: 800; border-radius: 25px; text-transform: uppercase; margin-top: 15px; transition: background-color 0.3s ease; }
+        .book-now-btn:hover { background-color: #ffffff; color: #4A1208; }
+
+        footer { background-color: #2b180d; color: #d4a359; padding: 25px 15px; text-align: center; border-top: 4px solid #4A1208; margin-top: 50px; }
+        footer p { color: #e0d5c1; font-size: 0.85rem; }
+
+        @media (max-width: 768px) {
+            .carousel-slide img { height: 320px; }
+            .main-content { padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="header-container">
+        <div class="logo-container">
+            <img src="{{ url_for('static', filename='logo.png') }}" alt="Pardalis Safari Tours Logo">
+        </div>
+        <div class="slogan">Great People for Memorable Safaris</div>
+    </div>
+</header>
+
+<nav>
+    <div class="nav-container">
+        <ul class="nav-menu">
+            <li class="nav-item"><a href="{{ url_for('climbing_trekking') }}">BACK TO TREKS</a></li>
+            <li class="nav-item active"><a href="#">MT. KILIMANJARO</a></li>
+        </ul>
+    </div>
+</nav>
+
+<div class="page-wrapper">
+    <main class="main-content">
+        <h1 class="main-title">Mt. Kilimanjaro Trekking</h1>
+        <div class="subtitle">Conquer the Roof of Africa</div>
+
+        <!-- PHOTO CAROUSEL / SLIDER IN MOTION -->
+        <div class="carousel-container">
+            <div class="carousel-track">
+                {% for photo in photos %}
+                <div class="carousel-slide">
+                    <img src="{{ photo.url }}" alt="{{ photo.caption }}">
+                    <div class="caption-overlay">{{ photo.caption }}</div>
+                </div>
+                {% endfor %}
+            </div>
+
+            <!-- Navigation Buttons -->
+            <button class="carousel-btn prev-btn" aria-label="Previous Slide">&#10094;</button>
+            <button class="carousel-btn next-btn" aria-label="Next Slide">&#10095;</button>
+        </div>
+
+        <p>Tanzania is home to the highest mountain in Africa – Mount Kilimanjaro (5895 meters), which is also the highest free-standing mountain in the world. Despite its height, Kilimanjaro is one of the world's most accessible high summits, with most climbers reaching the peak (Uhuru Peak) with little more than a walking stick, proper clothing, and determination.</p>
+
+        <p style="margin-top: 15px;">Climbing Mount Kilimanjaro is a virtual climatic world tour, from the tropical rain forest on the lower slopes and alpine heath, to an almost bare alpine desert and finally the wintry Arctic summit of snow and ice, just 3 degrees south of the Equator.</p>
+
+        <p style="margin-top: 15px;">The ascent of Kilimanjaro can be done from six routes: Mweka, Umbwe, Shira, Rongai, Machame, and the Marangu Route which is the easier one. Depending on which route one wants to take, the climb of Kilimanjaro can take between four to six nights on the mountain. The two most popular routes are Marangu and Machame. On the Marangu Route, accommodation is in alpine huts while on Machame Route it is camping throughout. While expert guides and porters will accompany you on your climb, no technical equipment is required on these routes.</p>
+
+        <!-- Kilimanjaro Routes Diagram -->
+        <div class="map-box">
+            <img src="{{ url_for('static', filename='images/map route.jpg') }}" alt="Mt. Kilimanjaro Climbing Routes Map">
+        </div>
+
+        <h2 class="section-title">Mt. Kilimanjaro – Routes Description</h2>
+
+        <div class="item-card">
+            <h3>Marangu Route</h3>
+            <p>The Marangu or main route is by far the most popular way to the summit. The ascent is more gradual and no professional equipment is required. The accommodation on the way up and down is provided in mountain huts with all the basic necessities. There are 60 bunk beds each (for 60 people) each at Mandara Hut (2700m) and Kibo Hut (4700m), and 120 bunk beds (for 120 people) at Horombo Hut (3720m) which is also used for descent. Climbers are supplied with mattresses and pillows, but sleeping bags should be brought along. There are communal dining halls, washrooms and toilets.</p>
+            <br>
+            <p>It usually takes 5 days/6 nights for the round trip. The trek can also be taken in 6 days/5 nights to aid acclimatization with an extra day at Horombo Hut. The supplementary cost for an extra day is indicated separately as an option.</p>
+        </div>
+
+        <div class="item-card">
+            <h3>Machame Route</h3>
+            <p>This is probably the most scenic route up Kilimanjaro. The accommodation on the way up and down is strictly camping (mobile tents) only. This trek is strenuous and may be better suited to more adventurous hikers. The Machame route is normally completed in a minimum of 6 days/5 nights on the mountain.</p>
+        </div>
+
+        <div class="item-card">
+            <h3>Rongai Route</h3>
+            <p>There is only one route on the north side of the mountain, Rongai, which is usually a five-night climb. This lesser known trek may not be quite as spectacular as the western routes, but it does usually have far lower traffic than the other night routes. This route retains a sense of unspoilt wilderness and offers a different perspective on Kilimanjaro by approaching it from the north. It is generally considered to be the easiest of the quality routes on the mountain. Rongai is the best route for people who are looking for a decent quality experience and are perhaps not absolutely confident about their fitness.</p>
+        </div>
+
+        <div class="item-card">
+            <h3>Umbwe Route</h3>
+            <p>The Umbwe route, which is based in the south, is a 6-day / 5-night tour and is said to be the most scenic and difficult route offered on Kilimanjaro. The first two days are extremely steep, muddy and generally strenuous making it only suitable for well-trained mountaineers. An acclimatization day is rarely offered on the standard programme, but can be added when climbing the extra day in the Karanga Valley. The rest details trail is the same as the Mweka route.</p>
+        </div>
+
+        <div class="item-card">
+            <h3>Lemosho / Shira Glades Route</h3>
+            <p>The Lemosho Glades route is perhaps the least used initial ascent route on Kilimanjaro, partly because of its remote location and the difficult roads leading to the trailhead. The road to the trailhead is only accessible by 4-wheel drive vehicles and can become impassable during wet periods. The trailhead is at relatively high elevation, and thus we start slow and easy on this route. Buffalo and elephant sightings are possible on the first day trekking through the forest, and the trail is often overgrown from lack of use.</p>
+            <br>
+            <p>The route is the longest distance to trek up Kilimanjaro, so fitness certainly plays a key role in the enjoyment and success of this trek. The Lemosho (Shira) route takes 7 days / 6 nights of the mountain. Overall, the distance covered and the intensity of the final three days make this a true choice only for the experienced hiker. The many changes of scenery and spectacular hike across the Shira Plateau make this trek truly special. There are no huts on this route, the accommodation is in mountain tents.</p>
+        </div>
+
+        <div class="book-now-banner">
+            <h2>Ready to Conquer Kilimanjaro?</h2>
+            <p>Plan your trek with certified guides, full porter support, and tailored itineraries.</p>
+            <a href="{{ url_for('booking_page') }}" class="book-now-btn">Book Your Trek Now</a>
+        </div>
+    </main>
+</div>
+
+<footer>
+    <p>&copy; 2026 Pardalis Safari Tours. All Rights Reserved. | Designed for Memorable Safaris</p>
+</footer>
+
+<!-- AUTOMATIC MOTION SCRIPT -->
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const track = document.querySelector('.carousel-track');
+    const slides = Array.from(track.children);
+    const nextBtn = document.querySelector('.next-btn');
+    const prevBtn = document.querySelector('.prev-btn');
+    
+    if (slides.length === 0) return;
+
+    let currentIndex = 0;
+
+    function updateSlide(index) {
+        track.style.transform = `translateX(-${index * 100}%)`;
+    }
+
+    // Auto motion every 3.5 seconds
+    let slideInterval = setInterval(() => {
+        currentIndex = (currentIndex + 1) % slides.length;
+        updateSlide(currentIndex);
+    }, 3500);
+
+    // Manual controls (resets timer when clicked)
+    const resetTimer = () => {
+        clearInterval(slideInterval);
+        slideInterval = setInterval(() => {
+            currentIndex = (currentIndex + 1) % slides.length;
+            updateSlide(currentIndex);
+        }, 3500);
+    };
+
+    nextBtn.addEventListener('click', () => {
+        currentIndex = (currentIndex + 1) % slides.length;
+        updateSlide(currentIndex);
+        resetTimer();
+    });
+
+    prevBtn.addEventListener('click', () => {
+        currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+        updateSlide(currentIndex);
+        resetTimer();
+    });
+});
+</script>
+
+</body>
+</html>

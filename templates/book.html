@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pardalis Safari Tour - Book Your Safari</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+<!-- Language Selection Bar -->
+<div class="lang-bar">
+    <span id="label-select-lang">Select Language</span>
+    <span class="lang-opt active" onclick="switchLang('en', this)">English</span> /
+    <span class="lang-opt" onclick="switchLang('it', this)">Italiano</span> /
+    <span class="lang-opt" onclick="switchLang('fr', this)">Français</span> /
+    <span class="lang-opt" onclick="switchLang('es', this)">Español</span> /
+    <span class="lang-opt" onclick="switchLang('de', this)">Deutsch</span> /
+    <div class="lang-dropdown-wrapper">
+        <span>...</span>
+        <div class="lang-dropdown">
+            <a href="#" class="lang-opt" onclick="switchLang('zh', this); return false;">中文 (简体)</a>
+        </div>
+    </div>
+</div>
+
+<!-- Header Ribbon Bar / Subheading -->
+<div class="header-ribbon">
+    <h2 id="txt-subheading">Craft Your Exclusive Safari Experience</h2>
+</div>
+
+<!-- Main Hero Section with Background Image & Centered Logo/Card -->
+<div class="hero-bg-wrapper">
+    <div class="booking-card">
+        
+        <div class="card-brand-header">
+            <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Pardalis Logo" class="brand-logo" onerror="this.style.display='none'">
+            <h1>Pardalis Safari Tour</h1>
+        </div>
+
+        <form action="{{ url_for('handle_booking') }}" method="POST" id="bookingForm">
+            <div class="form-grid">
+                
+                <div class="form-group">
+                    <label for="first_name"><span class="req">*</span> <span id="lbl-firstname">First Name</span></label>
+                    <input type="text" id="first_name" name="first_name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="last_name"><span class="req">*</span> <span id="lbl-lastname">Last Name</span></label>
+                    <input type="text" id="last_name" name="last_name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="countrySelect"><span class="req">*</span> <span id="lbl-country">Country of Residence</span></label>
+                    <select name="country" id="countrySelect" required>
+                        <option value="">-- Select --</option>
+                        <option value="Afghanistan">Afghanistan</option>
+                        <option value="Albania">Albania</option>
+                        <option value="Algeria">Algeria</option>
+                        <option value="Andorra">Andorra</option>
+                        <option value="Angola">Angola</option>
+                        <option value="Antigua and Barbuda">Antigua and Barbuda</option>
+                        <option value="Argentina">Argentina</option>
+                        <option value="Armenia">Armenia</option>
+                        <option value="Australia">Australia</option>
+                        <option value="Austria">Austria</option>
+                        <option value="Azerbaijan">Azerbaijan</option>
+                        <option value="Bahamas">Bahamas</option>
+                        <option value="Bahrain">Bahrain</option>
+                        <option value="Bangladesh">Bangladesh</option>
+                        <option value="Barbados">Barbados</option>
+                        <option value="Belarus">Belarus</option>
+                        <option value="Belgium">Belgium</option>
+                        <option value="Belize">Belize</option>
+                        <option value="Benin">Benin</option>
+                        <option value="Bhutan">Bhutan</option>
+                        <option value="Bolivia">Bolivia</option>
+                        <option value="Bosnia and Herzegovina">Bosnia and Herzegovina</option>
+                        <option value="Botswana">Botswana</option>
+                        <option value="Brazil">Brazil</option>
+                        <option value="Brunei">Brunei</option>
+                        <option value="Bulgaria">Bulgaria</option>
+                        <option value="Burkina Faso">Burkina Faso</option>
+                        <option value="Burundi">Burundi</option>
+                        <option value="Cabo Verde">Cabo Verde</option>
+                        <option value="Cambodia">Cambodia</option>
+                        <option value="Cameroon">Cameroon</option>
+                        <option value="Canada">Canada</option>
+                        <option value="Central African Republic">Central African Republic</option>
+                        <option value="Chad">Chad</option>
+                        <option value="Chile">Chile</option>
+                        <option value="China">China</option>
+                        <option value="Colombia">Colombia</option>
+                        <option value="Comoros">Comoros</option>
+                        <option value="Congo (Congo-Brazzaville)">Congo (Congo-Brazzaville)</option>
+                        <option value="Costa Rica">Costa Rica</option>
+                        <option value="Croatia">Croatia</option>
+                        <option value="Cuba">Cuba</option>
+                        <option value="Cyprus">Cyprus</option>
+                        <option value="Czechia (Czech Republic)">Czechia (Czech Republic)</option>
+                        <option value="Democratic Republic of the Congo">Democratic Republic of the Congo</option>
+                        <option value="Denmark">Denmark</option>
+                        <option value="Djibouti">Djibouti</option>
+                        <option value="Dominica">Dominica</option>
+                        <option value="Dominican Republic">Dominican Republic</option>
+                        <option value="Ecuador">Ecuador</option>
+                        <option value="Egypt">Egypt</option>
+                        <option value="El Salvador">El Salvador</option>
+                        <option value="Equatorial Guinea">Equatorial Guinea</option>
+                        <option value="Eritrea">Eritrea</option>
+                        <option value="Estonia">Estonia</option>
+                        <option value="Eswatini">Eswatini</option>
+                        <option value="Ethiopia">Ethiopia</option>
+                        <option value="Fiji">Fiji</option>
+                        <option value="Finland">Finland</option>
+                        <option value="France">France</option>
+                        <option value="Gabon">Gabon</option>
+                        <option value="Gambia">Gambia</option>
+                        <option value="Georgia">Georgia</option>
+                        <option value="Germany">Germany</option>
+                        <option value="Ghana">Ghana</option>
+                        <option value="Greece">Greece</option>
+                        <option value="Grenada">Grenada</option>
+                        <option value="Guatemala">Guatemala</option>
+                        <option value="Guinea">Guinea</option>
+                        <option value="Guinea-Bissau">Guinea-Bissau</option>
+                        <option value="Guyana">Guyana</option>
+                        <option value="Haiti">Haiti</option>
+                        <option value="Holy See">Holy See</option>
+                        <option value="Honduras">Honduras</option>
+                        <option value="Hungary">Hungary</option>
+                        <option value="Iceland">Iceland</option>
+                        <option value="India">India</option>
+                        <option value="Indonesia">Indonesia</option>
+                        <option value="Iran">Iran</option>
+                        <option value="Iraq">Iraq</option>
+                        <option value="Ireland">Ireland</option>
+                        <option value="Israel">Israel</option>
+                        <option value="Italy">Italy</option>
+                        <option value="Jamaica">Jamaica</option>
+                        <option value="Japan">Japan</option>
+                        <option value="Jordan">Jordan</option>
+                        <option value="Kazakhstan">Kazakhstan</option>
+                        <option value="Kenya">Kenya</option>
+                        <option value="Kiribati">Kiribati</option>
+                        <option value="Kuwait">Kuwait</option>
+                        <option value="Kyrgyzstan">Kyrgyzstan</option>
+                        <option value="Laos">Laos</option>
+                        <option value="Latvia">Latvia</option>
+                        <option value="Lebanon">Lebanon</option>
+                        <option value="Lesotho">Lesotho</option>
+                        <option value="Liberia">Liberia</option>
+                        <option value="Libya">Libya</option>
+                        <option value="Liechtenstein">Liechtenstein</option>
+                        <option value="Lithuania">Lithuania</option>
+                        <option value="Luxembourg">Luxembourg</option>
+                        <option value="Madagascar">Madagascar</option>
+                        <option value="Malawi">Malawi</option>
+                        <option value="Malaysia">Malaysia</option>
+                        <option value="Maldives">Maldives</option>
+                        <option value="Mali">Mali</option>
+                        <option value="Malta">Malta</option>
+                        <option value="Marshall Islands">Marshall Islands</option>
+                        <option value="Mauritania">Mauritania</option>
+                        <option value="Mauritius">Mauritius</option>
+                        <option value="Mexico">Mexico</option>
+                        <option value="Micronesia">Micronesia</option>
+                        <option value="Moldova">Moldova</option>
+                        <option value="Monaco">Monaco</option>
+                        <option value="Mongolia">Mongolia</option>
+                        <option value="Montenegro">Montenegro</option>
+                        <option value="Morocco">Morocco</option>
+                        <option value="Mozambique">Mozambique</option>
+                        <option value="Myanmar (Burma)">Myanmar (Burma)</option>
+                        <option value="Namibia">Namibia</option>
+                        <option value="Nauru">Nauru</option>
+                        <option value="Nepal">Nepal</option>
+                        <option value="Netherlands">Netherlands</option>
+                        <option value="New Zealand">New Zealand</option>
+                        <option value="Nicaragua">Nicaragua</option>
+                        <option value="Niger">Niger</option>
+                        <option value="Nigeria">Nigeria</option>
+                        <option value="North Korea">North Korea</option>
+                        <option value="North Macedonia">North Macedonia</option>
+                        <option value="Norway">Norway</option>
+                        <option value="Oman">Oman</option>
+                        <option value="Pakistan">Pakistan</option>
+                        <option value="Palau">Palau</option>
+                        <option value="Palestine State">Palestine State</option>
+                        <option value="Panama">Panama</option>
+                        <option value="Papua New Guinea">Papua New Guinea</option>
+                        <option value="Paraguay">Paraguay</option>
+                        <option value="Peru">Peru</option>
+                        <option value="Philippines">Philippines</option>
+                        <option value="Poland">Poland</option>
+                        <option value="Portugal">Portugal</option>
+                        <option value="Qatar">Qatar</option>
+                        <option value="Romania">Romania</option>
+                        <option value="Russia">Russia</option>
+                        <option value="Rwanda">Rwanda</option>
+                        <option value="Saint Kitts and Nevis">Saint Kitts and Nevis</option>
+                        <option value="Saint Lucia">Saint Lucia</option>
+                        <option value="Saint Vincent and the Grenadines">Saint Vincent and the Grenadines</option>
+                        <option value="Samoa">Samoa</option>
+                        <option value="San Marino">San Marino</option>
+                        <option value="Sao Tome and Principe">Sao Tome and Principe</option>
+                        <option value="Saudi Arabia">Saudi Arabia</option>
+                        <option value="Senegal">Senegal</option>
+                        <option value="Serbia">Serbia</option>
+                        <option value="Seychelles">Seychelles</option>
+                        <option value="Sierra Leone">Sierra Leone</option>
+                        <option value="Singapore">Singapore</option>
+                        <option value="Slovakia">Slovakia</option>
+                        <option value="Slovenia">Slovenia</option>
+                        <option value="Solomon Islands">Solomon Islands</option>
+                        <option value="Somalia">Somalia</option>
+                        <option value="South Africa">South Africa</option>
+                        <option value="South Korea">South Korea</option>
+                        <option value="South Sudan">South Sudan</option>
+                        <option value="Spain">Spain</option>
+                        <option value="Sri Lanka">Sri Lanka</option>
+                        <option value="Sudan">Sudan</option>
+                        <option value="Suriname">Suriname</option>
+                        <option value="Sweden">Sweden</option>
+                        <option value="Switzerland">Switzerland</option>
+                        <option value="Syria">Syria</option>
+                        <option value="Tajikistan">Tajikistan</option>
+                        <option value="Tanzania">Tanzania</option>
+                        <option value="Thailand">Thailand</option>
+                        <option value="Timor-Leste">Timor-Leste</option>
+                        <option value="Togo">Togo</option>
+                        <option value="Tonga">Tonga</option>
+                        <option value="Trinidad and Tobago">Trinidad and Tobago</option>
+                        <option value="Tunisia">Tunisia</option>
+                        <option value="Turkey">Turkey</option>
+                        <option value="Turkmenistan">Turkmenistan</option>
+                        <option value="Tuvalu">Tuvalu</option>
+                        <option value="Uganda">Uganda</option>
+                        <option value="Ukraine">Ukraine</option>
+                        <option value="United Arab Emirates">United Arab Emirates</option>
+                        <option value="United Kingdom">United Kingdom</option>
+                        <option value="United States">United States</option>
+                        <option value="Uruguay">Uruguay</option>
+                        <option value="Uzbekistan">Uzbekistan</option>
+                        <option value="Vanuatu">Vanuatu</option>
+                        <option value="Venezuela">Venezuela</option>
+                        <option value="Vietnam">Vietnam</option>
+                        <option value="Yemen">Yemen</option>
+                        <option value="Zambia">Zambia</option>
+                        <option value="Zimbabwe">Zimbabwe</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="email"><span class="req">*</span> <span id="lbl-email">Email</span></label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="arrival_date"><span class="req">*</span> <span id="lbl-arrival">Date of Arrival</span></label>
+                    <input type="date" id="arrival_date" name="arrival_date" required onchange="updateMinDepartureDate()">
+                </div>
+
+                <div class="form-group">
+                    <label for="departure_date"><span class="req">*</span> <span id="lbl-departure">Date of Departure</span></label>
+                    <input type="date" id="departure_date" name="departure_date" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="duration"><span id="lbl-duration">Duration of Stay (Days)</span></label>
+                    <select name="duration" id="duration">
+                        <option value="">-- Select --</option>
+                        {% for n in range(1, 22) %}
+                            <option value="{{ n }}">{{ n }}</option>
+                        {% endfor %}
+                        <option value="Other">Other (Please specify)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="travelers"><span class="req">*</span> <span id="lbl-travelers">Total Travelers (Including Children)</span></label>
+                    <select name="travelers" id="travelers" required>
+                        <option value="">-- Select --</option>
+                        {% for n in range(1, 22) %}
+                            <option value="{{ n }}">{{ n }}</option>
+                        {% endfor %}
+                        <option value="Other">Other (Please specify)</option>
+                    </select>
+                </div>
+
+                <div class="form-group full-width checkbox-group">
+                    <input type="checkbox" id="children" name="children">
+                    <label for="children" id="lbl-children">Do children intend to travel?</label>
+                </div>
+
+                <!-- Places of Interest Multi-Select Pill Box -->
+                <div class="form-group full-width">
+                    <label for="placesDropdown"><span id="lbl-places">Places of Interest?</span></label>
+                    <div id="pillsContainer" class="pills-container"></div>
+                    <input type="hidden" id="placesHiddenInput" name="places">
+
+                    <select id="placesDropdown" onchange="addPlaceTag(this.value)">
+                        <option value="">-- Select --</option>
+                        <option value="Arusha National Park">Arusha National Park</option>
+                        <option value="Tarangire National Park">Tarangire National Park</option>
+                        <option value="Lake Manyara National Park">Lake Manyara National Park</option>
+                        <option value="Ngorongoro Conservation Area">Ngorongoro Conservation Area</option>
+                        <option value="Ndutu">Ndutu</option>
+                        <option value="Serengeti National Park">Serengeti National Park</option>
+                        <option value="Mount Kilimanjaro">Mount Kilimanjaro</option>
+                        <option value="Nyerere National Park">Nyerere National Park</option>
+                        <option value="Mikumi National Park">Mikumi National Park</option>
+                        <option value="Zanzibar Island">Zanzibar Island</option>
+                        <option value="Other">Other (Please specify)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="travel_type"><span id="lbl-traveltype">Type of Travel?</span></label>
+                    <select name="travel_type" id="travel_type">
+                        <option value="">-- Select --</option>
+                        <option value="Budget">Budget</option>
+                        <option value="Mid-Range">Mid-Range</option>
+                        <option value="Luxury">Luxury</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="vehicle"><span id="lbl-vehicle">Preferred Vehicle?</span></label>
+                    <select name="vehicle" id="vehicle">
+                        <option value="">-- Select --</option>
+                        <option value="Classic Safari Vehicle">Classic Safari Vehicle</option>
+                        <option value="Signature Safari Vehicle">Signature Safari Vehicle</option>
+                    </select>
+                </div>
+
+                <div class="form-group full-width">
+                    <label for="notesTextarea"><span id="lbl-details">Any additional details?</span></label>
+                    <textarea name="notes" id="notesTextarea" maxlength="20000" placeholder="Tell us more about your ideal safari..." oninput="updateCounter(this)"></textarea>
+                    <div class="char-counter" id="charCounter">0 / 20000</div>
+                </div>
+
+            </div>
+
+            <div class="submit-container">
+                <button type="submit" class="btn-submit" id="btn-submit">Submit Booking Request</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    // 1. Multilingual Support
+    const translations = {
+      en: {
+        subheading: "Craft Your Exclusive Safari Experience",
+        firstname: "First Name", lastname: "Last Name",
+        country: "Country of Residence", email: "Email",
+        arrival: "Date of Arrival", departure: "Date of Departure",
+        duration: "Duration of Stay (Days)", travelers: "Total Travelers (Including Children)",
+        children: "Do children intend to travel?", places: "Places of Interest?",
+        traveltype: "Type of Travel?", vehicle: "Preferred Vehicle?",
+        details: "Any additional details?", submit: "Submit Booking Request",
+        selectLang: "Select Language"
+      },
+      it: {
+        subheading: "Crea la tua esperienza di safari esclusiva",
+        firstname: "Nome", lastname: "Cognome",
+        country: "Paese di residenza", email: "E-mail",
+        arrival: "Data di arrivo", departure: "Data di partenza",
+        duration: "Durata del soggiorno (giorni)", travelers: "Viaggiatori totali",
+        children: "I bambini intendono viaggiare?", places: "Luoghi di interesse?",
+        traveltype: "Tipo di viaggio?", vehicle: "Veicolo preferito?",
+        details: "Dettagli aggiuntivi?", submit: "Invia richiesta di prenotazione",
+        selectLang: "Seleziona lingua"
+      },
+      fr: {
+        subheading: "Créez votre expérience de safari exclusive",
+        firstname: "Prénom", lastname: "Nom",
+        country: "Pays de résidence", email: "E-mail",
+        arrival: "Date d'arrivée", departure: "Date de départ",
+        duration: "Durée du séjour (Jours)", travelers: "Nombre total de voyageurs",
+        children: "Les enfants ont-ils l'intention de voyager?", places: "Lieux d'intérêt?",
+        traveltype: "Type de voyage?", vehicle: "Véhicule préféré?",
+        details: "Détails supplémentaires?", submit: "Soumettre la demande",
+        selectLang: "Choisir une langue"
+      },
+      es: {
+        subheading: "Crea tu experiencia de safari exclusiva",
+        firstname: "Nombre", lastname: "Apellido",
+        country: "País de residencia", email: "Correo electrónico",
+        arrival: "Fecha de llegada", departure: "Fecha de salida",
+        duration: "Duración de la estancia (Días)", travelers: "Viajeros totales",
+        children: "¿Tienen intenciones de viajar niños?", places: "¿Lugares de interés?",
+        traveltype: "¿Tipo de viaje?", vehicle: "¿Vehículo preferido?",
+        details: "¿Detalles adicionales?", submit: "Enviar solicitud de reserva",
+        selectLang: "Seleccionar idioma"
+      },
+      de: {
+        subheading: "Gestalten Sie Ihr exklusives Safari-Erlebnis",
+        firstname: "Vorname", lastname: "Nachname",
+        country: "Aufenthaltsland", email: "E-Mail",
+        arrival: "Anreisedatum", departure: "Abreisedatum",
+        duration: "Dauer des Aufenthalts (Tage)", travelers: "Gesamtzahl der Reisenden",
+        children: "Beabsichtigen Kinder zu reisen?", places: "Orte von Interesse?",
+        traveltype: "Art der Reise?", vehicle: "Bevorzugtes Fahrzeug?",
+        details: "Zusätzliche Details?", submit: "Buchungsanfrage absenden",
+        selectLang: "Sprache wählen"
+      },
+      zh: {
+        subheading: "打造您的专属游猎体验",
+        firstname: "名字", lastname: "姓氏",
+        country: "居住国家", email: "电子邮件",
+        arrival: "到达日期", departure: "离开日期",
+        duration: "停留时间（天）", travelers: "总游客人数",
+        children: "是否有儿童同行？", places: "感兴趣的景点？",
+        traveltype: "旅行类型？", vehicle: "首选车辆？",
+        details: "其他补充信息？", submit: "提交预订请求",
+        selectLang: "选择语言"
+      }
+    };
+
+    function switchLang(lang, element) {
+      const t = translations[lang];
+      if (!t) return;
+
+      document.getElementById('txt-subheading').innerText = t.subheading;
+      document.getElementById('lbl-firstname').innerText = t.firstname;
+      document.getElementById('lbl-lastname').innerText = t.lastname;
+      document.getElementById('lbl-country').innerText = t.country;
+      document.getElementById('lbl-email').innerText = t.email;
+      document.getElementById('lbl-arrival').innerText = t.arrival;
+      document.getElementById('lbl-departure').innerText = t.departure;
+      document.getElementById('lbl-duration').innerText = t.duration;
+      document.getElementById('lbl-travelers').innerText = t.travelers;
+      document.getElementById('lbl-children').innerText = t.children;
+      document.getElementById('lbl-places').innerText = t.places;
+      document.getElementById('lbl-traveltype').innerText = t.traveltype;
+      document.getElementById('lbl-vehicle').innerText = t.vehicle;
+      document.getElementById('lbl-details').innerText = t.details;
+      document.getElementById('btn-submit').innerText = t.submit;
+      document.getElementById('label-select-lang').innerText = t.selectLang;
+
+      document.querySelectorAll('.lang-opt').forEach(el => el.classList.remove('active'));
+      if (element) element.classList.add('active');
+    }
+
+    // 2. Places of Interest Tag/Pill Handling
+    let selectedPlaces = [];
+
+    function addPlaceTag(val) {
+        if (!val || selectedPlaces.includes(val)) return;
+        selectedPlaces.push(val);
+        renderTags();
+        document.getElementById('placesDropdown').value = '';
+    }
+
+    function removePlaceTag(val) {
+        selectedPlaces = selectedPlaces.filter(item => item !== val);
+        renderTags();
+    }
+
+    function renderTags() {
+        const container = document.getElementById('pillsContainer');
+        const hiddenInput = document.getElementById('placesHiddenInput');
+        container.innerHTML = '';
+
+        selectedPlaces.forEach(item => {
+            const pill = document.createElement('div');
+            pill.className = 'pill-tag';
+
+            const label = document.createElement('span');
+            label.textContent = item;
+
+            const removeBtn = document.createElement('span');
+            removeBtn.className = 'btn-remove-tag';
+            removeBtn.textContent = '×';
+            removeBtn.onclick = () => removePlaceTag(item);
+
+            pill.appendChild(label);
+            pill.appendChild(removeBtn);
+            container.appendChild(pill);
+        });
+
+        hiddenInput.value = selectedPlaces.join(', ');
+    }
+
+    // 3. Date constraint helper
+    function updateMinDepartureDate() {
+        const arrivalInput = document.getElementById('arrival_date');
+        const departureInput = document.getElementById('departure_date');
+        if (arrivalInput.value) {
+            departureInput.min = arrivalInput.value;
+            if (departureInput.value && departureInput.value < arrivalInput.value) {
+                departureInput.value = arrivalInput.value;
+            }
+        }
+    }
+
+    // 4. Textarea Character Count
+    function updateCounter(textarea) {
+        document.getElementById('charCounter').innerText = `${textarea.value.length} / 20000`;
+    }
+</script>
+
+</body>
+</html>

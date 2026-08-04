@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Booking Request Summary</title>
+    <style>
+        @page {
+            size: A4;
+            margin: 15mm;
+        }
+        body { 
+            font-family: Helvetica, Arial, sans-serif; 
+            color: #333333; 
+            margin: 0;
+            padding: 0;
+            font-size: 14px;
+            line-height: 1.4;
+        }
+
+        /* Top Header Layout */
+        .header-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 15px;
+            border: none;
+        }
+        .header-table td {
+            border: none;
+            padding: 0;
+            vertical-align: middle;
+        }
+        .logo-col {
+            width: 50%;
+            text-align: left;
+        } 
+        .company-logo {
+            max-width: 100px;
+            height: auto;
+        }
+        .contact-col {
+            width: 50%;
+            text-align: right;
+            font-size: 11px;
+            color: #555555;
+            line-height: 1.5;
+        }
+        .contact-col strong {
+            font-size: 13px;
+            color: #8c2834;
+        }
+
+        /* Document Title Accent */
+        .header-title { 
+            color: #8c2834; 
+            border-bottom: 2px solid #8c2834; 
+            padding-bottom: 6px; 
+            font-size: 20px;
+            margin-top: 10px;
+            margin-bottom: 20px;
+        }
+
+        /* Booking Summary Table */
+        table.details-table { 
+            width: 100%; 
+            border-collapse: collapse; 
+            margin-top: 10px; 
+        }
+        table.details-table tr {
+            page-break-inside: avoid;
+        }
+        table.details-table th, table.details-table td { 
+            padding: 9px 12px; 
+            border: 1px solid #dddddd; 
+            text-align: left; 
+            font-size: 13px; 
+            vertical-align: top;
+        }
+        table.details-table th { 
+            background-color: #f4f4f4; 
+            width: 35%; 
+            color: #2b2b2b; 
+            font-weight: bold;
+        }
+
+        /* Notes Box */
+        .notes-section {
+            margin-top: 20px;
+            page-break-inside: avoid;
+        }
+        .notes-section h3 {
+            color: #2b2b2b;
+            font-size: 14px;
+            margin-bottom: 6px;
+        }
+        .notes-box { 
+            background: #fafafa; 
+            padding: 12px 15px; 
+            border: 1px solid #dddddd; 
+            font-size: 13px; 
+            white-space: pre-wrap; 
+            color: #444444;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Block: Logo + Contact Info -->
+    <table class="header-table">
+        <tr>
+            <td class="logo-col">
+                <!-- Relative path for local rendering or Flask URL -->
+                <img src="{{ logo_url or url_for('static', filename='images/logo.png', _external=True) }}" alt="Pardalis Safari Logo" class="company-logo">
+            </td>
+            <td class="contact-col">
+                <strong>Pardalis Safari Tour</strong><br>
+                Arusha, Tanzania<br>
+                Phone / WhatsApp: +255 123 456 789<br>
+                Email: info@pardalissafari.com<br>
+                Web: www.pardalissafari.com
+            </td>
+        </tr>
+    </table>
+
+    <h1 class="header-title">New Booking Request</h1>
+    
+    <table class="details-table">
+        <tr>
+            <th>Guest Name</th>
+            <td>{{ data.first_name }} {{ data.last_name }}</td>
+        </tr>
+        <tr>
+            <th>Email</th>
+            <td>{{ data.email }}</td>
+        </tr>
+        <tr>
+            <th>Country of Residence</th>
+            <td>{{ data.country }}</td>
+        </tr>
+        <tr>
+            <th>Arrival Date</th>
+            <td>{{ data.arrival_date }}</td>
+        </tr>
+        <tr>
+            <th>Departure Date</th>
+            <td>{{ data.departure_date }}</td>
+        </tr>
+        <tr>
+            <th>Duration (Days)</th>
+            <td>{{ data.duration or 'Not specified' }}</td>
+        </tr>
+        <tr>
+            <th>Total Travelers</th>
+            <td>{{ data.travelers }}</td>
+        </tr>
+        <tr>
+            <th>Children Traveling?</th>
+            <td>{% if data.children %}Yes{% else %}No{% endif %}</td>
+        </tr>
+        <tr>
+            <th>Places of Interest</th>
+            <td>{{ data.places or 'None selected' }}</td>
+        </tr>
+        <tr>
+            <th>Type of Travel</th>
+            <td>{{ data.travel_type or 'Not specified' }}</td>
+        </tr>
+        <tr>
+            <th>Preferred Vehicle</th>
+            <td>{{ data.vehicle or 'Not specified' }}</td>
+        </tr>
+    </table>
+
+    {% if data.notes %}
+    <div class="notes-section">
+        <h3>Additional Notes / Details:</h3>
+        <div class="notes-box">{{ data.notes }}</div>
+    </div>
+    {% endif %}
+
+</body>
+</html>
