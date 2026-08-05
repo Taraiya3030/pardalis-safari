@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="contact-section">
+    <div class="container">
+        <h2 class="section-title">Get in Touch</h2>
+        <p class="section-subtitle">Have questions about our safari packages? Reach out to us anytime.</p>
+
+        <!-- Flash Messages -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            {% for category, message in messages %}
+              <div class="alert alert-{{ category }}">{{ message }}</div>
+            {% endfor %}
+          {% endif %}
+        {% endwith %}
+
+        <div class="contact-grid">
+            <!-- Contact Details -->
+            <div class="contact-info">
+                <h3>Contact Information</h3>
+                <p><strong>📍 Location:</strong> Arusha, Tanzania</p>
+                <p><strong>📞 Phone:</strong> +255 123 456 789</p>
+                <p><strong>✉️ Email:</strong> info@pardalisafari.com</p>
+                <p><strong>🕒 Hours:</strong> Mon - Sun: 8:00 AM - 8:00 PM (EAT)</p>
+            </div>
+
+            <!-- Contact Form -->
+            <form action="{{ url_for('contact') }}" method="POST" class="contact-form">
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" name="name" placeholder="John Doe" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" placeholder="john@example.com" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="subject">Subject</label>
+                    <input type="text" id="subject" name="subject" placeholder="Safari Inquiry / Customized Tour" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" rows="5" placeholder="Tell us about your travel plans..." required></textarea>
+                </div>
+
+                <button type="submit" class="btn-submit">Send Message</button>
+            </form>
+        </div>
+    </div>
+</section>
+{% endblock %}
