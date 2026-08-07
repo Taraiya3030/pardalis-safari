@@ -237,7 +237,7 @@ def about():
         {"title": "Our Team", "image": "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=600&q=80", "text": "Experienced local Tanzanian guide professionals and safari experts."},
         # Use direct url_for safely inside the route function block like this:
         {"title": "Custom Fleet", "image": url_for('static', filename='Custom Fleet.jpg'), "text": "Specially modified 4x4 Land Cruisers with pop-up roofs for optimal game viewing."},
-        {"title": "Community Support", "image": "https://images.unsplash.com/photo-1484406566174-9da000fda645?auto=format&fit=crop&w=600&q=80", "text": "Giving back to local communities and supporting regional conservation initiatives."}
+        {"title": "Community Support", "image": url_for('static', filename='Community Support.jpg'), "text": "Giving back to local communities and supporting regional conservation initiatives."}
     ]
     return render_template_string(PAGE_TEMPLATE, title="About Us", heading="About Pardalis Safari Tours", subheading="Excellence, Safety, and Authentic Exploration", description="Learn more about our company background, expert team, and commitment to delivering unforgettable Tanzanian safaris.", items=items)
 
@@ -245,10 +245,10 @@ def about():
 @app.route('/destinations')
 def destinations():
     items = [
-        {"title": "Serengeti National Park", "image": "https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&w=600&q=80", "text": "Home to the Great Wildebeest Migration and endless golden savannah plains.", "link": url_for('serengeti')},
-        {"title": "Ngorongoro Crater", "image": "https://images.unsplash.com/photo-1534188753412-3e26d0d618d6?auto=format&fit=crop&w=600&q=80", "text": "A breathtaking UNESCO World Heritage site filled with dense wildlife populations.", "link": url_for('ngorongoro')},
-        {"title": "Tarangire National Park", "image": "https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?auto=format&fit=crop&w=600&q=80", "text": "Renowned for massive elephant herds and majestic ancient baobab trees.", "link": url_for('tarangire')},
-        {"title": "Zanzibar Beaches", "image": "https://images.unsplash.com/photo-1586861635167-e5223aadc9fe?auto=format&fit=crop&w=600&q=80", "text": "Pristine white sand beaches and clear turquoise waters of the Indian Ocean.", "link": url_for('zanzibar')}
+        {"title": "Serengeti National Park", "image": url_for('static', filename='/images/menu/serengeti/leopard.jpg'), "text": "Home to the Great Wildebeest Migration and endless golden savannah plains.", "link": url_for('serengeti')},
+        {"title": "Ngorongoro Crater", "image": url_for('static', filename='/images/menu/ngorongoro/about_the_ngoro_crater.webp'), "text": "A breathtaking UNESCO World Heritage site filled with dense wildlife populations.", "link": url_for('ngorongoro')},
+        {"title": "Tarangire National Park", "image": url_for('static', filename='/images/menu/tarangire/Bird-watching-in-Tarangire-national-park.jpg'), "text": "Renowned for massive elephant herds and majestic ancient baobab trees.", "link": url_for('tarangire')},
+        {"title": "Zanzibar Beaches", "image": url_for('static', filename='/images/menu/zanzibar/bearches.jpg'), "text": "Pristine white sand beaches and clear turquoise waters of the Indian Ocean.", "link": url_for('zanzibar')}
     ]
     
     extra_html = """
@@ -335,9 +335,9 @@ def destinations():
 @app.route('/safaris')
 def safaris():
     items = [
-        {"title": "Classic Wildlife Safari", "image": "https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?auto=format&fit=crop&w=600&q=80", "text": "Multi-day wildlife game drives through northern Tanzania's premier national parks.", "link": url_for('classic_wildlife')},
-        {"title": "Great Migration Safaris", "image": "https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&w=600&q=80", "text": "Specialized seasonal itineraries tracking million-strong wildebeest and zebra herds.", "link": url_for('great_migration')},
-        {"title": "Photographic Expeditions", "image": "https://images.unsplash.com/photo-1534567153574-2b12153a87f0?auto=format&fit=crop&w=600&q=80", "text": "Custom vehicle setups and timing designed specifically for wildlife photographers.", "link": url_for('photographic_expeditions')}
+        {"title": "Classic Wildlife Safari", "image": url_for('static', filename='/Classic Wildlife Safari.jpg'), "text": "Multi-day wildlife game drives through northern Tanzania's premier national parks.", "link": url_for('classic_wildlife')},
+        {"title": "Great Migration Safaris", "image": url_for('static', filename='/great migration safaris.jpg'), "text": "Specialized seasonal itineraries tracking million-strong wildebeest and zebra herds.", "link": url_for('great_migration')},
+        {"title": "Photographic Expeditions", "image": url_for('static', filename='/Tailor-Made Safaris Designed for Photographers.jpg'), "text": "Custom vehicle setups and timing designed specifically for wildlife photographers.", "link": url_for('photographic_expeditions')}
     ]
     return render_template_string(PAGE_TEMPLATE, title="Safaris", heading="Safari Packages", subheading="Tailor-Made Big Five Adventures", description="Choose from our wide range of curated safari packages crafted for all types of travelers.", items=items)
 
@@ -347,19 +347,19 @@ def climbing_trekking():
     items = [
         {
             "title": "Mount Kilimanjaro Climbs",
-            "image": "https://images.unsplash.com/photo-1650668302197-7f556c34cb91?auto=format&fit=crop&w=600&q=80",
+            "image": url_for('static', filename='/images/mount kilimanjaro/mt_kilimanjaro6.jpg'),
             "text": "Guided treks to Uhuru Peak via Machame, Lemosho, and Marangu routes.",
             "link": url_for('kilimanjaro_detail')
         },
         {
             "title": "Mount Meru Treks",
-            "image": "https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?auto=format&fit=crop&w=600&q=80",
+            "image": url_for('static', filename='/images/mount meru/mountmeru2.jpg'),
             "text": "Scenic multi-day trekking ideal for acclimatization and panoramic views.",
             "link": url_for('meru_detail')
         },
         {
             "title": "Ol Doinyo Lengai",
-            "image": "https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?auto=format&fit=crop&w=600&q=80",
+            "image": url_for('static', filename='/images/oldonyo lengai/Oldonyo-Lengai.jpg'),
             "text": "Challenging active volcano hikes located in the heart of Maasai land.",
             "link": url_for('lengai_detail')
         }
@@ -377,9 +377,9 @@ def climbing_trekking():
 @app.route('/accommodation')
 def accommodation():
     items = [
-        {"title": "Luxury Tented Camps", "image": "https://images.unsplash.com/photo-1540541338287-41700207dee6?auto=format&fit=crop&w=600&q=80", "text": "Immerse yourself in nature without compromising on high-end comfort and fine dining."},
-        {"title": "Safari Lodges", "image": "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=600&q=80", "text": "Full-service luxury lodges offering swimming pools, spa facilities, and epic park views."},
-        {"title": "Beach Resorts", "image": "https://images.unsplash.com/photo-1586861635167-e5223aadc9fe?auto=format&fit=crop&w=600&q=80", "text": "Exclusive beachfront resorts in Zanzibar for post-safari relaxation."}
+        {"title": "Luxury Tented Camps", "image": url_for('static', filename='luxury.jpg'), "text": "Immerse yourself in nature without compromising on high-end comfort and fine dining."},
+        {"title": "Safari Lodges", "image": url_for('static', filename='/lodge.jpg'), "text": "Full-service luxury lodges offering swimming pools, spa facilities, and epic park views."},
+        {"title": "Beach Resorts", "image": url_for('static', filename='/resort beach.jpg'), "text": "Exclusive beachfront resorts in Zanzibar for post-safari relaxation."}
     ]
     return render_template_string(PAGE_TEMPLATE, title="Accommodation", heading="Lodges & Luxury Camps", subheading="Comfortable Lodging Under African Skies", description="We partner with carefully vetted lodges and camps to ensure rest, fine dining, and security throughout your journey.", items=items)
 
