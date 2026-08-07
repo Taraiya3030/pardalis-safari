@@ -1,7 +1,7 @@
 import io
 import logging
 import os
-from flask import Flask, render_template, render_template_string, request, flash, redirect, url_for
+from flask import Flask, render_template, render_template_string, request, flash, redirect, url_for, jsonify
 from flask_mail import Mail, Message
 from xhtml2pdf import pisa
 
@@ -13,11 +13,11 @@ app.config['MAIL_SERVER'] = 'smtp.gmail.com'
 app.config['MAIL_PORT'] = 587
 app.config['MAIL_USE_TLS'] = True
 app.config['MAIL_USE_SSL'] = False
-app.config['MAIL_USERNAME'] = os.getenv('MAIL_USERNAME', 'mathayoisaya40@gmail.com')
-app.config['MAIL_PASSWORD'] = os.getenv('MAIL_PASSWORD', 'spwktancwnodstsi')
+app.config['MAIL_USERNAME'] = os.getenv('MAIL_USERNAME', 'mbwambojohn05@gmail.com')
+app.config['MAIL_PASSWORD'] = os.getenv('MAIL_PASSWORD', 'mscjkaefhhkjtfbp')
 app.config['MAIL_DEFAULT_SENDER'] = ('Pardalis Safari Tour', app.config['MAIL_USERNAME'])
 
-ADMIN_EMAIL = 'mathayoisaya40@gmail.com'
+ADMIN_EMAIL = os.getenv('ADMIN_EMAIL', 'mbwambojohn05@gmail.com')
 
 mail = Mail(app)
 
@@ -103,6 +103,10 @@ footer p { color: #e0d5c1; font-size: 0.8rem; }
         <div class="subtitle">{{ subheading }}</div>
         <p>{{ description }}</p>
 
+        {% if extra_content %}
+            {{ extra_content | safe }}
+        {% endif %}
+
         <div class="gallery-grid">
             {% for item in items %}
             <div class="gallery-card">
@@ -119,7 +123,7 @@ footer p { color: #e0d5c1; font-size: 0.8rem; }
                     </div>
                 </a>
             </div>
-            {% endfor %}
+        {% endfor %}
         </div>
     </main>
 </div>
@@ -231,7 +235,8 @@ def handle_booking():
 def about():
     items = [
         {"title": "Our Team", "image": "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=600&q=80", "text": "Experienced local Tanzanian guide professionals and safari experts."},
-        {"title": "Custom Fleet", "image": "https://images.unsplash.com/photo-1534567153574-2b12153a87f0?auto=format&fit=crop&w=600&q=80", "text": "Specially modified 4x4 Land Cruisers with pop-up roofs for optimal game viewing."},
+        # Use direct url_for safely inside the route function block like this:
+        {"title": "Custom Fleet", "image": url_for('static', filename='Custom Fleet.jpg'), "text": "Specially modified 4x4 Land Cruisers with pop-up roofs for optimal game viewing."},
         {"title": "Community Support", "image": "https://images.unsplash.com/photo-1484406566174-9da000fda645?auto=format&fit=crop&w=600&q=80", "text": "Giving back to local communities and supporting regional conservation initiatives."}
     ]
     return render_template_string(PAGE_TEMPLATE, title="About Us", heading="About Pardalis Safari Tours", subheading="Excellence, Safety, and Authentic Exploration", description="Learn more about our company background, expert team, and commitment to delivering unforgettable Tanzanian safaris.", items=items)
@@ -245,7 +250,86 @@ def destinations():
         {"title": "Tarangire National Park", "image": "https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?auto=format&fit=crop&w=600&q=80", "text": "Renowned for massive elephant herds and majestic ancient baobab trees.", "link": url_for('tarangire')},
         {"title": "Zanzibar Beaches", "image": "https://images.unsplash.com/photo-1586861635167-e5223aadc9fe?auto=format&fit=crop&w=600&q=80", "text": "Pristine white sand beaches and clear turquoise waters of the Indian Ocean.", "link": url_for('zanzibar')}
     ]
-    return render_template_string(PAGE_TEMPLATE, title="Destinations", heading="Tanzania Destinations", subheading="Explore Africa's Most Spectacular Wildlife Parks", description="Discover our top destination offerings across Tanzania's northern circuit and tropical islands.", items=items)
+    
+    extra_html = """
+    <div class="destinations-overview" style="margin: 20px 0;">
+        <p style="font-size: 1rem; line-height: 1.6; color: #333333; margin-bottom: 20px;">
+            Tanzania is Africa’s premier combination destination, seamlessly pairing world-class wildlife safaris with idyllic tropical beaches. To make navigating this vast country easier, its top travel destinations are split into distinct regional tourism circuits.
+        </p>
+
+        <div style="margin-bottom: 16px;">
+            <h3 style="font-size: 1.1rem; color: #4A1208; margin-bottom: 4px;">The Northern Circuit (The Heavy Hitters)</h3>
+            <p style="font-size: 0.9rem; color: #555;">This is Tanzania's most famous and highly visited route, known for legendary landscapes and unbeatable density of the "Big Five".</p>
+        </div>
+
+        <div style="margin-bottom: 16px;">
+            <h3 style="font-size: 1.1rem; color: #4A1208; margin-bottom: 4px;">The Coast & Islands (Tropical Paradise)</h3>
+            <p style="font-size: 0.9rem; color: #555;">Perfect for unwinding after a dusty safari, Tanzania's Indian Ocean coastline is rich in culture and pristine marine life.</p>
+        </div>
+
+        <div style="margin-bottom: 20px;">
+            <h3 style="font-size: 1.1rem; color: #4A1208; margin-bottom: 4px;">Southern & Western Circuits (Off the Beaten Path)</h3>
+            <p style="font-size: 0.9rem; color: #555;">For travelers seeking a raw, crowd-free wilderness, these remote regions provide a unique look at untouched Africa.</p>
+        </div>
+
+        <!-- Quick Comparison Table -->
+        <div style="margin-top: 25px; overflow-x: auto;">
+            <h3 style="font-size: 1.1rem; color: #4A1208; margin-bottom: 10px; text-transform: uppercase;">Quick Comparison Table</h3>
+            <table style="width: 100%; border-collapse: collapse; background-color: #ffffff; border: 1px solid #e0d7c6; font-size: 0.88rem;">
+                <thead>
+                    <tr style="background-color: #E3D8C4; color: #4A1208;">
+                        <th style="text-align: left; padding: 10px 14px; border-bottom: 2px solid #C4B79E;">Destination</th>
+                        <th style="text-align: left; padding: 10px 14px; border-bottom: 2px solid #C4B79E;">Primary Vibe</th>
+                        <th style="text-align: left; padding: 10px 14px; border-bottom: 2px solid #C4B79E;">Key Highlight</th>
+                        <th style="text-align: left; padding: 10px 14px; border-bottom: 2px solid #C4B79E;">Best Time to Visit</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr style="border-bottom: 1px solid #e0d7c6;">
+                        <td style="padding: 10px 14px;"><strong>Serengeti</strong></td>
+                        <td style="padding: 10px 14px;">Ultimate Wildlife</td>
+                        <td style="padding: 10px 14px;">Great Migration / Predators</td>
+                        <td style="padding: 10px 14px;">July–October (River Crossings)</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid #e0d7c6; background-color: #FAF7EE;">
+                        <td style="padding: 10px 14px;"><strong>Ngorongoro</strong></td>
+                        <td style="padding: 10px 14px;">Volcanic Wonder</td>
+                        <td style="padding: 10px 14px;">High density of Big Five</td>
+                        <td style="padding: 10px 14px;">Year-round</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid #e0d7c6;">
+                        <td style="padding: 10px 14px;"><strong>Kilimanjaro</strong></td>
+                        <td style="padding: 10px 14px;">Active Adventure</td>
+                        <td style="padding: 10px 14px;">Peak Mountain Trekking</td>
+                        <td style="padding: 10px 14px;">Jan–March & June–October</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid #e0d7c6; background-color: #FAF7EE;">
+                        <td style="padding: 10px 14px;"><strong>Zanzibar</strong></td>
+                        <td style="padding: 10px 14px;">Beach & Culture</td>
+                        <td style="padding: 10px 14px;">Stone Town / White Sand</td>
+                        <td style="padding: 10px 14px;">June–October</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 10px 14px;"><strong>Mahale</strong></td>
+                        <td style="padding: 10px 14px;">Remote / Primal</td>
+                        <td style="padding: 10px 14px;">Chimpanzee Trekking</td>
+                        <td style="padding: 10px 14px;">May–October (Dry season)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    """
+
+    return render_template_string(
+        PAGE_TEMPLATE, 
+        title="Destinations", 
+        heading="Tanzania Destinations", 
+        subheading="Explore Africa's Most Spectacular Wildlife Parks", 
+        description="Discover our top destination offerings across Tanzania's northern circuit and tropical islands.", 
+        items=items,
+        extra_content=extra_html
+    )
 
 
 @app.route('/safaris')
@@ -369,12 +453,12 @@ def tarangire():
 @app.route('/climbing-trekking/kilimanjaro')
 def kilimanjaro_detail():
     photos = [
-        {"url": url_for('static', filename='images/menu/mount kilimanjaro/mt_kilimanjaro (1).jpg'), "caption": "Snow-Capped Uhuru Peak View"},
-        {"url": url_for('static', filename='images/menu/mount kilimanjaro/mt_kilimanjaro (2).jpg'), "caption": "Majestic Kilimanjaro Landscape"},
-        {"url": url_for('static', filename='images/menu/mount kilimanjaro/mt_kilimanjaro.jpg'), "caption": "Climbers Trekking the Mountain Path"},
-        {"url": url_for('static', filename='images/menu/mount kilimanjaro/mt_kilimanjaro4.jpg'), "caption": "Rocky Terrain Near High Altitude Camps"},
-        {"url": url_for('static', filename='images/menu/mount kilimanjaro/mt_kilimanjaro5.jpg'), "caption": "Scenic Alpine Meadow Trail"},
-        {"url": url_for('static', filename='images/menu/mount kilimanjaro/mt_kilimanjaro6.jpg'), "caption": "Celebration at Uhuru Peak (5895m)"}
+        {"url": url_for('static', filename='images/mount kilimanjaro/mt_kilimanjaro (1).jpg'), "caption": "Snow-Capped Uhuru Peak View"},
+        {"url": url_for('static', filename='images/mount kilimanjaro/mt_kilimanjaro (2).jpg'), "caption": "Majestic Kilimanjaro Landscape"},
+        {"url": url_for('static', filename='images/mount kilimanjaro/mt_kilimanjaro.jpg'), "caption": "Climbers Trekking the Mountain Path"},
+        {"url": url_for('static', filename='images/mount kilimanjaro/mt_kilimanjaro4.jpg'), "caption": "Rocky Terrain Near High Altitude Camps"},
+        {"url": url_for('static', filename='images/mount kilimanjaro/mt_kilimanjaro5.jpg'), "caption": "Scenic Alpine Meadow Trail"},
+        {"url": url_for('static', filename='images/mount kilimanjaro/mt_kilimanjaro6.jpg'), "caption": "Celebration at Uhuru Peak (5895m)"}
     ]
     video_url = "https://www.youtube.com/embed/eSUuVpnKQIE"
     return render_template('kilimanjaro.html', photos=photos, video_url=video_url)
@@ -428,21 +512,105 @@ def photographic_expeditions():
     ]
     return render_template('photographic_expeditions.html', photos=photos)
 
-from flask import render_template, request, flash, redirect, url_for
+# --- CONTACT FORM ROUTE ---
 
 @app.route('/contact', methods=['GET', 'POST'])
 def contact():
     if request.method == 'POST':
-        name = request.form.get('name')
+        first_name = request.form.get('first_name', '')
+        last_name = request.form.get('last_name', '')
         email = request.form.get('email')
-        subject = request.form.get('subject')
-        message = request.form.get('message')
-        
-        # Here you can save to a database or send an automated email notification
+        phone = request.form.get('phone', '')
+        subject = request.form.get('subject', 'General Inquiry')
+        message = request.form.get('message', '')
+
+        if not email:
+            flash('Email is required to submit an inquiry.', 'danger')
+            return redirect(url_for('home') + '#contact-section')
+
+        # Send notification to Admin
+        admin_msg = Message(
+            subject=f"New Contact Inquiry: {subject} from {first_name} {last_name}",
+            recipients=[ADMIN_EMAIL]
+        )
+        admin_msg.body = (
+            f"You received a new inquiry from the website contact form:\n\n"
+            f"Name: {first_name} {last_name}\n"
+            f"Email: {email}\n"
+            f"Phone: {phone}\n"
+            f"Subject: {subject}\n\n"
+            f"Message:\n{message}"
+        )
+
+        # Send confirmation to User
+        user_msg = Message(
+            subject="Thank you for contacting Pardalis Safari Tours",
+            recipients=[email]
+        )
+        user_msg.body = (
+            f"Dear {first_name},\n\n"
+            f"Thank you for reaching out to Pardalis Safari Tours!\n\n"
+            f"We have received your message regarding '{subject}'. "
+            f"Our team will get back to you as soon as possible.\n\n"
+            f"Best regards,\n"
+            f"Pardalis Safari Tours Team"
+        )
+
+        try:
+            mail.send(admin_msg)
+            mail.send(user_msg)
+            logging.info("Contact form email sent successfully.")
+        except Exception as e:
+            logging.error(f"Failed to send contact emails: {e}")
+
         flash('Thank you for reaching out! We will get back to you shortly.', 'success')
-        return redirect(url_for('contact'))
-        
-    return render_template('contact.html')
+        return redirect(url_for('home') + '#contact-section')
+
+    return redirect(url_for('home') + '#contact-section')
+
+
+# --- MOBILE APP API ENDPOINTS ---
+
+@app.route('/api/destinations', methods=['GET'])
+def get_destinations_api():
+    destinations_list = [
+        {
+            "id": "serengeti",
+            "title": "Serengeti National Park",
+            "description": "Home to the Great Wildebeest Migration.",
+            "image": "images/menu/serengeti/migration.jpg"
+        },
+        {
+            "id": "ngorongoro",
+            "title": "Ngorongoro Crater",
+            "description": "UNESCO World Heritage site with dense wildlife.",
+            "image": "images/menu/ngorongoro/animals.jpg"
+        },
+        {
+            "id": "tarangire",
+            "title": "Tarangire National Park",
+            "description": "Renowned for massive elephant herds.",
+            "image": "images/menu/tarangire/elephant in tarangire.jpg"
+        },
+        {
+            "id": "zanzibar",
+            "title": "Zanzibar Beaches",
+            "description": "Pristine white sand beaches and turquoise waters.",
+            "image": "images/menu/zanzibar/beaches.jpg"
+        }
+    ]
+    return jsonify({"status": "success", "destinations": destinations_list}), 200
+
+
+@app.route('/api/book', methods=['POST'])
+def handle_app_booking():
+    data = request.get_json(silent=True) or {}
+
+    if not data.get('email'):
+        return jsonify({"status": "error", "message": "Email is required"}), 400
+
+    return jsonify({"status": "success", "message": "Booking request received successfully!"}), 201
+
 
 if __name__ == '__main__':
     app.run(debug=True)

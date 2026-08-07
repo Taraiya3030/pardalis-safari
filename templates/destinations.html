@@ -1,10 +1,131 @@
-<div class="destination-card">
-    <a href="{{ url_for('zanzibar') }}">
-        <img src="{{ url_for('static', filename='images/menu/zanzibar/beaches.jpg') }}" alt="Zanzibar Beaches">
-        <div class="card-content">
-            <h3>ZANZIBAR BEACHES</h3>
-            <p>Pristine white sand beaches and clear turquoise waters of the Indian Ocean.</p>
-            <span class="explore-link">EXPLORE DESTINATION &rarr;</span>
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <div class="header">
+        <h1>TANZANIA DESTINATIONS</h1>
+        <h2>Explore Africa's Most Spectacular Wildlife Parks</h2>
+    </div>
+
+    <!-- Regional Overview & Circuits -->
+    <div class="destinations-overview">
+        <p class="intro-lead">
+            Tanzania is Africa’s premier combination destination, seamlessly pairing world-class wildlife safaris with idyllic tropical beaches. To make navigating this vast country easier, its top travel destinations are split into distinct regional tourism circuits.
+        </p>
+
+        <div class="circuit-group">
+            <h3>The Northern Circuit (The Heavy Hitters)</h3>
+            <p>This is Tanzania's most famous and highly visited route, known for legendary landscapes and unbeatable density of the "Big Five".</p>
         </div>
-    </a>
+
+        <div class="circuit-group">
+            <h3>The Coast & Islands (Tropical Paradise)</h3>
+            <p>Perfect for unwinding after a dusty safari, Tanzania's Indian Ocean coastline is rich in culture and pristine marine life.</p>
+        </div>
+
+        <div class="circuit-group">
+            <h3>Southern & Western Circuits (Off the Beaten Path)</h3>
+            <p>For travelers seeking a raw, crowd-free wilderness, these remote regions provide a unique look at untouched Africa.</p>
+        </div>
+
+        <!-- Quick Comparison Table -->
+        <div class="comparison-table-wrapper">
+            <h3>Quick Comparison Table</h3>
+            <table class="destinations-table">
+                <thead>
+                    <tr>
+                        <th>Destination</th>
+                        <th>Primary Vibe</th>
+                        <th>Key Highlight</th>
+                        <th>Best Time to Visit</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Serengeti</strong></td>
+                        <td>Ultimate Wildlife</td>
+                        <td>Great Migration / Predators</td>
+                        <td>July–October (River Crossings)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Ngorongoro</strong></td>
+                        <td>Volcanic Wonder</td>
+                        <td>High density of Big Five</td>
+                        <td>Year-round</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Kilimanjaro</strong></td>
+                        <td>Active Adventure</td>
+                        <td>Peak Mountain Trekking</td>
+                        <td>Jan–March & June–October</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Zanzibar</strong></td>
+                        <td>Beach & Culture</td>
+                        <td>Stone Town / White Sand</td>
+                        <td>June–October</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Mahale</strong></td>
+                        <td>Remote / Primal</td>
+                        <td>Chimpanzee Trekking</td>
+                        <td>May–October (Dry season)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Destinations Grid Container -->
+    <div class="destinations-grid">
+        <!-- Your destination cards go here -->
+        <div class="destination-card">
+            <a href="{{ url_for('zanzibar') }}">
+                <img src="{{ url_for('static', filename='images/menu/zanzibar/beaches.jpg') }}" alt="Zanzibar Beaches">
+                <div class="card-content">
+                    <h3>ZANZIBAR BEACHES</h3>
+                    <p>Pristine white sand beaches and clear turquoise waters of the Indian Ocean.</p>
+                    <span class="explore-link">EXPLORE DESTINATION &rarr;</span>
+                </div>
+            </a>
+        </div>
+        <!-- Add your other cards (Serengeti, Ngorongoro, etc.) here -->
+    </div>
 </div>
+
+<!-- Serengeti Card -->
+        <div class="destination-card">
+            <a href="{{ url_for('serengeti') }}">
+                <img src="{{ url_for('static', filename='images/menu/destinations/serengeti.jpg') }}" alt="Serengeti National Park">
+                <div class="card-content">
+                    <h3>SERENGETI NATIONAL PARK</h3>
+                    <p>Home to the Great Wildebeest Migration and endless golden savannah plains.</p>
+                    <span class="explore-link">EXPLORE DETAILS &rarr;</span>
+                </div>
+            </a>
+        </div>
+
+        <!-- Ngorongoro Card -->
+        <div class="destination-card">
+            <a href="{{ url_for('ngorongoro') }}">
+                <img src="{{ url_for('static', filename='images/menu/destinations/ngorongoro.jpg') }}" alt="Ngorongoro Crater">
+                <div class="card-content">
+                    <h3>NGORONGORO CRATER</h3>
+                    <p>A breathtaking UNESCO World Heritage site filled with dense wildlife populations.</p>
+                    <span class="explore-link">EXPLORE DETAILS &rarr;</span>
+                </div>
+            </a>
+        </div>
+
+        <!-- Tarangire Card -->
+        <div class="destination-card">
+            <a href="{{ url_for('tarangire') }}">
+                <img src="{{ url_for('static', filename='images/menu/destinations/tarangire.jpg') }}" alt="Tarangire National Park">
+                <div class="card-content">
+                    <h3>TARANGIRE NATIONAL PARK</h3>
+                    <p>Renowned for massive elephant herds and majestic ancient baobab trees.</p>
+                    <span class="explore-link">EXPLORE DETAILS &rarr;</span>
+                </div>
+            </a>
+        </div>
+{% endblock %}

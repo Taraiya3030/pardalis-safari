@@ -8,12 +8,28 @@
     font-family: Arial, Helvetica, sans-serif;
 }
 
+img, iframe {
+    max-width: 100%;
+}
+
 body {
     background: #FAF7EE; /* Light cream primary background */
     color: #333333;
     padding: 0 0 40px 0;
     font-size: 14px;
     line-height: 1.6;
+}
+
+/* Keyframe Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-4px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 /* ==========================================================================
@@ -25,8 +41,8 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 8px 18px;
-    font-size: 13px;
+    padding: 6px 15px;
+    font-size: 0.8rem;
     gap: 12px;
 }
 
@@ -60,6 +76,7 @@ body {
     border-radius: 4px;
     z-index: 100;
     margin-top: 5px;
+    animation: fadeIn 0.2s ease;
 }
 
 .lang-dropdown a {
@@ -76,6 +93,14 @@ body {
 
 .lang-dropdown-wrapper:hover .lang-dropdown {
     display: block;
+}
+
+.header-ribbon {
+    background: #2d3748;
+    color: #ffffff;
+    text-align: center;
+    padding: 10px;
+    font-size: 0.9rem;
 }
 
 /* ==========================================================================
@@ -145,7 +170,7 @@ body {
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
-    justify-content: flex-start; /* Aligns left menu items cleanly to the left */
+    justify-content: flex-start;
     align-items: center;
     margin: 0;
     padding: 0;
@@ -160,7 +185,6 @@ body {
     position: static;
 }
 
-/* Nav Item Links */
 .nav-item > a,
 .nav-menu li > a {
     display: flex;
@@ -175,7 +199,6 @@ body {
     transition: background-color 0.15s ease, color 0.15s ease;
 }
 
-/* Nav Item Hover & Active State */
 .nav-item:hover > a,
 .nav-menu li:hover > a,
 .nav-item.active-menu > a {
@@ -183,7 +206,6 @@ body {
     color: #ffffff;
 }
 
-/* Caret Arrow */
 .dropdown-trigger::after {
     content: "▼";
     font-size: 0.60rem;
@@ -192,7 +214,7 @@ body {
 }
 
 /* ==========================================================================
-   Standard Vertical Dropdowns (Travel Info, News, Contact, etc.)
+   Standard Vertical Dropdowns
    ========================================================================== */
 .dropdown-menu,
 .dropdown-content {
@@ -201,12 +223,13 @@ body {
     top: 100%;
     left: 0;
     min-width: 220px;
-    background-color: #ECE5D8; /* Light warm cream dropdown */
+    background-color: #ECE5D8;
     border: 1px solid #B8A88E;
     box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
     list-style: none;
     z-index: 1001;
     padding: 0;
+    animation: fadeIn 0.2s ease;
 }
 
 .dropdown-menu li,
@@ -228,7 +251,7 @@ body {
     font-size: 0.78rem;
     font-weight: bold;
     text-transform: uppercase;
-    transition: background-color 0.15s, color 0.15s;
+    transition: background-color 0.15s ease, color 0.15s ease;
 }
 
 .dropdown-menu li a:hover,
@@ -237,7 +260,6 @@ body {
     color: #ffffff;
 }
 
-/* Desktop Hover Trigger for Dropdowns */
 @media (min-width: 993px) {
     .nav-item:hover > .dropdown-menu,
     .nav-item:hover > .dropdown-content,
@@ -247,7 +269,7 @@ body {
 }
 
 /* ==========================================================================
-   Mega Dropdown Menu (Full Width Multi-Column Layout)
+   Mega Dropdown Menu
    ========================================================================== */
 .mega-dropdown {
     display: none;
@@ -263,6 +285,7 @@ body {
     border-top: 1px solid #B8A88E;
     border-bottom: 2px solid #A8987E;
     z-index: 1001;
+    animation: fadeIn 0.2s ease;
 }
 
 @media (min-width: 993px) {
@@ -359,7 +382,6 @@ body {
     text-decoration: underline;
 }
 
-/* Search Icon Button */
 .nav-search .search-btn {
     background: transparent;
     border: none;
@@ -376,8 +398,45 @@ body {
 }
 
 /* ==========================================================================
-   Main Layout & Form Container
+   Main Hero Layout & Booking Card
    ========================================================================== */
+.hero-bg-wrapper {
+    min-height: 100vh;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.booking-card {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 25px 30px;
+    border-radius: 10px;
+    max-width: 750px;
+    width: 100%;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+.card-brand-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.brand-logo {
+    max-height: 60px;
+    width: auto;
+    margin-bottom: 8px;
+}
+
+.card-brand-header h1 {
+    font-size: 1.5rem;
+    color: #2c3e50;
+    margin: 0;
+}
+
 .container {
     width: 92%;
     max-width: 1250px;
@@ -410,13 +469,17 @@ body {
     font-weight: bold;
 }
 
+/* ==========================================================================
+   Form Controls & Tags
+   ========================================================================== */
 .form-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 25px;
+    gap: 12px 16px;
 }
 
-.full-width {
+.full-width,
+.form-group.full-width {
     grid-column: span 2;
 }
 
@@ -426,14 +489,11 @@ body {
     position: relative;
 }
 
-/* ==========================================================================
-   Form Input Controls & Buttons
-   ========================================================================== */
 label {
-    font-size: 14px;
-    font-weight: bold;
-    margin-bottom: 8px;
-    color: #2b2b2b;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 4px;
+    color: #333333;
 }
 
 label span.req {
@@ -443,52 +503,54 @@ label span.req {
 
 input[type="text"],
 input[type="email"],
+input[type="tel"],
 input[type="date"],
 select,
 textarea {
     width: 100%;
-    padding: 10px 12px;
+    padding: 8px 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
-    font-size: 14px;
-    background-color: #fff;
+    font-size: 0.9rem;
+    background-color: #ffffff;
     outline: none;
-    transition: border-color 0.2s ease;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 input:focus, 
 select:focus, 
 textarea:focus {
     border-color: #67211B;
+    box-shadow: 0 0 0 2px rgba(103, 33, 27, 0.15);
 }
 
 textarea {
     resize: vertical;
-    min-height: 120px;
+    height: 80px;
 }
 
 .pills-container {
     display: flex;
     flex-wrap: wrap;
-    gap: 8px;
-    margin-bottom: 10px;
+    gap: 6px;
+    margin-bottom: 6px;
 }
 
 .pill-tag {
     background-color: #67211B;
     color: #ffffff;
-    padding: 6px 12px;
-    border-radius: 4px;
-    font-size: 13px;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 0.8rem;
     display: inline-flex;
     align-items: center;
-    gap: 8px;
+    gap: 6px;
 }
 
 .pill-tag .btn-remove-tag {
     cursor: pointer;
     font-weight: bold;
-    font-size: 14px;
+    color: #ffffff;
 }
 
 .checkbox-group {
@@ -507,15 +569,15 @@ textarea {
 
 .submit-container {
     text-align: center;
-    margin-top: 30px;
+    margin-top: 20px;
 }
 
 .btn-submit {
     background-color: #67211B;
     color: #ffffff;
     border: none;
-    padding: 14px 40px;
-    font-size: 16px;
+    padding: 12px 30px;
+    font-size: 0.95rem;
     font-weight: bold;
     text-transform: uppercase;
     border-radius: 4px;
@@ -529,24 +591,8 @@ textarea {
 }
 
 /* ==========================================================================
-   Contact Section & Accordions
+   Accordion Component
    ========================================================================== */
-.contact-header {
-    background-color: #67211B;
-    color: #ffffff;
-    padding: 12px 20px;
-    margin-bottom: 25px;
-    border-radius: 4px;
-}
-
-.contact-header h2 {
-    font-size: 1.2rem;
-    font-weight: bold;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    margin: 0;
-}
-
 .accordion-wrapper {
     display: flex;
     flex-direction: column;
@@ -602,6 +648,7 @@ textarea {
     color: #333333;
     padding: 20px;
     border-top: 1px solid #D8CBB5;
+    animation: fadeIn 0.25s ease-in-out;
 }
 
 .accordion-item.active .accordion-content {
@@ -633,19 +680,217 @@ textarea {
     color: #333333;
 }
 
-/* Quick Contact Form */
-.quick-contact-section {
-    margin-top: 25px;
+/* ==========================================================================
+   Full Detailed Contact Section & Cards
+   ========================================================================== */
+.contact-section {
+    padding: 60px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.contact-header {
+    background-color: #67211B;
+    color: #ffffff;
+    padding: 12px 20px;
+    margin-bottom: 25px;
+    border-radius: 4px;
+}
+
+.contact-header h2 {
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin: 0;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 2.2rem;
+    color: #67211B;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
 }
 
 .section-subtitle {
+    text-align: center;
     font-size: 1rem;
+    color: #5c3a21;
     font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 35px;
+    align-items: start;
+}
+
+/* Info Column & Cards */
+.contact-info-wrapper,
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.contact-card {
+    background: #ffffff;
+    border: 1px solid #e0d7c6;
+    border-radius: 6px;
+    padding: 24px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+}
+
+.contact-card h3,
+.contact-info h3 {
+    font-size: 1.1rem;
     color: #67211B;
     text-transform: uppercase;
-    margin-bottom: 15px;
-    border-bottom: 2px solid #67211B;
+    margin-bottom: 16px;
+    border-bottom: 2px solid #E3D8C4;
     padding-bottom: 6px;
+}
+
+.contact-detail-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    margin-bottom: 16px;
+}
+
+.contact-detail-item:last-child {
+    margin-bottom: 0;
+}
+
+.contact-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    background-color: #E3D8C4;
+    color: #67211B;
+    border-radius: 50%;
+    font-weight: bold;
+    font-size: 14px;
+    flex-shrink: 0;
+}
+
+.contact-text {
+    font-size: 0.9rem;
+    color: #333333;
+    line-height: 1.5;
+}
+
+.contact-text strong {
+    display: block;
+    color: #2b2b2b;
+    margin-bottom: 2px;
+}
+
+.contact-text a {
+    color: #67211B;
+    text-decoration: underline;
+    transition: color 0.15s ease;
+}
+
+.contact-text a:hover {
+    color: #333333;
+}
+
+/* Social Links List */
+.social-links {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+    list-style: none;
+}
+
+.social-links a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    background-color: #67211B;
+    color: #ffffff;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 0.85rem;
+    transition: background-color 0.2s ease, transform 0.15s ease;
+}
+
+.social-links a:hover {
+    background-color: #E3D8C4;
+    color: #67211B;
+    transform: translateY(-2px);
+}
+
+/* Map Embedded Wrapper */
+.map-wrapper {
+    margin-top: 10px;
+    border-radius: 6px;
+    overflow: hidden;
+    border: 1px solid #e0d7c6;
+}
+
+.map-wrapper iframe {
+    width: 100%;
+    height: 220px;
+    border: 0;
+    display: block;
+}
+
+/* Contact Form Container & Controls */
+.contact-form-container,
+.contact-form {
+    background: #ffffff;
+    border: 1px solid #e0d7c6;
+    border-radius: 6px;
+    padding: 30px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.contact-form-container h3 {
+    font-size: 1.2rem;
+    color: #67211B;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #67211B;
+    padding-bottom: 8px;
+}
+
+.contact-form .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 16px;
+}
+
+.contact-form .form-group {
+    margin-bottom: 16px;
+}
+
+.contact-form label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: bold;
+    margin-bottom: 6px;
+    color: #2b2b2b;
+}
+
+.contact-form textarea {
+    min-height: 130px;
 }
 
 .btn-send {
@@ -664,6 +909,33 @@ textarea {
 .btn-send:hover {
     background-color: #E3D8C4;
     color: #67211B;
+}
+
+/* Alert Notifications */
+.alert,
+.alert-success {
+    padding: 12px 16px;
+    border-radius: 4px;
+    font-size: 0.88rem;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.alert-success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.alert-error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+/* Quick Contact Section Wrapper */
+.quick-contact-section {
+    margin-top: 25px;
 }
 
 /* ==========================================================================
@@ -686,6 +958,19 @@ textarea {
     background-color: #555555;
     transition: transform 0.3s ease, opacity 0.3s ease;
     border-radius: 2px;
+}
+
+/* Optional state transform when active class is added to mobile button */
+.mobile-toggle.is-active .hamburger-bar:nth-child(1) {
+    transform: translateY(6px) rotate(45deg);
+}
+
+.mobile-toggle.is-active .hamburger-bar:nth-child(2) {
+    opacity: 0;
+}
+
+.mobile-toggle.is-active .hamburger-bar:nth-child(3) {
+    transform: translateY(-6px) rotate(-45deg);
 }
 
 @media (max-width: 992px) {
@@ -748,252 +1033,28 @@ textarea {
     }
 }
 
+@media (max-width: 850px) {
+    .contact-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-form .form-row {
+        grid-template-columns: 1fr;
+    }
+}
+
 @media (max-width: 600px) {
     .form-grid {
         grid-template-columns: 1fr;
     }
 
-    .full-width {
+    .full-width,
+    .form-group.full-width {
         grid-column: span 1;
     }
 
     .lang-bar {
         flex-wrap: wrap;
         font-size: 12px;
-    }
-
-    
-}/* Container & Wrapper Scaling */
-.hero-bg-wrapper {
-    min-height: 100vh;
-    background-size: cover;
-    background-position: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-}
-
-/* Make the Booking Card compact and balanced */
-.booking-card {
-    background: rgba(255, 255, 255, 0.95);
-    padding: 25px 30px;
-    border-radius: 10px;
-    max-width: 750px;
-    width: 100%;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
-}
-
-/* Scale down the Logo */
-.card-brand-header {
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-.brand-logo {
-    max-height: 60px; /* Reduced from larger defaults */
-    width: auto;
-    margin-bottom: 8px;
-}
-
-.card-brand-header h1 {
-    font-size: 1.5rem; /* Balanced header size */
-    color: #2c3e50;
-    margin: 0;
-}
-
-/* Compact Form Grids and Fields */
-.form-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px 16px;
-}
-
-.form-group {
-    display: flex;
-    flex-direction: column;
-}
-
-.form-group.full-width {
-    grid-column: span 2;
-}
-
-/* Reduce input field heights and text sizes */
-.form-group label {
-    font-size: 0.85rem;
-    font-weight: 600;
-    margin-bottom: 4px;
-    color: #333;
-}
-
-.form-group input[type="text"],
-.form-group input[type="email"],
-.form-group input[type="date"],
-.form-group select,
-.form-group textarea {
-    padding: 8px 10px;
-    font-size: 0.9rem;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    width: 100%;
-    box-sizing: border-box;
-}
-
-.form-group textarea {
-    resize: vertical;
-    height: 80px;
-}
-
-/* Pill tags scaling */
-.pills-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-    margin-bottom: 6px;
-}
-
-.pill-tag {
-    background: #e2e8f0;
-    padding: 3px 8px;
-    border-radius: 12px;
-    font-size: 0.8rem;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-}
-
-.btn-remove-tag {
-    cursor: pointer;
-    font-weight: bold;
-    color: #e53e3e;
-}
-
-/* Submit Button sizing */
-.submit-container {
-    text-align: center;
-    margin-top: 15px;
-}
-
-.btn-submit {
-    background-color: #2f855a;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    font-size: 0.95rem;
-    font-weight: 600;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background 0.2s;
-}
-
-.btn-submit:hover {
-    background-color: #276749;
-}
-
-/* Header Ribbon & Language Bar compacting */
-.lang-bar {
-    font-size: 0.8rem;
-    padding: 6px 15px;
-    background: #1a202c;
-    color: #fff;
-    display: flex;
-    gap: 8px;
-    align-items: center;
-}
-
-.header-ribbon {
-    background: #2d3748;
-    color: white;
-    text-align: center;
-    padding: 10px;
-    font-size: 0.9rem;
-}
-.contact-section {
-    padding: 60px 20px;
-    max-width: 1100px;
-    margin: 0 auto;
-}
-
-.section-title {
-    text-align: center;
-    font-size: 2.2rem;
-    margin-bottom: 8px;
-}
-
-.section-subtitle {
-    text-align: center;
-    color: #666;
-    margin-bottom: 40px;
-}
-
-.contact-grid {
-    display: grid;
-    grid-template-columns: 1fr 1.5fr;
-    gap: 40px;
-}
-
-.contact-info {
-    background: #f8f9fa;
-    padding: 30px;
-    border-radius: 8px;
-}
-
-.contact-info h3 {
-    margin-bottom: 20px;
-}
-
-.contact-info p {
-    margin-bottom: 12px;
-    line-height: 1.6;
-}
-
-.contact-form .form-group {
-    margin-bottom: 20px;
-}
-
-.contact-form label {
-    display: block;
-    margin-bottom: 6px;
-    font-weight: 600;
-}
-
-.contact-form input,
-.contact-form textarea {
-    width: 100%;
-    padding: 10px 14px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    font-size: 1rem;
-}
-
-.btn-submit {
-    background-color: #007bff;
-    color: white;
-    padding: 12px 24px;
-    border: none;
-    border-radius: 6px;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background-color 0.2s;
-}
-
-.btn-submit:hover {
-    background-color: #0056b3;
-}
-
-.alert-success {
-    background-color: #d4edda;
-    color: #155724;
-    padding: 12px;
-    border-radius: 6px;
-    margin-bottom: 20px;
-    text-align: center;
-}
-
-/* Mobile Responsiveness */
-@media (max-width: 768px) {
-    .contact-grid {
-        grid-template-columns: 1fr;
     }
 }

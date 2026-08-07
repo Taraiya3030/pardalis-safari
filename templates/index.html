@@ -477,6 +477,163 @@ ul.content-list li {
     font-size: 0.92rem;
     line-height: 1.5;
 }
+
+/* DETAILED CONTACT SECTION STYLES */
+.contact-section {
+    margin-top: 35px;
+    padding-top: 20px;
+    border-top: 2px solid #d4a359;
+}
+.section-header {
+    text-align: center;
+    margin-bottom: 25px;
+}
+.section-header .section-title {
+    color: #4A1208;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+}
+.section-header .section-subtitle {
+    color: #8B4513;
+    font-size: 0.95rem;
+    font-weight: bold;
+}
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+.contact-info-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+.contact-info-wrapper .contact-card {
+    text-align: left;
+    padding: 14px;
+    border-top: 3px solid #4A1208;
+}
+.contact-info-wrapper .contact-card h3 {
+    color: #4A1208;
+    font-size: 1rem;
+    margin-bottom: 12px;
+    border-bottom: 1px solid #e2dacd;
+    padding-bottom: 4px;
+}
+.contact-detail-item {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+    font-size: 0.85rem;
+}
+.contact-detail-item:last-child {
+    margin-bottom: 0;
+}
+.contact-icon {
+    font-size: 1.1rem;
+}
+.contact-text strong {
+    display: block;
+    color: #4A1208;
+}
+.contact-text a {
+    color: #1a6d25;
+    text-decoration: none;
+    font-weight: bold;
+}
+.social-links {
+    display: flex;
+    gap: 8px;
+    list-style: none;
+    margin-top: 4px;
+}
+.social-links a {
+    display: inline-block;
+    background: #4A1208;
+    color: #fff;
+    padding: 3px 8px;
+    border-radius: 3px;
+    font-size: 0.75rem;
+    text-decoration: none;
+}
+.social-links a:hover {
+    background: #2B0601;
+}
+.map-wrapper {
+    width: 100%;
+    height: 180px;
+    border: 1px solid #e0d7c6;
+    border-radius: 4px;
+    overflow: hidden;
+}
+.map-wrapper iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+.contact-form-container {
+    background: #fcfbfa;
+    border: 1px solid #e2dacd;
+    border-top: 3px solid #4A1208;
+    border-radius: 4px;
+    padding: 16px;
+}
+.contact-form-container h3 {
+    color: #4A1208;
+    font-size: 1rem;
+    margin-bottom: 14px;
+    border-bottom: 1px solid #e2dacd;
+    padding-bottom: 4px;
+}
+.contact-form .form-row {
+    display: flex;
+    gap: 10px;
+}
+.contact-form .form-group {
+    flex: 1;
+    margin-bottom: 12px;
+}
+.contact-form label {
+    display: block;
+    font-size: 0.8rem;
+    font-weight: bold;
+    color: #4A1208;
+    margin-bottom: 4px;
+}
+.contact-form label .req {
+    color: #a82e2e;
+}
+.contact-form input,
+.contact-form select,
+.contact-form textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    background: #fff;
+}
+.contact-form textarea {
+    height: 90px;
+    resize: vertical;
+}
+.contact-form .btn-send {
+    width: 100%;
+    background-color: #4A1208;
+    color: #ffffff;
+    padding: 10px;
+    font-weight: bold;
+    font-size: 0.9rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: background-color 0.2s ease;
+}
+.contact-form .btn-send:hover {
+    background-color: #2B0601;
+}
+
 /* FOOTER */
 footer {
     background-color: #2b180d;
@@ -527,13 +684,20 @@ footer p {
         display: block;
     }
     .page-wrapper {
+        display: flex;
         flex-direction: column;
+    }
+    .main-content {
+        order: 1;
     }
     .sidebar {
         width: 100%;
+        order: 2;
+        margin-top: 20px;
     }
     .destination-grid,
-    .cards-grid {
+    .cards-grid,
+    .contact-grid {
         grid-template-columns: 1fr;
     }
     .destination-card[style*="span 2"] {
@@ -549,6 +713,10 @@ footer p {
 @media (max-width: 576px) {
     .services-grid {
         grid-template-columns: 1fr;
+    }
+    .contact-form .form-row {
+        flex-direction: column;
+        gap: 0;
     }
     .main-content {
         padding: 15px;
@@ -601,7 +769,7 @@ footer p {
                 </ul>
             </li>
             <!-- CONTACT LINK -->
-            <li class="nav-item"><a href="#">CONTACT</a></li>
+            <li class="nav-item"><a href="#contact-section">CONTACT</a></li>
         </ul>
     </div>
 </nav>
@@ -616,7 +784,6 @@ footer p {
             <div class="sidebar-title">Our Products</div>
             <ul class="sidebar-menu">
                 <li><a href="{{ url_for('safaris') }}">Wildlife Safari Tours</a></li>
-                <li><a href="#">Group Incentives & Conferences</a></li>
                 <li><a href="#">Cultural & Historical Tours</a></li>
                 <li><a href="{{ url_for('destinations') }}">Zanzibar & Beach Holidays</a></li>
                 <li><a href="{{ url_for('climbing_trekking') }}">Mountain Climbing</a></li>
@@ -627,32 +794,32 @@ footer p {
             <div class="sidebar-title">Emergency Contacts</div>
             <div class="contact-card">
                 <div class="contact-card-header">Transport</div>
-                <div class="contact-card-number"><a href="tel:+255784786807">+255 784 786 807</a></div>
+                <div class="contact-card-number"><a href="tel:+255768498026">+255 768 498 026</a></div>
             </div>
             <div class="contact-card">
                 <div class="contact-card-header">Field Office</div>
-                <div class="contact-card-number"><a href="tel:+255754890365">+255 754 890 365</a></div>
+                <div class="contact-card-number"><a href="tel:+255768498026">+255 768 498 026</a></div>
             </div>
             <div class="contact-card">
                 <div class="contact-card-header">Group Operation Manager</div>
-                <div class="contact-card-number"><a href="tel:+255787786235">+255 787 786 235</a></div>
+                <div class="contact-card-number"><a href="tel:+255768498026">+255 768 498 026</a></div>
             </div>
             <div class="contact-card">
                 <div class="contact-card-header">Contact Information</div>
                 <div style="padding: 4px 6px; font-size: 0.75rem; color: #555;">
                     <strong>Email:</strong><br>
                     <a href="mailto:info@pardalissafaritours.com" style="color: #4A1208; text-decoration: none;">info@pardalissafaritours.com</a><br>
-                    <strong>Phone:</strong> +255 (27) 297 8441
+                    <strong>Phone:</strong> +255 768 498 026<br>
                 </div>
             </div>
             <div class="contact-card">
                 <div class="contact-card-header">Enquiries</div>
-                <div class="contact-card-number"><a href="tel:+255683233721">+255 683 233 721</a></div>
+                <div class="contact-card-number"><a href="tel:+255768498026">+255 768 498 026</a></div>
             </div>
         </div>
         <!-- TRIPADVISOR RECOGNITION -->
         <div class="sidebar-box" style="text-align: center;">
-            <img src="https://www.tripadvisor.com/img/cdsi/img2/awards/v2/tch2022_L-14348-2.png" alt="Tripadvisor Travellers Choice Award" style="max-width: 100%; height: auto; margin: 0 auto 8px auto; display: block;">
+            <img src="{{ url_for('static', filename='images/award.jpg') }}" alt="Tripadvisor Travellers Choice Award" style="max-width: 100%; height: auto; margin: 0 auto 8px auto; display: block;">
             <p style="font-size: 0.75rem; font-weight: bold; color: #5c3a21; margin-bottom: 0;">TripAdvisor Choice Awards Winner</p>
         </div>
         <!-- QUICK NAVIGATION BUTTONS -->
@@ -661,7 +828,7 @@ footer p {
         <a href="{{ url_for('safaris') }}" class="sidebar-btn">Suggested Itineraries</a>
         <!-- TANAPA AWARD -->
         <div class="sidebar-image-card">
-            <img src="https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?auto=format&fit=crop&w=400&q=80" alt="TANAPA Award">
+            <img src="{{ url_for('static', filename='Best Tour Operator TANAPA Awards.jpeg') }}" alt="TANAPA Award">
             <div class="card-caption">Best Tour Operator TANAPA Awards</div>
         </div>
         <a href="#" class="sidebar-btn btn-important">Important Destination Information</a>
@@ -670,26 +837,17 @@ footer p {
         <div class="sidebar-box">
             <div class="sidebar-title">Brochures</div>
             <div class="sidebar-image-card">
-                <img src="https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&w=400&q=80" alt="Main Brochure">
+                <img src="{{ url_for('static', filename='images/menu/main brocher.png') }}" alt="Main Brochure">
                 <div class="card-caption">Main Brochure</div>
             </div>
-            <div class="sidebar-image-card">
-                <img src="{{ url_for('static', filename='images/menu/safari/classic1.jpg') }}" alt="Signature Brochure">
-                <div class="card-caption">Signature Brochure</div>
-            </div>
+            
         </div>
-        <!-- INCENTIVES & CONFERENCES -->
-        <div class="sidebar-box">
-            <div class="sidebar-title">Incentives & Conferences</div>
-            <div class="sidebar-image-card" style="margin-bottom: 0;">
-                <img src="https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?auto=format&fit=crop&w=400&q=80" alt="Incentives and Conferences">
-            </div>
-        </div>
+        
         <!-- GIVING BACK TO COMMUNITY -->
         <div class="sidebar-box">
             <div class="sidebar-title">Giving Back to Community</div>
             <div class="sidebar-image-card" style="margin-bottom: 0;">
-                <img src="https://images.unsplash.com/photo-1484406566174-9da000fda645?auto=format&fit=crop&w=400&q=80" alt="Pardalis Foundation">
+                <img src="{{ url_for('static', filename='/Giving Back to Community.jpg') }}" alt="Pardalis Foundation">
                 <div class="card-caption">Pardalis Foundation</div>
             </div>
         </div>
@@ -841,6 +999,130 @@ footer p {
         <div class="banner-quote">
             <p>"Safari is not just a destination; it's a feeling of freedom, discovery, and connection with nature that stays with you forever."</p>
         </div>
+
+        <!-- ==========================================================================
+             Detailed Contact Section
+             ========================================================================== -->
+        <section class="contact-section" id="contact-section">
+            <div class="section-header">
+                <h2 class="section-title">Contact Us</h2>
+                <p class="section-subtitle">Get in Touch with Our Safari Experts</p>
+            </div>
+
+            <div class="contact-grid">
+                <!-- Contact Information & Cards Column -->
+                <div class="contact-info-wrapper">
+                    <!-- Office Address Card -->
+                    <div class="contact-card">
+                        <h3>Our Main Office</h3>
+                        <div class="contact-detail-item">
+                            <div class="contact-icon">📍</div>
+                            <div class="contact-text">
+                                <strong>Headquarters</strong>
+                                Arusha, Tanzania<br>
+                                P.O. Box 1234, Safari Way
+                            </div>
+                        </div>
+                        <div class="contact-detail-item">
+                            <div class="contact-icon">📞</div>
+                            <div class="contact-text">
+                                <strong>Phone & WhatsApp</strong>
+                                <a href="tel:+255272978441">+255 (27) 297 8441</a>
+                            </div>
+                        </div>
+                        <div class="contact-detail-item">
+                            <div class="contact-icon">✉️</div>
+                            <div class="contact-text">
+                                <strong>Email Address</strong>
+                                <a href="mailto:info@pardalissafaritours.com">info@pardalissafaritours.com</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Operating Hours & Social Card -->
+                    <div class="contact-card">
+                        <h3>Working Hours</h3>
+                        <div class="contact-detail-item">
+                            <div class="contact-icon">🕒</div>
+                            <div class="contact-text">
+                                <strong>Monday - Saturday</strong>
+                                08:00 AM - 06:00 PM (EAT)
+                            </div>
+                        </div>
+                        <div class="contact-detail-item">
+                            <div class="contact-icon">🌐</div>
+                            <div class="contact-text">
+                                <strong>Follow Us</strong>
+                                <ul class="social-links">
+                                    <li><a href="#" aria-label="Facebook">FB</a></li>
+                                    <li><a href="#" aria-label="Instagram">IG</a></li>
+                                    <li><a href="#" aria-label="TripAdvisor">TA</a></li>
+                                    <li><a href="#" aria-label="WhatsApp">WA</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Interactive Map Embed -->
+                    <div class="map-wrapper">
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d127412.18241473661!2d36.61863264335937!3d-3.373055999999996!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x185c4bae169a218f%3A0x8382d5a114093847!2sArusha%2C%20Tanzania!5e0!3m2!1sen!2s!4v1700000000000!5m2!1sen!2s" 
+                            allowfullscreen="" 
+                            loading="lazy" 
+                            referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
+                </div>
+
+                <!-- Detailed Inquiry Form Column -->
+                <div class="contact-form-container">
+                    <h3>Send Us a Message</h3>
+
+                    <form action="/contact" method="POST" class="contact-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="contact-first-name">First Name <span class="req">*</span></label>
+                                <input type="text" id="contact-first-name" name="first_name" required placeholder="John">
+                            </div>
+                            <div class="form-group">
+                                <label for="contact-last-name">Last Name <span class="req">*</span></label>
+                                <input type="text" id="contact-last-name" name="last_name" required placeholder="Doe">
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="contact-email">Email Address <span class="req">*</span></label>
+                                <input type="email" id="contact-email" name="email" required placeholder="john@example.com">
+                            </div>
+                            <div class="form-group">
+                                <label for="contact-phone">Phone / WhatsApp</label>
+                                <input type="tel" id="contact-phone" name="phone" placeholder="+1 234 567 8900">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="contact-subject">Inquiry Subject</label>
+                            <select id="contact-subject" name="subject">
+                                <option value="General Inquiry">General Inquiry</option>
+                                <option value="Custom Safari Itinerary">Custom Safari Itinerary</option>
+                                <option value="Booking Modification">Booking Modification</option>
+                                <option value="Partnership & Media">Partnership & Media</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="contact-message">Your Message <span class="req">*</span></label>
+                            <textarea id="contact-message" name="message" required placeholder="Tell us about your trip plans or questions..."></textarea>
+                        </div>
+
+                        <div class="submit-container">
+                            <button type="submit" class="btn-send">Send Message</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
     </main>
 </div>
 <!-- FOOTER -->
