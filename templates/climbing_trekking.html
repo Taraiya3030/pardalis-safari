@@ -1,122 +1,117 @@
 {% extends "base.html" %}
 
 {% block content %}
-<section class="climbing-trekking-section">
-    <div class="container">
-        <h2>MOUNTAIN CLIMBING & TREKKING</h2>
-        <p class="subtitle">Conquer Africa's Highest Peaks</p>
-        <p>Professional mountain expeditions supported by certified guides, porters, and mountain cooks.</p>
+<div class="container">
+    <div class="header">
+        <h1>MOUNTAIN CLIMBING & TREKKING</h1>
+        <h2>Conquer Africa's Highest Peaks</h2>
+    </div>
 
-        <!-- Existing Cards Grid -->
-        <div class="destinations-grid">
-            <div class="destination-card">
-                <img src="{{ url_for('static', filename='images/kilimanjaro.jpg') }}" alt="Mount Kilimanjaro Climbs">
-                <h3>MOUNT KILIMANJARO CLIMBS</h3>
-                <p>Guided treks to Uhuru Peak via Machame, Lemosho, and Marangu routes.</p>
-                <a href="#" class="btn-details">EXPLORE DETAILS →</a>
-            </div>
+    <!-- Regional Overview & Circuits -->
+    <div class="destinations-overview">
+        <p class="intro-lead">
+            Tanzania is home to majestic roof-of-Africa summits and dramatic Great Rift Valley stratovolcanoes. Whether you are looking for a non-technical walk-up to Africa's highest point or a remote active caldera trek, our professional mountain expeditions are fully supported by certified guides, porters, and mountain cooks.
+        </p>
 
-            <div class="destination-card">
-                <img src="{{ url_for('static', filename='images/meru.jpg') }}" alt="Mount Meru Treks">
-                <h3>MOUNT MERU TREKS</h3>
-                <p>Scenic multi-day trekking ideal for acclimatization and panoramic views.</p>
-                <a href="#" class="btn-details">EXPLORE DETAILS →</a>
-            </div>
-
-            <div class="destination-card">
-                <img src="{{ url_for('static', filename='images/lengai.jpg') }}" alt="Ol Doinyo Lengai">
-                <h3>OL DOINYO LENGAI</h3>
-                <p>Challenging active volcano hikes located in the heart of Maasai land.</p>
-                <a href="#" class="btn-details">EXPLORE DETAILS →</a>
-            </div>
+        <div class="circuit-group">
+            <h3>Mount Kilimanjaro (The Roof of Africa)</h3>
+            <p>The highest free-standing mountain in the world at 5,895m. A legendary non-technical trek offering diverse climatic zones ranging from lush rainforests to arctic glacial summits.</p>
         </div>
 
-        <!-- Detailed Breakdown Section & Tables -->
-        <div class="detailed-trek-info mt-5">
-            <h3>Mount Kilimanjaro (5,895m)</h3>
-            <p>As the highest free-standing mountain in the world, Kilimanjaro is a non-technical walk-up that tests stamina and altitude adaptation.</p>
-            
-            <table class="table table-bordered">
+        <div class="circuit-group">
+            <h3>Mount Meru (The Scenic Warm-up)</h3>
+            <p>Standing at 4,566m inside Arusha National Park, Meru offers dramatic ridge walks, rich wildlife encounters, and incredible panoramic views of Kilimanjaro.</p>
+        </div>
+
+        <div class="circuit-group">
+            <h3>Rift Valley Volcanic Trails (Off the Beaten Path)</h3>
+            <p>Raw and challenging wilderness adventures like Ol Doinyo Lengai and the Crater Highlands, tailored for rugged explorers looking for unique terrain.</p>
+        </div>
+
+        <!-- Quick Comparison Table -->
+        <div class="comparison-table-wrapper">
+            <h3>Quick Comparison Table</h3>
+            <table class="destinations-table">
                 <thead>
                     <tr>
-                        <th>Route Name</th>
-                        <th>Duration</th>
-                        <th>Difficulty</th>
-                        <th>Accommodations</th>
-                        <th>Core Profile</th>
+                        <th>Mountain / Peak</th>
+                        <th>Elevation</th>
+                        <th>Primary Vibe</th>
+                        <th>Key Highlight</th>
+                        <th>Best Time to Visit</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td><strong>Machame ("Whiskey")</strong></td>
-                        <td>6–7 Days</td>
-                        <td>Hard</td>
-                        <td>Camping</td>
-                        <td>High scenic variety; great for "climb high, sleep low" acclimatization.</td>
+                        <td><strong>Kilimanjaro (Machame)</strong></td>
+                        <td>5,895m</td>
+                        <td>High Altitude Summit</td>
+                        <td>Uhuru Peak / Scenic Variety</td>
+                        <td>Jan–March & June–October</td>
                     </tr>
                     <tr>
-                        <td><strong>Lemosho</strong></td>
-                        <td>7–8 Days</td>
-                        <td>Moderate to Hard</td>
-                        <td>Camping</td>
-                        <td>Pristine, quieter starting approach from the west with a very high success rate.</td>
+                        <td><strong>Kilimanjaro (Marangu)</strong></td>
+                        <td>5,895m</td>
+                        <td>Hut-to-Hut Trek</td>
+                        <td>Easier path / Shared Huts</td>
+                        <td>Jan–March & June–October</td>
                     </tr>
                     <tr>
-                        <td><strong>Marangu ("Coca-Cola")</strong></td>
-                        <td>5–6 Days</td>
-                        <td>Moderate</td>
-                        <td>A-Frame Huts</td>
-                        <td>The oldest, shortest path; utilizes communal wooden huts instead of tents.</td>
+                        <td><strong>Mount Meru</strong></td>
+                        <td>4,566m</td>
+                        <td>Wildlife & Caldera</td>
+                        <td>Armed Ranger Escort / Ash Tray</td>
+                        <td>June–February</td>
                     </tr>
                     <tr>
-                        <td><strong>Northern Circuit</strong></td>
-                        <td>8–9 Days</td>
-                        <td>Strenuous</td>
-                        <td>Camping</td>
-                        <td>The longest route; circles the northern slopes with near-perfect acclimatization.</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Rongai</strong></td>
-                        <td>6–7 Days</td>
-                        <td>Moderate</td>
-                        <td>Camping</td>
-                        <td>Approaches from the north near Kenya; significantly drier during the rainy season.</td>
+                        <td><strong>Ol Doinyo Lengai</strong></td>
+                        <td>2,962m</td>
+                        <td>Active Stratovolcano</td>
+                        <td>Steep Night Ash Climb</td>
+                        <td>June–February (Dry Season)</td>
                     </tr>
                 </tbody>
             </table>
-
-            <h3 class="mt-4">Mount Meru (4,566m)</h3>
-            <p>Located inside Arusha National Park, Mount Meru is Tanzania's second-highest peak. Often underestimated, it features dramatic ridge walks and is visually striking due to its massive collapsed volcanic caldera.</p>
-            <ul>
-                <li><strong>Duration:</strong> 3 to 4 days via the Momella Route.</li>
-                <li><strong>The Experience:</strong> Climbers must be accompanied by an armed park ranger on Day 1 due to heavy wildlife concentrations (including giraffes, buffaloes, and leopards).</li>
-                <li><strong>Accommodations:</strong> Standardized, permanent mountain huts (Miriakamba and Saddle Hut).</li>
-                <li><strong>Strategy:</strong> Frequently utilized as a lower-cost, highly active warm-up for Kilimanjaro.</li>
-            </ul>
-
-            <h3 class="mt-4">Alternative Wild Hikes & Trekking Ranges</h3>
-            <div class="row">
-                <div class="col-md-4">
-                    <h4>Ol Doinyo Lengai</h4>
-                    <p>An active stratovolcano in the Great Rift Valley. It is highly demanding, involving a steep, technical night climb over loose volcanic ash to view glowing natrocarbonatite lava.</p>
-                </div>
-                <div class="col-md-4">
-                    <h4>Ngorongoro Crater Highlands</h4>
-                    <p>Multi-day walking safaris from Olmoti Crater down to the dramatic, flamingo-filled waters of Lake Natron. These treks blend striking geological landscapes with traditional Maasai cultural passages.</p>
-                </div>
-                <div class="col-md-4">
-                    <h4>Usambara Mountains</h4>
-                    <p>Part of the ancient Eastern Arc chain. They offer lush canopy rainforest trekking, endemic bird species, hidden waterfalls, and village homestays without extreme high-altitude demands.</p>
-                </div>
-            </div>
-
-            <h3 class="mt-4">Essential Logistics and Booking Framework</h3>
-            <ol>
-                <li><strong>Mandatory Outfitting:</strong> Independent climbing on Kilimanjaro and Meru is illegal. You must hire a licensed local operator providing guides, porters, and cooks to manage camp logistics and safety equipment.</li>
-                <li><strong>Optimal Seasons:</strong> The best windows match the dry periods: <strong>June to October</strong> (cool and clear) and <strong>December to March</strong> (warmer with excellent visibility).</li>
-                <li><strong>Medical Preparation:</strong> High-altitude rescue insurance covering medical helicopter evacuation up to 6,000 meters is strictly required before hitting the trail.</li>
-            </ol>
         </div>
     </div>
-</section>
+
+    <!-- Destinations / Cards Grid Container -->
+    <div class="destinations-grid">
+        <!-- Kilimanjaro Card -->
+        <div class="destination-card">
+            <a href="{{ url_for('kilimanjaro_detail') }}">
+                <img src="{{ url_for('static', filename='images/menu/climbing/kilimanjaro.jpg') }}" alt="Mount Kilimanjaro Climbs">
+                <div class="card-content">
+                    <h3>MOUNT KILIMANJARO CLIMBS</h3>
+                    <p>Guided treks to Uhuru Peak via Machame, Lemosho, and Marangu routes.</p>
+                    <span class="explore-link">EXPLORE DETAILS &rarr;</span>
+                </div>
+            </a>
+        </div>
+
+        <!-- Mount Meru Card -->
+        <div class="destination-card">
+            <a href="{{ url_for('meru_detail') }}">
+                <img src="{{ url_for('static', filename='images/menu/climbing/meru.jpg') }}" alt="Mount Meru Treks">
+                <div class="card-content">
+                    <h3>MOUNT MERU TREKS</h3>
+                    <p>Scenic multi-day trekking ideal for acclimatization and panoramic views.</p>
+                    <span class="explore-link">EXPLORE DETAILS &rarr;</span>
+                </div>
+            </a>
+        </div>
+
+        <!-- Ol Doinyo Lengai Card -->
+        <div class="destination-card">
+            <a href="{{ url_for('lengai_detail') }}">
+                <img src="{{ url_for('static', filename='images/menu/climbing/lengai.jpg') }}" alt="Ol Doinyo Lengai">
+                <div class="card-content">
+                    <h3>OL DOINYO LENGAI</h3>
+                    <p>Challenging active volcano hikes located in the heart of Maasai land.</p>
+                    <span class="explore-link">EXPLORE DETAILS &rarr;</span>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
 {% endblock %}

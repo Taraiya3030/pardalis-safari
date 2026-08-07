@@ -8,16 +8,22 @@ from xhtml2pdf import pisa
 app = Flask(__name__)
 app.secret_key = os.getenv('SECRET_KEY', 'super-secret-key-for-flashing')
 
+@app.before_request
+def force_https():
+    if request.headers.get('X-Forwarded-Proto') == 'http':
+        url = request.url.replace('http://', 'https://', 1)
+        return redirect(url, code=301)
+    
 # --- EMAIL CONFIGURATION ---
 app.config['MAIL_SERVER'] = 'smtp.gmail.com'
 app.config['MAIL_PORT'] = 587
 app.config['MAIL_USE_TLS'] = True
 app.config['MAIL_USE_SSL'] = False
-app.config['MAIL_USERNAME'] = os.getenv('MAIL_USERNAME', 'mbwambojohn05@gmail.com')
-app.config['MAIL_PASSWORD'] = os.getenv('MAIL_PASSWORD', 'mscjkaefhhkjtfbp')
+app.config['MAIL_USERNAME'] = os.getenv('MAIL_USERNAME', 'pardalissafaritours@gmail.com')
+app.config['MAIL_PASSWORD'] = os.getenv('MAIL_PASSWORD', 'eaknuegehvqwtwdp')
 app.config['MAIL_DEFAULT_SENDER'] = ('Pardalis Safari Tour', app.config['MAIL_USERNAME'])
 
-ADMIN_EMAIL = os.getenv('ADMIN_EMAIL', 'mbwambojohn05@gmail.com')
+ADMIN_EMAIL = os.getenv('ADMIN_EMAIL', 'pardalissafaritours@gmail.com')
 
 mail = Mail(app)
 
@@ -488,27 +494,27 @@ def lengai_detail():
 @app.route('/safaris/classic-wildlife')
 def classic_wildlife():
     photos = [
-        {"url": url_for('static', filename='images/menu/safari/classic1.jpg'), "caption": "Game Drives Across Northern Tanzania"},
-        {"url": url_for('static', filename='images/menu/safari/classic2.jpg'), "caption": "Big Five Spotting in Ngorongoro Crater"},
-        {"url": url_for('static', filename='images/menu/safari/classic3.jpg'), "caption": "Luxury Bush Camp Experience"}
+        {"url": url_for('static', filename='/Game Drives Across Northern Tanzania.jpg'), "caption": "Game Drives Across Northern Tanzania"},
+        {"url": url_for('static', filename='/Big Five Spotting in Ngorongoro Crater.jpg'), "caption": "Big Five Spotting in Ngorongoro Crater"},
+        {"url": url_for('static', filename='/Luxury Bush Camp Experience.jpg'), "caption": "Luxury Bush Camp Experience"}
     ]
     return render_template('classic_wildlife.html', photos=photos)
 
 @app.route('/safaris/great-migration')
 def great_migration():
     photos = [
-        {"url": url_for('static', filename='images/menu/safari/migration1.jpg'), "caption": "Mara River Crossing Action"},
-        {"url": url_for('static', filename='images/menu/safari/migration2.jpg'), "caption": "Herds Moving Across Serengeti Plains"},
-        {"url": url_for('static', filename='images/menu/safari/migration3.jpg'), "caption": "Calving Season in Ndutu"}
+        {"url": url_for('static', filename='/Mara River Crossing Action.jpg'), "caption": "Mara River Crossing Action"},
+        {"url": url_for('static', filename='/Herds Moving Across Serengeti Plains.jpg'), "caption": "Herds Moving Across Serengeti Plains"},
+        {"url": url_for('static', filename='/Calving Season in Ndutu.jpg'), "caption": "Calving Season in Ndutu"}
     ]
     return render_template('great_migration.html', photos=photos)
 
 @app.route('/safaris/photographic-expeditions')
 def photographic_expeditions():
     photos = [
-        {"url": url_for('static', filename='images/menu/safari/photo1.jpg'), "caption": "Golden Hour Wildlife Photography"},
-        {"url": url_for('static', filename='images/menu/safari/photo2.jpg'), "caption": "4x4 Vehicle Equipped with Camera Mounts"},
-        {"url": url_for('static', filename='images/menu/safari/photo3.jpg'), "caption": "Close-Up Predator Sightings"}
+        {"url": url_for('static', filename='/Golden Hour Wildlife Photography.jpg'), "caption": "Golden Hour Wildlife Photography"},
+        {"url": url_for('static', filename='/4x4 Vehicle Equipped with Camera Mounts.jpg'), "caption": "4x4 Vehicle Equipped with Camera Mounts"},
+        {"url": url_for('static', filename='/Close-Up Predator Sightings.jpg'), "caption": "Close-Up Predator Sightings"}
     ]
     return render_template('photographic_expeditions.html', photos=photos)
 
@@ -601,7 +607,29 @@ def get_destinations_api():
     ]
     return jsonify({"status": "success", "destinations": destinations_list}), 200
 
-
+@app.route('/climbing-trekking', endpoint='climbing_trekking_page')
+def climbing_trekking():
+    items = [
+        {
+            "title": "Mount Kilimanjaro Climbs",
+            "image": url_for('static', filename='images/mount kilimanjaro/mt_kilimanjaro6.jpg'),
+            "text": "Guided treks to Uhuru Peak via Machame, Lemosho, and Marangu routes.",
+            "link": url_for('kilimanjaro_detail')
+        },
+        {
+            "title": "Mount Meru Treks",
+            "image": url_for('static', filename='images/mount meru/mountmeru2.jpg'),
+            "text": "Scenic multi-day trekking ideal for acclimatization and panoramic views.",
+            "link": url_for('meru_detail')
+        },
+        {
+            "title": "Ol Doinyo Lengai",
+            "image": url_for('static', filename='images/oldonyo lengai/Oldonyo-Lengai.jpg'),
+            "text": "Challenging active volcano hikes located in the heart of Maasai land.",
+            "link": url_for('lengai_detail')
+        }
+    ]
+    return render_template('climbing_trekking.html', items=items)
 @app.route('/api/book', methods=['POST'])
 def handle_app_booking():
     data = request.get_json(silent=True) or {}
