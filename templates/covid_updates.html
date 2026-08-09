@@ -1,0 +1,85 @@
+{% extends 'index.html' %}
+
+{% block content %}
+<div class="page-banner">
+    <div class="container">
+        <h1>{% if active_tab == 'tanzania' %}Tanzania Travel Updates{% else %}COVID-19 Tanzania Updates{% endif %}</h1>
+    </div>
+</div>
+
+<div class="container page-layout">
+    <!-- LEFT SIDEBAR -->
+    <aside class="sidebar">
+        <div class="widget search-widget">
+            <h3>SEARCH IN BLOG</h3>
+            <form action="{{ url_for('search') }}" method="GET">
+                <input type="text" name="q" placeholder="Enter your search">
+            </form>
+        </div>
+
+        <div class="widget archive-widget">
+            <h3>NEWS ARCHIVED</h3>
+            <ul>
+                <li><a href="#">BASECAMP ECO RESORT MAFIA ISLAND</a></li>
+                <li><a href="#">NGORONGORO CONSERVATION AREA</a></li>
+                <li><a href="#">LAKE MANYARA NATIONAL PARK</a></li>
+                <li><a href="#">TARANGIRE NATIONAL PARK</a></li>
+                <li><a href="#">SAFARI TOURS - BY VEHICLE</a></li>
+                <li><a href="#">HOT AIR BALLOON SAFARI TANZANIA</a></li>
+                <li><a href="#">CHIMPANZEE TREKKING</a></li>
+                <li><a href="#">WALKING SAFARI</a></li>
+            </ul>
+        </div>
+    </aside>
+
+    <!-- MAIN CONTENT AREA -->
+    <main class="main-content">
+        <h2>{% if active_tab == 'tanzania' %}Latest Updates on Travel in Tanzania{% else %}Update on Corona Virus Disease (COVID 19) in Tanzania{% endif %}</h2>
+
+        <div class="advisory-list">
+            {% if advisories %}
+                {% for item in advisories %}
+                <div class="advisory-card">
+                    <div class="advisory-date">{{ item.date }}</div>
+                    <div class="advisory-body">
+                        <p>{{ item.title }}</p>
+                    </div>
+                    <div class="advisory-action">
+                        <a href="{{ item.file_url }}" target="_blank" class="btn-read-more">Read More</a>
+                    </div>
+                </div>
+                {% endfor %}
+            {% else %}
+                <!-- FALLBACK WHEN NO ADVISORIES LIST IS PASSED -->
+                <div class="advisory-card">
+                    <div class="advisory-date">12.01.2023</div>
+                    <div class="advisory-body">
+                        <p>Tanzania Mainland Travel Advisory No.12 12-January-2023</p>
+                    </div>
+                    <div class="advisory-action">
+                        <a href="#" class="btn-read-more">Read More</a>
+                    </div>
+                </div>
+                <div class="advisory-card">
+                    <div class="advisory-date">01.02.2023</div>
+                    <div class="advisory-body">
+                        <p>Zanzibar Travel Advisory No.15 01-February-2023</p>
+                    </div>
+                    <div class="advisory-action">
+                        <a href="#" class="btn-read-more">Read More</a>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+
+        <!-- VIDEO SECTION -->
+        <div class="welcome-video-section">
+            <h3>10.07.2020</h3>
+            <p>Pardalis Safari Tours is ready to welcome guests back to Tanzania.</p>
+            <div class="video-wrapper">
+                <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID" frameborder="0" allowfullscreen></iframe>
+            </div>
+        </div>
+    </main>
+</div>
+{% endblock %}
