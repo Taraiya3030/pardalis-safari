@@ -972,6 +972,39 @@ textarea {
 .mobile-toggle.is-active .hamburger-bar:nth-child(3) {
     transform: translateY(-6px) rotate(-45deg);
 }
+/* ==========================================================================
+   Responsive Media Queries & Dropdown Fixes
+   ========================================================================== */
+.mobile-toggle {
+    display: none;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 10px 15px;
+    outline: none;
+}
+
+.hamburger-bar {
+    display: block;
+    width: 22px;
+    height: 2px;
+    margin: 4px 0;
+    background-color: #555555;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    border-radius: 2px;
+}
+
+.mobile-toggle.is-active .hamburger-bar:nth-child(1) {
+    transform: translateY(6px) rotate(45deg);
+}
+
+.mobile-toggle.is-active .hamburger-bar:nth-child(2) {
+    opacity: 0;
+}
+
+.mobile-toggle.is-active .hamburger-bar:nth-child(3) {
+    transform: translateY(-6px) rotate(-45deg);
+}
 
 @media (max-width: 992px) {
     .mobile-toggle {
@@ -1005,20 +1038,18 @@ textarea {
         align-items: center;
     }
 
-    .mega-dropdown, 
-    .dropdown-menu,
-    .dropdown-content {
+    /* Force dropdowns to show on hover or when dropdown-open class is active */
+    .nav-item:hover > .dropdown-menu,
+    .nav-item:hover > .dropdown-content,
+    .nav-item.dropdown-open .mega-dropdown,
+    .nav-item.dropdown-open .dropdown-menu,
+    .nav-item.dropdown-open .dropdown-content {
+        display: block;
         position: static;
         width: 100%;
         box-shadow: none;
         padding: 8px 0;
         background-color: #FAF7EE;
-    }
-
-    .nav-item.dropdown-open .mega-dropdown,
-    .nav-item.dropdown-open .dropdown-menu,
-    .nav-item.dropdown-open .dropdown-content {
-        display: block;
     }
 
     .mega-content {
@@ -1057,4 +1088,78 @@ textarea {
         flex-wrap: wrap;
         font-size: 12px;
     }
+} /* Properly closed bracket here */
+
+/* ==========================================================================
+   Destinations Overview Section
+   ========================================================================== */
+.destinations-overview {
+    margin-bottom: 30px;
+}
+
+.intro-lead {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #333333;
+    margin-bottom: 20px;
+}
+
+.circuit-group {
+    margin-bottom: 16px;
+}
+
+.circuit-group h3 {
+    font-size: 1.1rem;
+    color: #67211B;
+    margin-bottom: 4px;
+    font-weight: bold;
+}
+
+.circuit-group p {
+    font-size: 0.9rem;
+    color: #444444;
+}
+
+/* Comparison Table Styling */
+.comparison-table-wrapper {
+    margin-top: 25px;
+    overflow-x: auto;
+}
+
+.comparison-table-wrapper h3 {
+    font-size: 1.1rem;
+    color: #67211B;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+
+.destinations-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #ffffff;
+    border: 1px solid #e0d7c6;
+    font-size: 0.88rem;
+}
+
+.destinations-table th {
+    background-color: #E3D8C4;
+    color: #67211B;
+    text-align: left;
+    padding: 10px 14px;
+    font-weight: bold;
+    border-bottom: 2px solid #C4B79E;
+}
+
+.destinations-table td {
+    padding: 10px 14px;
+    border-bottom: 1px solid #e0d7c6;
+    color: #333333;
+}
+
+.destinations-table tbody tr:nth-child(even) {
+    background-color: #FAF7EE;
+}
+
+.destinations-table tbody tr:hover {
+    background-color: #f2ebd9;
 }

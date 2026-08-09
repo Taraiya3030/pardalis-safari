@@ -638,7 +638,19 @@ def handle_app_booking():
         return jsonify({"status": "error", "message": "Email is required"}), 400
 
     return jsonify({"status": "success", "message": "Booking request received successfully!"}), 201
+@app.route('/tanzania-updates')
+def tanzania_updates():
+    # Render your general Tanzania updates/news template
+    return render_template('tanzania_updates.html')
 
 
+@app.route('/covid-updates')
+def covid_updates():
+    default_advisories = [
+        # ... your advisories data
+    ]
+    return render_template(
+        'covid_updates.html', active_tab='covid', advisories=default_advisories
+    )
 if __name__ == '__main__':
     app.run(debug=True)
