@@ -1,0 +1,65 @@
+<div class="media-centre-container">
+    <h2>MEDIA CENTRE</h2>
+    
+    <!-- Tab Controls -->
+    <div class="gallery-tabs">
+        <button class="tab-btn active" onclick="switchTab(event, 'fleet')">OUR FLEET/WORKSHOP</button>
+        <button class="tab-btn" onclick="switchTab(event, 'wildlife')">WILDLIFE</button>
+        <button class="tab-btn" onclick="switchTab(event, 'mountains')">MOUNTAIN CLIMBING</button>
+    </div>
+
+    <!-- Gallery Grid Items -->
+    {% for category, photos in gallery.items() %}
+    <div class="tab-content" id="tab-{{ category }}" style="display: {% if loop.first %}grid{% else %}none{% endif %};">
+        {% for photo in photos %}
+        <div class="gallery-card">
+            <img src="{{ url_for('static', filename=photo.thumb) }}" alt="{{ photo.title }}">
+            <p>{{ photo.title }}</p>
+        </div>
+        {% endfor %}
+    </div>
+    {% endfor %}
+</div>
+
+<script>
+function switchTab(evt, categoryId) {
+    const contents = document.querySelectorAll('.tab-content');
+    contents.forEach(content => content.style.display = 'none');
+
+    const tabs = document.querySelectorAll('.tab-btn');
+    tabs.forEach(tab => tab.classList.remove('active'));
+
+    document.getElementById('tab-' + categoryId).style.display = 'grid';
+    evt.currentTarget.classList.add('active');
+}
+</script>
+
+<style>
+.gallery-tabs {
+    display: flex;
+    gap: 5px;
+    border-bottom: 2px solid #8b0000;
+    margin-bottom: 20px;
+}
+.tab-btn {
+    padding: 10px 15px;
+    border: none;
+    background: #e0e0e0;
+    cursor: pointer;
+    font-weight: bold;
+}
+.tab-btn.active {
+    background: #8b0000;
+    color: white;
+}
+.tab-content {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 15px;
+}
+.gallery-card img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 4px;
+}
+</style>

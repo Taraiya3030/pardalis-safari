@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News & Updates | Pardalis Safari Tours</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .timeline-card-link {
+            display: block;
+            text-decoration: none;
+            color: inherit;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .timeline-card-link:hover {
+            transform: translateY(-2px);
+        }
+        .archive-item-link {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: inherit;
+            gap: 10px;
+        }
+        .card-media-wrapper {
+            position: relative;
+            overflow: hidden;
+        }
+        .video-overlay-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 3rem;
+            color: #ff0000;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER / NAVIGATION -->
+    <header class="header-container">
+        <div class="logo-container">
+            <a href="/"><img src="{{ url_for('static', filename='logo.png') }}" alt="Pardalis Safari Tours Logo"></a>
+        </div>
+        <div class="slogan">Great People for Memorable Safaris</div>
+    </header>
+
+    <nav class="nav-container">
+        <ul class="nav-menu">
+            <li class="nav-item"><a href="/">HOME</a></li>
+            <li class="nav-item"><a href="/about">ABOUT US</a></li>
+            <li class="nav-item"><a href="/destinations">DESTINATIONS</a></li>
+            <li class="nav-item"><a href="/safaris">SAFARIS</a></li>
+            <li class="nav-item"><a href="/climbing-trekking">CLIMBING &amp; TREKKING</a></li>
+            <li class="nav-item"><a href="/accommodation">ACCOMMODATION</a></li>
+            <li class="nav-item"><a href="{{ url_for('news_updates') }}">NEWS</a></li>
+            <li class="nav-item"><a href="/contact">CONTACT</a></li>
+        </ul>
+    </nav>
+
+    <!-- MAIN NEWS CONTENT -->
+    <div class="news-page-wrapper">
+        <h1 class="news-page-title">
+            {% if active_post %}
+                {{ active_post.title }}
+            {% else %}
+                PARDALIS SAFARI NEWS &amp; UPDATES
+            {% endif %}
+        </h1>
+
+        <div class="news-layout-container">
+            <!-- LEFT SIDEBAR -->
+            <aside class="news-sidebar">
+                <!-- Search Box -->
+                <div class="sidebar-block">
+                    <h3 class="sidebar-heading">SEARCH IN BLOG</h3>
+                    <form action="/news" method="GET" class="blog-search-form">
+                        <input type="text" name="q" placeholder="Enter your search" class="search-input">
+                    </form>
+                </div>
+
+                <!-- News Archived List -->
+                <div class="sidebar-block">
+                    <h3 class="sidebar-heading">NEWS ARCHIVED</h3>
+                    <ul class="archive-list">
+                        {% if archive %}
+                            {% for item in archive %}
+                            <li>
+                                <a href="{{ item.url | default('/news/' ~ item.slug) }}" class="archive-item-link">
+                                    {% if item.image %}
+                                    <img src="{{ url_for('static', filename=item.image) }}" alt="{{ item.title }}" class="archive-thumb">
+                                    {% endif %}
+                                    <div class="archive-info">
+                                        <span class="archive-title">{{ item.title }}</span>
+                                        <span class="archive-date">{{ item.date }}</span>
+                                    </div>
+                                </a>
+                            </li>
+                            {% endfor %}
+                        {% else %}
+                            <!-- Fallback static items with responsive links -->
+                            <li>
+                                <a href="/news/basecamp-eco-resort" class="archive-item-link">
+                                    <img src="{{ url_for('static', filename='archive1.jpg') }}" alt="Basecamp" class="archive-thumb">
+                                    <div class="archive-info">
+                                        <span class="archive-title">BASECAMP ECO RESORT MAFIA ISLAND</span>
+                                        <span class="archive-date">1:16 PM 30 Mar 2026</span>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/news/ngorongoro-conservation-area" class="archive-item-link">
+                                    <div class="archive-info">
+                                        <span class="archive-title">NGORONGORO CONSERVATION AREA</span>
+                                        <span class="archive-date">1:06 PM 30 Dec 2025</span>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/news/lake-manyara-national-park" class="archive-item-link">
+                                    <div class="archive-info">
+                                        <span class="archive-title">LAKE MANYARA NATIONAL PARK</span>
+                                        <span class="archive-date">1:05 PM 30 Dec 2025</span>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/news/tarangire-national-park" class="archive-item-link">
+                                    <div class="archive-info">
+                                        <span class="archive-title">TARANGIRE NATIONAL PARK</span>
+                                        <span class="archive-date">1:04 PM 30 Dec 2025</span>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/news/safari-tours-by-vehicle" class="archive-item-link">
+                                    <div class="archive-info">
+                                        <span class="archive-title">SAFARI TOURS - BY VEHICLE</span>
+                                        <span class="archive-date">7:28 AM 30 Dec 2025</span>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/news/hot-air-balloon-safari" class="archive-item-link">
+                                    <div class="archive-info">
+                                        <span class="archive-title">Hot-Air Balloon Safari Tanzania – Serengeti &amp; Tarangire Sunrise Flights</span>
+                                        <span class="archive-date">1:18 PM 08 Dec 2025</span>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/news/chimpanzee-trekking" class="archive-item-link">
+                                    <div class="archive-info">
+                                        <span class="archive-title">CHIMPANZEE TREKKING</span>
+                                        <span class="archive-date">7:40 AM 08 Dec 2025</span>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/news/walking-safari" class="archive-item-link">
+                                    <div class="archive-info">
+                                        <span class="archive-title">WALKING SAFARI</span>
+                                        <span class="archive-date">7:39 AM 08 Dec 2025</span>
+                                    </div>
+                                </a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </aside>
+
+            <!-- RIGHT MAIN CONTENT -->
+            <main class="news-main">
+                {% if active_post %}
+                    <!-- DETAILED POST VIEW (WHEN CLICKED) -->
+                    <article class="single-post-content">
+                        {% if active_post.video_embed %}
+                            <div class="video-container" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; margin-bottom: 20px;">
+                                <iframe src="{{ active_post.video_embed }}" frameborder="0" allowfullscreen style="position: absolute; top:0; left: 0; width: 100%; height: 100%;"></iframe>
+                            </div>
+                        {% elif active_post.image %}
+                            <div class="post-hero-image" style="margin-bottom: 20px;">
+                                <img src="{{ url_for('static', filename=active_post.image) }}" alt="{{ active_post.title }}" style="width:100%; height:auto;">
+                            </div>
+                        {% endif %}
+
+                        <div class="post-body-text" style="line-height: 1.8; color: #333;">
+                            {{ active_post.content | safe }}
+                        </div>
+                    </article>
+                {% else %}
+                    <!-- DEFAULT TIMELINE FEED VIEW -->
+                    <div class="current-updates-banner">
+                        <img src="{{ url_for('static', filename='lions_banner.jpg') }}" alt="Current Updates" class="banner-img">
+                        <div class="banner-text">#CURRENT UPDATES</div>
+                    </div>
+
+                    <div class="timeline-container">
+                        {% if posts %}
+                            {% for post in posts %}
+                            <div class="timeline-item">
+                                <div class="timeline-left">
+                                    <span class="timeline-date">{{ post.date }}</span>
+                                    <div class="timeline-node"></div>
+                                </div>
+                                <div class="timeline-content">
+                                    <a href="{{ post.url | default('/news/' ~ post.slug) }}" class="timeline-card-link">
+                                        <div class="timeline-card">
+                                            {% if post.image %}
+                                            <div class="card-thumb card-media-wrapper">
+                                                <img src="{{ url_for('static', filename=post.image) }}" alt="{{ post.title }}">
+                                                {% if post.is_video %}
+                                                <i class="fab fa-youtube video-overlay-icon"></i>
+                                                {% endif %}
+                                            </div>
+                                            {% endif %}
+                                            <div class="card-body">
+                                                <h2 class="card-title">{{ post.title }}</h2>
+                                                {% if post.summary %}
+                                                <p class="post-summary">{{ post.summary }}</p>
+                                                {% endif %}
+                                                <span class="btn-read-more"><i class="far fa-file-alt"></i> Read more</span>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        {% else %}
+                            <!-- Interactive Fallback Posts from standard listing -->
+                            
+                            <!-- Post 1: Jerusalema Challenge -->
+                            <div class="timeline-item">
+                                <div class="timeline-left">
+                                    <span class="timeline-date">1st January 2021</span>
+                                    <div class="timeline-node"></div>
+                                </div>
+                                <div class="timeline-content">
+                                    <a href="/news/jerusalema-challenge" class="timeline-card-link">
+                                        <div class="timeline-card">
+                                            <div class="card-thumb card-media-wrapper">
+                                                <img src="{{ url_for('static', filename='jerusalema_challenge.jpg') }}" alt="Jerusalema Challenge">
+                                                <i class="fab fa-youtube video-overlay-icon"></i>
+                                            </div>
+                                            <div class="card-body">
+                                                <h2 class="card-title">Leopard Tours | Jerusalema Challenge</h2>
+                                                <p class="post-summary">Watch our team participate in the Jerusalema dance challenge...</p>
+                                                <span class="btn-read-more"><i class="far fa-file-alt"></i> Read more</span>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <!-- Post 2: Christ Hope Orphanage -->
+                            <div class="timeline-item">
+                                <div class="timeline-left">
+                                    <span class="timeline-date">24th December 2020</span>
+                                    <div class="timeline-node"></div>
+                                </div>
+                                <div class="timeline-content">
+                                    <a href="/news/christ-hope-orphanage" class="timeline-card-link">
+                                        <div class="timeline-card">
+                                            <div class="card-thumb card-media-wrapper">
+                                                <img src="{{ url_for('static', filename='christ_hope.jpg') }}" alt="Christ Hope Orphanage">
+                                                <i class="fab fa-youtube video-overlay-icon"></i>
+                                            </div>
+                                            <div class="card-body">
+                                                <h2 class="card-title">Our Managing Director's Daughters celebrating Christmas with Christ Hope Orphanage.</h2>
+                                                <p class="post-summary">Sharing joy and holiday cheer at the Christ Hope Orphanage...</p>
+                                                <span class="btn-read-more"><i class="far fa-file-alt"></i> Read more</span>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <!-- Post 3: Plastic Bags Ban -->
+                            <div class="timeline-item">
+                                <div class="timeline-left">
+                                    <span class="timeline-date">1st June 2019</span>
+                                    <div class="timeline-node"></div>
+                                </div>
+                                <div class="timeline-content">
+                                    <a href="/news/plastic-bags-ban" class="timeline-card-link">
+                                        <div class="timeline-card">
+                                            <div class="card-thumb">
+                                                <img src="{{ url_for('static', filename='plastic_bags_ban.jpg') }}" alt="Plastic Bags Ban">
+                                            </div>
+                                            <div class="card-body">
+                                                <h2 class="card-title">PLASTIC BAGS BAN – INFORMATION FOR TRAVELERS TO TANZANIA</h2>
+                                                <p class="post-summary">Notice to travelers planning to visit Tanzania regarding carrier plastic bags ban...</p>
+                                                <span class="btn-read-more"><i class="far fa-file-alt"></i> Read more</span>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <!-- Post 4: Cultural Tourism Mto wa Mbu -->
+                            <div class="timeline-item">
+                                <div class="timeline-left">
+                                    <span class="timeline-date">5th August 2015</span>
+                                    <div class="timeline-node"></div>
+                                </div>
+                                <div class="timeline-content">
+                                    <a href="/news/cultural-tourism-mto-wa-mbu" class="timeline-card-link">
+                                        <div class="timeline-card">
+                                            <div class="card-thumb">
+                                                <img src="{{ url_for('static', filename='cultural_tourism.jpg') }}" alt="Cultural Tourism">
+                                            </div>
+                                            <div class="card-body">
+                                                <h2 class="card-title">Cultural Tourism, Mto wa Mbu – a crucible of cultures</h2>
+                                                <p class="post-summary">Cultural tours are a relatively new product in Tanzania that is mostly sold as an add-on...</p>
+                                                <span class="btn-read-more"><i class="far fa-file-alt"></i> Read more</span>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        {% endif %}
+                    </div>
+                {% endif %}
+            </main>
+        </div>
+    </div>
+
+</body>
+</html>

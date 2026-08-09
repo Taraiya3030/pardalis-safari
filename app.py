@@ -638,19 +638,92 @@ def handle_app_booking():
         return jsonify({"status": "error", "message": "Email is required"}), 400
 
     return jsonify({"status": "success", "message": "Booking request received successfully!"}), 201
-@app.route('/tanzania-updates')
-def tanzania_updates():
-    # Render your general Tanzania updates/news template
-    return render_template('tanzania_updates.html')
-
-
-@app.route('/covid-updates')
-def covid_updates():
-    default_advisories = [
-        # ... your advisories data
+@app.route('/news')
+def news_updates():
+    # Sample news data (replace with database query if using DB)
+    news_posts = [
+        {
+            'title': 'Leopard Tours | Jerusalema Challenge',
+            'date': '1st January 2021',
+            'summary': (
+                'Watch our team participate in the Jerusalema dance challenge...'
+            ),
+            'image': 'jerusalema.jpg',
+            'slug': 'jerusalema-challenge',
+        },
+        {
+            'title': (
+                "Our Managing Director's Daughters celebrating Christmas with"
+                " Christ Hope Orphanage."
+            ),
+            'date': '24th December 2020',
+            'summary': (
+                'Sharing joy and holiday cheer at the Christ Hope Orphanage...'
+            ),
+            'image': 'christmas_orphanage.jpg',
+            'slug': 'christmas-orphanage',
+        },
     ]
+
+    archive_links = [
+        {
+            'title': 'BASECAMP ECO RESORT MAFIA ISLAND',
+            'date': '1:55 PM 03 Mar 2026',
+        },
+        {
+            'title': 'NGORONGORO CONSERVATION AREA',
+            'date': '1:06 PM 30 Dec 2025',
+        },
+        {'title': 'LAKE MANYARA NATIONAL PARK', 'date': '1:05 PM 30 Dec 2025'},
+        {'title': 'TARANGIRE NATIONAL PARK', 'date': '1:04 PM 30 Dec 2025'},
+        {'title': 'SAFARI TOURS - BY VEHICLE', 'date': '7:28 AM 30 Dec 2025'},
+        {'title': 'WALKING SAFARI', 'date': '7:39 AM 08 Dec 2025'},
+    ]
+
     return render_template(
-        'covid_updates.html', active_tab='covid', advisories=default_advisories
+        'news_updates.html', posts=news_posts, archive=archive_links
     )
+@app.route('/')
+def index():
+    return render_template('index.html')
+
+@app.route('/travel-info/international-flights')
+def international_flights():
+    return render_template('travel_info/international_flights.html')
+
+@app.route('/travel-info/domestic-flights')
+def domestic_flights():
+    return render_template('travel_info/domestic_flights.html')
+
+@app.route('/travel-info/guides')
+def travel_guides():
+    # FAQ / Accordion sections
+    guides_data = [
+        {"id": "visas", "title": "PASSPORTS & VISA", "content": "All visitors to Tanzania require a return or onward ticket and a valid passport..."},
+        {"id": "health", "title": "HEALTH", "content": "Visitors originating from or transiting through yellow fever endemic zones must show proof of vaccination..."},
+        {"id": "customs", "title": "CUSTOMS", "content": "Personal effects including cameras and binoculars are allowed tax-free..."},
+        {"id": "currency", "title": "CURRENCY", "content": "Tanzanian Shilling (TZS) is the official currency. USD, EUR, and GBP are widely accepted..."},
+        {"id": "electricity", "title": "ELECTRICITY", "content": "215 - 230 Volts, 50 Cycles AC."}
+    ]
+    return render_template('travel_info/guides.html', guides=guides_data)
+
+@app.route('/travel-info/media-centre')
+def media_centre():
+    # Media gallery categories and photos
+    gallery_data = {
+        "fleet": [
+            {"thumb": "fleet1.jpg", "title": "Our Fleet/Workshop"},
+            {"thumb": "fleet2.jpg", "title": "Safari Vehicle Custom"}
+        ],
+        "wildlife": [
+            {"thumb": "wildlife1.jpg", "title": "Lions in Serengeti"},
+            {"thumb": "wildlife2.jpg", "title": "Elephants"}
+        ],
+        "mountains": [
+            {"thumb": "mountain1.jpg", "title": "Mount Kilimanjaro"},
+            {"thumb": "mountain2.jpg", "title": "Mount Meru"}
+        ]
+    }
+    return render_template('travel_info/media_centre.html', gallery=gallery_data)
 if __name__ == '__main__':
     app.run(debug=True)

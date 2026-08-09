@@ -1,0 +1,52 @@
+<div class="accordion-container">
+    <h2>GUIDES TO TRAVEL</h2>
+    
+    {% for guide in guides %}
+    <div class="accordion-item">
+        <button class="accordion-header" onclick="toggleAccordion('{{ guide.id }}')">
+            <span class="icon" id="icon-{{ guide.id }}">+</span>
+            <span class="title">{{ guide.title }}</span>
+        </button>
+        <div class="accordion-content" id="content-{{ guide.id }}" style="display: none;">
+            <p>{{ guide.content }}</p>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<script>
+function toggleAccordion(id) {
+    const content = document.getElementById('content-' + id);
+    const icon = document.getElementById('icon-' + id);
+    
+    if (content.style.display === "block") {
+        content.style.display = "none";
+        icon.textContent = "+";
+    } else {
+        content.style.display = "block";
+        icon.textContent = "-";
+    }
+}
+</script>
+
+<style>
+.accordion-header {
+    width: 100%;
+    text-align: left;
+    background: #f4f4f4;
+    border: 1px solid #ddd;
+    padding: 12px 15px;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 5px;
+}
+.accordion-content {
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-top: none;
+    background: #fff;
+}
+</style>
