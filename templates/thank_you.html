@@ -1,79 +1,86 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thank You - Pardalis Safari Tour</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <title>Thank You for Your Submission | Pardalis Safari Tours</title>
     <style>
-        .thank-you-card {
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background: url("{{ url_for('static', filename='images/background-safari.jpg') }}") no-repeat center center fixed;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .confirmation-card {
+            background-color: rgba(245, 238, 220, 0.92);
+            width: 90%;
+            max-width: 600px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            border-radius: 8px;
+            overflow: hidden;
             text-align: center;
-            padding: 50px 30px;
-            max-width: 800px;
-            margin: 60px auto;
         }
 
-        .thank-you-card h2 {
-            color: #2b2b2b;
-            font-family: 'Georgia', serif;
-            font-size: 32px;
-            margin-bottom: 24px;
-            letter-spacing: 0.5px;
+        .logo-header {
+            background-color: #ffffff; /* Perfect white background alignment */
+            padding: 20px;
+            border-bottom: 3px solid #5c3a21;
         }
 
-        .thank-you-card p {
-            font-size: 18px;
-            color: #4a4a4a;
-            line-height: 1.7;
-            margin-bottom: 18px;
+        .logo-header img {
+            max-height: 80px;
+            width: auto;
         }
 
-        .email-highlight {
-            color: #8c2834;
-            font-weight: 600;
-            font-size: 18px;
-            word-break: break-all;
+        .message-body {
+            padding: 40px 30px;
+            color: #333333;
+            line-height: 1.6;
         }
 
-        .actions-container {
-            margin-top: 40px;
-        }
-
-        .btn-home {
-            display: inline-block;
-            background-color: #ba4051;
-            color: #ffffff;
-            text-decoration: none;
-            padding: 14px 36px;
-            font-size: 16px;
+        .message-body h1 {
+            color: #2a1a1a;
+            font-size: 1.8rem;
+            margin-bottom: 25px;
             font-weight: bold;
-            border-radius: 4px;
-            transition: background-color 0.2s ease;
         }
 
-        .btn-home:hover {
-            background-color: #8c2834;
+        .message-body p {
+            font-size: 1.1rem;
+            margin: 15px 0;
         }
 
-        /* Mobile Adjustments */
-        @media (max-width: 600px) {
-            .thank-you-card {
-                padding: 30px 15px;
-                margin: 30px auto;
-            }
-            .thank-you-card h2 {
-                font-size: 26px;
-            }
-            .thank-you-card p,
-            .email-highlight {
-                font-size: 16px;
-            }
+        .website-link {
+            display: inline-block;
+            margin-top: 15px;
+            color: #e57c00;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .website-link:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
 <body>
 
-<main class="container thank-you-card">
+<div class="confirmation-card">
+    <div class="logo-header">
+        <a href="{{ url_for('index') }}">
+            <img src="{{ url_for('static', filename='logo.png') }}" alt="Pardalis Tours Logo">
+        </a>
+    </div>
+
+    <div class="message-body">
+        
     <h2>Thank You for Your Submission!</h2>
     
     <p>
@@ -88,7 +95,9 @@
     <div class="actions-container">
         <a href="{{ url_for('booking_form') }}" class="btn-home">Submit Another Request</a>
     </div>
-</main>
+
+    </div>
+</div>
 
 </body>
 </html>

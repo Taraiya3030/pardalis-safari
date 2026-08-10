@@ -722,11 +722,298 @@ footer p {
         padding: 15px;
     }
 }
+ Floating Menu Container fixed on bottom right */
+.floating-social-menu {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    z-index: 9999;
+}
+
+/* Common button styles */
+.social-btn {
+    position: relative;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 18px;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.3);
+    transition: transform 0.2s ease, opacity 0.3s ease;
+    border: none;
+    cursor: pointer;
+}
+
+.social-btn:hover {
+    transform: scale(1.1);
+}
+
+/* Individual Icon Brand Colors */
+.social-btn.whatsapp { background-color: #25D366; }
+.social-btn.call     { background-color: #0d6efd; }
+.social-btn.email    { background-color: #3b5998; }
+.social-btn.instagram{ background-color: #d62976; }
+.social-btn.youtube  { background-color: #FF0000; }
+.social-btn.tiktok   { background-color: #000000; }
+.social-btn.location { background-color: #8B0000; }
+
+/* Main Toggle Button */
+.social-btn.main-toggle {
+    background-color: #8B0000;
+    font-size: 20px;
+}
+
+/* Hover Tooltips on the Left */
+.social-btn .tooltip-text {
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+    right: 52px;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: #ffffff;
+    color: #333333;
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: bold;
+    white-space: nowrap;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    border: 1px solid #ddd;
+    transition: opacity 0.2s ease;
+    pointer-events: none;
+}
+
+.social-btn:hover .tooltip-text {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* Hidden state when collapsed */
+.floating-social-menu.collapsed .social-btn:not(.main-toggle) {
+    display: none;
+}
+
+/* Reset and ensure container floats on the bottom right in a vertical column */
+.floating-social-menu {
+    position: fixed !important;
+    right: 20px !important;
+    bottom: 20px !important;
+    top: auto !important;
+    left: auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 12px !important;
+    align-items: center !important;
+    z-index: 999999 !important;
+}
+
+/* Base button styling (Round circles) */
+.social-btn {
+    position: relative !important;
+    width: 45px !important;
+    height: 45px !important;
+    border-radius: 50% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    color: #ffffff !important;
+    text-decoration: none !important;
+    font-size: 20px !important;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3) !important;
+    transition: transform 0.2s ease, background-color 0.2s ease !important;
+    border: none !important;
+    cursor: pointer !important;
+    outline: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+.social-btn:hover {
+    transform: scale(1.1) !important;
+}
+
+/* Individual Button Colors */
+.social-btn.whatsapp  { background-color: #25D366 !important; }
+.social-btn.call      { background-color: #0d6efd !important; }
+.social-btn.email     { background-color: #3b5998 !important; }
+.social-btn.instagram { background-color: #d62976 !important; }
+.social-btn.youtube   { background-color: #FF0000 !important; }
+.social-btn.tiktok    { background-color: #000000 !important; }
+.social-btn.location  { background-color: #8B0000 !important; }
+
+/* Main Red Close / Toggle Button at bottom */
+.social-btn.main-toggle {
+    background-color: #8B0000 !important;
+    font-size: 22px !important;
+}
+
+/* Tooltip text hidden by default; slides out on hover to the left */
+.social-btn .tooltip-text {
+    display: none !important;
+    position: absolute !important;
+    right: 58px !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    background-color: #ffffff !important;
+    color: #333333 !important;
+    padding: 5px 12px !important;
+    border-radius: 4px !important;
+    font-size: 13px !important;
+    font-weight: 600 !important;
+    font-family: sans-serif !important;
+    white-space: nowrap !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2) !important;
+    border: 1px solid #e0e0e0 !important;
+    pointer-events: none !important;
+}
+
+/* Show tooltip on button hover */
+.social-btn:hover .tooltip-text {
+    display: block !important;
+}
+
+/* Hide all social buttons when menu is collapsed */
+.floating-social-menu.collapsed .social-btn:not(.main-toggle) {
+    display: none !important;
+}
+
+.wa-trigger-btn {
+    position: fixed;
+    left: 20px;
+    bottom: 20px;
+    background-color: #25D366;
+    color: #fff;
+    border: none;
+    padding: 12px 18px;
+    border-radius: 30px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    z-index: 99999;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+/* Chat Box Popup Positioning (Appears next to the menu on the right) */
+.wa-chat-widget {
+    display: none;
+    position: fixed;
+    right: 85px;
+    bottom: 20px;
+    width: 310px;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 5px 25px rgba(0,0,0,0.3);
+    z-index: 999999;
+    flex-direction: column;
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+}
+
+.wa-chat-header {
+    background: #075E54;
+    color: #ffffff;
+    padding: 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    position: relative;
+}
+
+.wa-avatar {
+    width: 35px;
+    height: 35px;
+    background: #128C7E;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    color: #ffffff;
+}
+
+.wa-chat-info {
+    display: flex;
+    flex-direction: column;
+    font-size: 13px;
+}
+
+.wa-chat-info span {
+    font-size: 11px;
+    opacity: 0.85;
+}
+
+.wa-close-btn {
+    position: absolute;
+    right: 12px;
+    top: 10px;
+    background: none;
+    border: none;
+    color: #ffffff;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.wa-chat-body {
+    padding: 15px;
+    background: #e5ddd5;
+    min-height: 90px;
+}
+
+.wa-msg {
+    background: #ffffff;
+    padding: 10px;
+    border-radius: 8px;
+    font-size: 13px;
+    color: #333333;
+    line-height: 1.4;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.15);
+}
+
+.wa-chat-footer {
+    display: flex;
+    padding: 8px;
+    background: #f0f0f0;
+    border-top: 1px solid #ddd;
+}
+
+.wa-chat-footer input {
+    flex: 1;
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    outline: none;
+    font-size: 13px;
+}
+
+.wa-chat-footer button {
+    background: #075E54;
+    color: #ffffff;
+    border: none;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    margin-left: 6px;
+    cursor: pointer;
+}
+
 </style>
 </head>
 <body>
 <!-- HEADER WITH CENTERED LOGO -->
 <header>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <div class="header-container">
         <div class="logo-container">
             <img src="{{ url_for('static', filename='logo.png') }}" alt="Pardalis Safari Tours Logo">
@@ -768,6 +1055,66 @@ footer p {
         </ul>
     </div>
 </nav>
+<!-- FLOATING SOCIAL MENU (RIGHT SIDE) -->
+<div class="floating-social-menu">
+    <!-- Updated WhatsApp Icon to open the chat box popup -->
+    <button type="button" onclick="toggleWaWidget()" class="social-btn whatsapp">
+        <i class="fa-brands fa-whatsapp"></i>
+        <span class="tooltip-text">WhatsApp us</span>
+    </button>
+
+    <a href="tel:+255768498026" class="social-btn call">
+        <i class="fa-solid fa-phone"></i>
+        <span class="tooltip-text">Call Us</span>
+    </a>
+    <a href="mailto:info@pardalissafaritours.com" class="social-btn email">
+        <i class="fa-solid fa-envelope"></i>
+        <span class="tooltip-text">Email Us</span>
+    </a>
+    <a href="https://instagram.com" target="_blank" class="social-btn instagram">
+        <i class="fa-brands fa-instagram"></i>
+        <span class="tooltip-text">Follow us!</span>
+    </a>
+    <a href="https://youtube.com" target="_blank" class="social-btn youtube">
+        <i class="fa-brands fa-youtube"></i>
+        <span class="tooltip-text">YouTube</span>
+    </a>
+    <a href="https://tiktok.com" target="_blank" class="social-btn tiktok">
+        <i class="fa-brands fa-tiktok"></i>
+        <span class="tooltip-text">TikTok</span>
+    </a>
+    <a href="https://maps.google.com" target="_blank" class="social-btn location">
+        <i class="fa-solid fa-location-dot"></i>
+        <span class="tooltip-text">Google Maps</span>
+    </a>
+    <button class="social-btn main-toggle" onclick="toggleSocialMenu()" id="socialToggleBtn" type="button">
+        <i class="fa-solid fa-xmark"></i>
+    </button>
+</div>
+
+<!-- WHATSAPP CHAT POPUP WIDGET -->
+<div class="wa-chat-widget" id="waChatWidget">
+    <div class="wa-chat-header">
+        <div class="wa-avatar">
+            <i class="fa-solid fa-headset"></i>
+        </div>
+        <div class="wa-chat-info">
+            <strong>Pardalis Safari Support</strong>
+            <span>Online | Typically replies instantly</span>
+        </div>
+        <button class="wa-close-btn" onclick="toggleWaWidget()">&times;</button>
+    </div>
+    <div class="wa-chat-body">
+        <div class="wa-msg">
+            Jambo! 👋 Welcome to Pardalis Safari Tours. How can we help you plan your safari today?
+        </div>
+    </div>
+    <div class="wa-chat-footer">
+        <input type="text" id="waUserInput" placeholder="Type your inquiry here..." onkeypress="handleWaKey(event)">
+        <button onclick="sendToWhatsApp()"><i class="fa-solid fa-paper-plane"></i></button>
+    </div>
+</div>
+
 <!-- PAGE WRAPPER: SIDEBAR + MAIN HOMEPAGE CONTENT -->
 <div class="page-wrapper">
     <!-- LEFT SIDEBAR -->
@@ -803,7 +1150,7 @@ footer p {
                 <div class="contact-card-header">Contact Information</div>
                 <div style="padding: 4px 6px; font-size: 0.75rem; color: #555;">
                     <strong>Email:</strong><br>
-                    <a href="mailto:info@pardalissafaritours.com" style="color: #4A1208; text-decoration: none;">info@pardalissafaritours.com</a><br>
+                    <a href="mailto:pardalissafaritours@gmail.com" style="color: #4A1208; text-decoration: none;">pardalissafaritours@gmail.com</a><br>
                     <strong>Phone:</strong> +255 768 498 026<br>
                 </div>
             </div>
@@ -1126,14 +1473,17 @@ footer p {
 </footer>
 <!-- MOBILE NAVIGATION & CLOSE BUTTON SCRIPT -->
 <script>
+    // Navigation Menu Logic
     const mobileToggle = document.getElementById('mobileToggle');
     const navMenu = document.getElementById('navMenu');
     const dropdownTriggers = document.querySelectorAll('.dropdown-trigger');
 
-    mobileToggle.addEventListener('click', () => {
-        mobileToggle.classList.toggle('active');
-        navMenu.classList.toggle('active');
-    });
+    if (mobileToggle) {
+        mobileToggle.addEventListener('click', () => {
+            mobileToggle.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+    }
 
     // Toggle dropdowns on mobile view
     dropdownTriggers.forEach(trigger => {
@@ -1145,6 +1495,89 @@ footer p {
             }
         });
     });
+
+    // Floating Social & Contact Menu Toggle
+    function toggleSocialMenu() {
+        const menu = document.querySelector('.floating-social-menu');
+        const toggleIcon = document.querySelector('#socialToggleBtn i');
+        
+        if (menu) {
+            menu.classList.toggle('collapsed');
+            
+            if (toggleIcon) {
+                if (menu.classList.contains('collapsed')) {
+                    // Chat bubble icon when closed
+                    toggleIcon.className = 'fa-solid fa-comments';
+                } else {
+                    // X close icon when open
+                    toggleIcon.className = 'fa-solid fa-xmark';
+                }
+            }
+        }
+    }
+
+    // WhatsApp Direct Chat Widget Logic
+    function toggleWaWidget() {
+        const widget = document.getElementById('waChatWidget');
+        if (widget) {
+            widget.style.display = (widget.style.display === 'flex') ? 'none' : 'flex';
+        }
+    }
+
+    function handleWaKey(e) {
+        if (e.key === 'Enter') {
+            sendToWhatsApp();
+        }
+    }
+
+    function sendToWhatsApp() {
+        const input = document.getElementById('waUserInput');
+        const userText = input ? input.value.trim() : '';
+        
+        // Default greeting if input is left blank
+        const textToSend = userText ? userText : "Hello Pardalis Safari Tours, I am interested in booking a safari!";
+        
+        // Formats message and opens WhatsApp with your phone number
+        const phoneNumber = "255768498026"; 
+        const encodedText = encodeURIComponent(textToSend);
+        const waUrl = `https://wa.me/${phoneNumber}?text=${encodedText}`;
+        
+        window.open(waUrl, '_blank');
+        
+        if (input) input.value = '';
+        toggleWaWidget();
+    }
 </script>
+
+<!--Start of Tawk.to Script-->
+<script type="text/javascript">
+var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+
+// Position the widget to the left, but shifted right past the sidebar
+Tawk_API.customStyle = {
+    visibility : {
+        desktop : {
+            position : 'bottom-left',
+            xOffset : 280, // Adjust this value to match your exact sidebar width
+            yOffset : 20
+        },
+        mobile : {
+            position : 'bottom-left',
+            xOffset : 10,
+            yOffset : 10
+        }
+    }
+};
+
+(function(){
+var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+s1.async=true;
+s1.src='https://embed.tawk.to/6a797346b080171d470f0bbc/1jvl6kj2t';
+s1.charset='UTF-8';
+s1.setAttribute('crossorigin','*');
+s0.parentNode.insertBefore(s1,s0);
+})();
+</script>
+<!--End of Tawk.to Script-->
 </body>
 </html>
