@@ -725,5 +725,10 @@ def media_centre():
         ]
     }
     return render_template('travel_info/media_centre.html', gallery=gallery_data)
+
+@app.route('/book') # or your route URL
+def book():
+    return render_template('book.html')
+
 if __name__ == '__main__':
     app.run(debug=True)

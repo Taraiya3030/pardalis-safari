@@ -1751,3 +1751,47 @@ textarea {
     border-top: none;
     background: #fff;
 }
+/* Container bar across the card */
+.custom-navbar {
+  background-color: #3b0202 !important; /* Dark brown background */
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* Horizontal flex alignment & reset bullets */
+.nav-menu {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  list-style: none !important;
+  list-style-type: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.nav-menu li {
+  list-style: none !important;
+  margin: 0;
+  padding: 0;
+}
+
+/* Menu links styling */
+.nav-link {
+  display: block;
+  padding: 12px 14px;
+  color: #ffffff !important; /* White text */
+  text-decoration: none !important;
+  font-weight: bold;
+  font-size: 13px;
+  white-space: nowrap;
+  transition: background-color 0.2s ease;
+}
+
+/* Hover effect */
+.nav-link:hover {
+  background-color: #240101 !important;
+  color: #ffffff !important;
+}

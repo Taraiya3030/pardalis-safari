@@ -5,8 +5,61 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pardalis Safari Tour - Book Your Safari</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <style>
+      .navbar-container {
+    background-color: #3b0202;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    margin-bottom: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.nav-link {
+    color: #ffffff;
+    text-decoration: none;
+    font-family: Arial, "Helvetica Neue", sans-serif;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+    padding: 12px 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-right: 1px solid rgba(0, 0, 0, 0.2);
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+/* First item border for clear distinction */
+.nav-link:first-child {
+    border-left: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+/* Tab highlight matching the active state in your reference image */
+.nav-link:hover,
+.nav-link.active {
+    background-color: #240101; /* Darker tab background */
+    color: #ffffff;
+}
+    </style>
 </head>
 <body>
+
+      <nav class="navbar-container">
+    <a href="/" class="nav-link active">HOME</a>
+    <a href="/about" class="nav-link">ABOUT US</a>
+    <a href="/destinations" class="nav-link">DESTINATIONS</a>
+    <a href="/safaris" class="nav-link">SAFARIS</a>
+    <a href="/climbing" class="nav-link">CLIMBING &amp; TREKKING</a>
+    <a href="/accommodation" class="nav-link">ACCOMMODATION</a>
+    <a href="/travel-info" class="nav-link">TRAVEL INFO &#9662;</a>
+    <a href="/news" class="nav-link">NEWS</a>
+    <a href="/contact" class="nav-link">CONTACT</a>
+</nav>
+
 
 <!-- Language Selection Bar -->
 <div class="lang-bar">
